@@ -43,13 +43,13 @@ public class FrontController extends HttpServlet {
 		map.put("/productAccList.do", new ProductAccList());
 		
 		// 공지
-		map.put("/noticeList.do", new NoticeList());
-		map.put("/noticeListPaging.do", new NoticeListPaging());
-		map.put("/noticeSelect.do", new NoticeSelect());
-		map.put("/noticeUpdate.do", new NoticeUpdate());
-		map.put("/noticeInsertForm.do", new NoticeInsertForm());
-		map.put("/noticeInsert.do", new NoticeInsert());
-		map.put("/noticeDelete.do", new NoticeDelete());
+//		map.put("/noticeList.do", new NoticeList());
+//		map.put("/noticeListPaging.do", new NoticeListPaging());
+//		map.put("/noticeSelect.do", new NoticeSelect());
+//		map.put("/noticeUpdate.do", new NoticeUpdate());
+//		map.put("/noticeInsertForm.do", new NoticeInsertForm());
+//		map.put("/noticeInsert.do", new NoticeInsert());
+//		map.put("/noticeDelete.do", new NoticeDelete());
 	}
 
 	@Override
