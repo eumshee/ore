@@ -606,6 +606,10 @@ ol {
   Features Section
 -----------------------*/
 
+.row {
+	margin: auto;
+}
+
 .features-section {
 	padding-bottom: 0;
 }
@@ -614,9 +618,11 @@ ol {
 	padding-bottom: 67px;
 }
 
-.features-ads .single-features-ads {
+.features-ads .single-features-ads.box {
 	text-align: center;
 	margin-bottom: 30px;
+	position:absolute;
+	left: 50%;
 }
 
 .features-ads .single-features-ads.first {
