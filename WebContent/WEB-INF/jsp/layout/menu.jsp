@@ -19,7 +19,7 @@
 			<nav class="main-menu mobile-menu">
 				<ul>
 					<li><a class="active" href="./index.html">NEW SEASON</a></li>
-					<li><a href="./categories.html">Shop</a>
+					<li><a href="#!">Shop</a>
 						<ul class="sub-menu">
 							<li><a href="product-page.html">Shop All</a></li>
 							<li><a href="shopping-cart.html">Outer</a></li>
