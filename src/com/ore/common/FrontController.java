@@ -15,6 +15,11 @@ import com.ore.member.web.MemberJoinForm;
 import com.ore.member.web.MemberLogin;
 import com.ore.member.web.MemberLoginForm;
 import com.ore.member.web.MemberLoginOut;
+import com.ore.product.web.ProductAccList;
+import com.ore.product.web.ProductBottomList;
+import com.ore.product.web.ProductList;
+import com.ore.product.web.ProductOuterList;
+import com.ore.product.web.ProductTopList;
 
 @SuppressWarnings("serial")
 public class FrontController extends HttpServlet {
@@ -30,10 +35,21 @@ public class FrontController extends HttpServlet {
 		map.put("/memberLogin.do", new MemberLogin());
 		map.put("/memberLoginOut.do", new MemberLoginOut());
 		
-		// 주문
+		// 상품
+		map.put("/productList.do", new ProductList());
+		map.put("/productOuterList.do", new ProductOuterList());
+		map.put("/productTopList.do", new ProductTopList());
+		map.put("/productBottomList.do", new ProductBottomList());
+		map.put("/productAccList.do", new ProductAccList());
 		
-		// 제품
-		
+		// 공지
+		map.put("/noticeList.do", new NoticeList());
+		map.put("/noticeListPaging.do", new NoticeListPaging());
+		map.put("/noticeSelect.do", new NoticeSelect());
+		map.put("/noticeUpdate.do", new NoticeUpdate());
+		map.put("/noticeInsertForm.do", new NoticeInsertForm());
+		map.put("/noticeInsert.do", new NoticeInsert());
+		map.put("/noticeDelete.do", new NoticeDelete());
 	}
 
 	@Override

@@ -1,6 +1,6 @@
 package com.ore.product.vo;
 
-import java.util.Date;
+import java.sql.Date;
 
 public class ProductVO {
 	private String itemCode;
@@ -9,7 +9,7 @@ public class ProductVO {
 	private int itemPrice;
 	private int itemStock;
 	private String itemDesc;
-	private Date date;
+	private Date itemDate;
 
 	public String getItemCode() {
 		return itemCode;
@@ -59,12 +59,12 @@ public class ProductVO {
 		this.itemDesc = itemDesc;
 	}
 
-	public Date getDate() {
-		return date;
+	public Date getItemDate() {
+		return itemDate;
 	}
 
-	public void setDate(Date date) {
-		this.date = date;
+	public void setItemDate(Date itemDate) {
+		this.itemDate = itemDate;
 	}
 
 }

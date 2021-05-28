@@ -6,7 +6,7 @@
 	<div class="container-fluid">
 		<div class="inner-header">
 			<div class="logo">
-				<a href="index.do"><img src="${pageContext.request.contextPath }/bootstrap/img/mainlogo.png" alt=""></a>
+				<a href="./index.html"><img src="${pageContext.request.contextPath }/bootstrap/img/mainlogo.png" alt=""></a>
 			</div>
 			<div class="header-right">
 				<img src="${pageContext.request.contextPath }/bootstrap/img/icons/man.png" alt=""> <a href="#"> 
@@ -14,21 +14,22 @@
 				</a>
 			</div>
 			<div class="user-access">
-				<a href="memberJoinForm.do">Register</a> <a href="memberLoginForm.do" class="in">Sign in</a>
+				<a href="#">Register</a> <a href="#" class="in">Sign in</a>
 			</div>
 			<nav class="main-menu mobile-menu">
 				<ul>
-					<li><a class="active" href="index.do">NEW SEASON</a></li>
+					<li><a class="active" href="./index.html">NEW SEASON</a></li>
 					<li><a href="#!">Shop</a>
 						<ul class="sub-menu">
-							<li><a href="#">Shop All</a></li>
-							<li><a href="#">Outer</a></li>
-							<li><a href="#">Top</a></li>
-							<li><a href="#">Bottom</a></li>
-							<li><a href="#">Acc</a></li>
+							<li><a href="productList.do">Shop All</a></li>
+							<li><hr class="dropdown-divider" /></li>
+							<li><a href="productOuterList.do">Outer</a></li>
+							<li><a href="productTopList.do">Top</a></li>
+							<li><a href="productBottomList.do">Bottom</a></li>
+							<li><a href="productAccList.do">Acc</a></li>
 						</ul></li>
-					<li><a href="#">Notice</a></li>
-					<li><a href="#">Q&#38;A</a></li>
+					<li><a href="./product-page.html">Notice</a></li>
+					<li><a href="./check-out.html">Q&#38;A</a></li>
 				</ul>
 			</nav>
 		</div>
