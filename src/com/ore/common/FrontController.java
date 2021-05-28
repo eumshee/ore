@@ -24,7 +24,6 @@ public class FrontController extends HttpServlet {
 	public void init(ServletConfig config) throws ServletException { // 요청페이지 - 실행컨트롤
 		// 회원
 		map.put("/index.do", new IndexPage());
-		map.put("/index.do", new IndexPage());
 		map.put("/memberJoinForm.do", new MemberJoinForm());
 		map.put("/memberJoin.do", new MemberJoin());
 		map.put("/memberLoginForm.do", new MemberLoginForm());
