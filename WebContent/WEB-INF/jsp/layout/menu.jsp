@@ -6,7 +6,7 @@
 	<div class="container-fluid">
 		<div class="inner-header">
 			<div class="logo">
-				<a href="./index.html"><img src="${pageContext.request.contextPath }/bootstrap/img/mainlogo.png" alt=""></a>
+				<a href="index.do"><img src="${pageContext.request.contextPath }/bootstrap/img/mainlogo.png" alt=""></a>
 			</div>
 			<div class="header-right">
 				<img src="${pageContext.request.contextPath }/bootstrap/img/icons/man.png" alt=""> <a href="#"> 
@@ -14,7 +14,7 @@
 				</a>
 			</div>
 			<div class="user-access">
-				<a href="#">Register</a> <a href="#" class="in">Sign in</a>
+				<a href="memberJoinForm.do">Register</a> <a href="memberLoginForm.do" class="in">Sign in</a>
 			</div>
 			<nav class="main-menu mobile-menu">
 				<ul>
