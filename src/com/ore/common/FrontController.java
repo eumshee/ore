@@ -10,6 +10,11 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.ore.member.web.MemberJoin;
+import com.ore.member.web.MemberJoinForm;
+import com.ore.member.web.MemberLogin;
+import com.ore.member.web.MemberLoginForm;
+import com.ore.member.web.MemberLoginOut;
 
 @SuppressWarnings("serial")
 public class FrontController extends HttpServlet {
@@ -19,6 +24,13 @@ public class FrontController extends HttpServlet {
 	public void init(ServletConfig config) throws ServletException { // 요청페이지 - 실행컨트롤
 		// 회원
 		map.put("/index.do", new IndexPage());
+		map.put("/index.do", new IndexPage());
+		map.put("/memberJoinForm.do", new MemberJoinForm());
+		map.put("/memberJoin.do", new MemberJoin());
+		map.put("/memberLoginForm.do", new MemberLoginForm());
+		map.put("/memberLogin.do", new MemberLogin());
+		map.put("/memberLoginOut.do", new MemberLoginOut());
+		
 		
 	}
 
