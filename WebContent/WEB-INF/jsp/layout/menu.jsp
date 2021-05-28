@@ -13,9 +13,18 @@
 				<img src="${pageContext.request.contextPath }/bootstrap/img/icons/bag.png" alt=""> <span>2</span>
 				</a>
 			</div>
-			<div class="user-access">
-				<a href="memberJoinForm.do">Register</a> <a href="memberLoginForm.do" class="in">Sign in</a>
-			</div>
+			<c:choose>
+				<c:when test="${empty id }">
+					<div class="user-access">
+						<a href="memberJoinForm.do">Register</a> <a href="memberLoginForm.do" class="in">Sign in</a>
+					</div>			
+				</c:when>
+				<c:otherwise>
+					<div class="user-access">
+						<a href="">${id }</a> <a href="memberLoginOut.do" class="in">Logout</a>
+					</div>			
+				</c:otherwise>
+			</c:choose>
 			<nav class="main-menu mobile-menu">
 				<ul>
 					<li><a class="active" href="./index.html">NEW SEASON</a></li>
