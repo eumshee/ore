@@ -1,9 +1,39 @@
 package com.ore.cart.vo;
 
 public class CartVO {
+	// 테이블에 있는 컬럼
 	private String userId;
 	private String itemCode;
 	private int itemQty;
+
+	// 테이블에 없는 컬럼(결과값 담기는 곳)
+	private String itemName;
+	private int itemPrice;
+	private int sum;
+
+	public String getItemName() {
+		return itemName;
+	}
+
+	public void setItemName(String itemName) {
+		this.itemName = itemName;
+	}
+
+	public int getItemPrice() {
+		return itemPrice;
+	}
+
+	public void setItemPrice(int itemPrice) {
+		this.itemPrice = itemPrice;
+	}
+
+	public int getSum() {
+		return sum;
+	}
+
+	public void setSum(int sum) {
+		this.sum = sum;
+	}
 
 	public String getUserId() {
 		return userId;
