@@ -21,11 +21,12 @@
 					<li><a class="active" href="./index.html">NEW SEASON</a></li>
 					<li><a href="#!">Shop</a>
 						<ul class="sub-menu">
-							<li><a href="product-page.html">Shop All</a></li>
-							<li><a href="shopping-cart.html">Outer</a></li>
-							<li><a href="check-out.html">Top</a></li>
-							<li><a href="check-out.html">Bottom</a></li>
-							<li><a href="check-out.html">Acc</a></li>
+							<li><a href="productList.do">Shop All</a></li>
+							<li><hr class="dropdown-divider" /></li>
+							<li><a href="productOuterList.do">Outer</a></li>
+							<li><a href="productTopList.do">Top</a></li>
+							<li><a href="productBottomList.do">Bottom</a></li>
+							<li><a href="productAccList.do">Acc</a></li>
 						</ul></li>
 					<li><a href="./product-page.html">Notice</a></li>
 					<li><a href="./check-out.html">Q&#38;A</a></li>
