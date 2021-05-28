@@ -311,7 +311,7 @@ ol {
 
 .inner-header .user-access {
 	float: right;
-	margin-right: 100px;
+	margin-right: 50px;
 }
 
 .inner-header .user-access a {
@@ -338,8 +338,9 @@ ol {
 }
 
 .inner-header .main-menu {
-	float: right;
-	margin-right: 150px;
+	position: absolute;
+	left: 100px;
+	float: left;
 }
 
 .inner-header .main-menu ul li {
