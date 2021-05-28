@@ -14,7 +14,7 @@
 				</a>
 			</div>
 			<div class="user-access">
-				<a href="#">Register</a> <a href="memberLoginForm.do" class="in">Sign in</a>
+				<a href="memberJoinForm.do">Register</a> <a href="memberLoginForm.do" class="in">Sign in</a>
 			</div>
 			<nav class="main-menu mobile-menu">
 				<ul>

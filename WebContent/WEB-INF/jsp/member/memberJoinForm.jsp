@@ -89,12 +89,6 @@
 							<input type="text" id="memberName" name="memberName" size="37">
 						</td>
 					</tr>
-					<tr>
-						<th width="150"><label for="memberAddr">주소</label></th>
-						<td width="300">
-							<input type="text" id="memberAddr" name="memberAddr" size="37">
-						</td>
-					</tr>
 				</table>
 				<div>
 					<button type="button" onclick="formCheck()">회원가입</button>

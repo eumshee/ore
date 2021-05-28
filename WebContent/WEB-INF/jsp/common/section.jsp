@@ -51,7 +51,7 @@
 							070-7731-9010<br>
 							MON - FRI 13:00-17:00<br>
 							</p>
-							<h4>For buying & press inquiry</h4>
+							<h4>For buying &#38; press inquiry</h4>
 							<p>
 							info@ore-clothing.com 
 							</p>

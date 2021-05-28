@@ -20,7 +20,7 @@ public class MemberServiceImpl extends DAO implements MemberService {
 	// 중복이면 true, 아니면 false.
 	public boolean idCheck(String id) {
 		boolean exist = false;
-		sql = "select id from member where user_id = ?";
+		sql = "select user_id from member where user_id = ?";
 		try {
 			psmt = conn.prepareStatement(sql);
 			psmt.setString(1, id);

@@ -37,7 +37,7 @@ public class MemberLogin implements DbCommand {
 			session.setAttribute("member", vo);
 			request.setAttribute("vo", rvo);		// 해당 페이지에서만
 			
-			path = "member/memberLoginSuccess.tiles";
+			path = "/index.do";
 		}
 		
 		return path;
