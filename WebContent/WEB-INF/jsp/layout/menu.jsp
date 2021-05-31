@@ -51,14 +51,11 @@
 							<li><a href="productAccList.do">Acc</a></li>
 						</ul></li>
 					<li><a href="noticeList.do">Notice</a></li>
-<<<<<<< HEAD
-					<li><a href="#">Q&#38;A</a></li>
+
+					<li><a href="qnaList.do">Q&#38;A</a></li>
 					<c:if test="${id eq 'admin'}">
 						<li><a href="adminList.do">상품관리</a></li>					
 					</c:if>
-=======
-					<li><a href="qnaList.do">Q&#38;A</a></li>
->>>>>>> branch 'master' of https://github.com/eumshee/ore.git
 				</ul>
 			</nav>
 		</div>
