@@ -34,7 +34,13 @@ import com.ore.product.web.ProductListPaging;
 import com.ore.product.web.ProductOuterList;
 import com.ore.product.web.ProductSelect;
 import com.ore.product.web.ProductTopList;
+import com.ore.qna.web.QnaDelete;
+import com.ore.qna.web.QnaInsert;
+import com.ore.qna.web.QnaInsertForm;
 import com.ore.qna.web.QnaList;
+import com.ore.qna.web.QnaSearch;
+import com.ore.qna.web.QnaSelect;
+import com.ore.qna.web.QnaUpdate;
 
 @SuppressWarnings("serial")
 public class FrontController extends HttpServlet {
@@ -77,6 +83,12 @@ public class FrontController extends HttpServlet {
 		
 		// qna
 		map.put("/qnaList.do", new QnaList());
+		map.put("/qnaSelect.do", new QnaSelect());
+		map.put("/qnaSearch.do", new QnaSearch());
+		map.put("/qnaInsertForm", new QnaInsertForm());
+		map.put("/qnaInsert", new QnaInsert());
+		map.put("/qnaUpdate.do", new QnaUpdate());
+		map.put("/qnaDelete.do", new QnaDelete());
 		
 	}
 
