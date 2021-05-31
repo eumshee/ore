@@ -73,6 +73,9 @@ public class FrontController extends HttpServlet {
 		// 관리자
 		map.put("/adminList.do", new AdminList());
 		map.put("/adminSelect.do", new AdminSelect());
+		
+		// qna
+		map.put("/qnaList.do", new QnaList());
 	}
 
 	@Override
