@@ -27,7 +27,7 @@
 			</c:choose>
 			<nav class="main-menu mobile-menu">
 				<ul>
-					<li><a class="active" href="./index.html">NEW SEASON</a></li>
+					<li><a class="active" href="lookbook.do">NEW SEASON</a></li>
 					<li><a href="#!">Shop</a>
 						<ul class="sub-menu">
 							<li><a href="productList.do">Shop All</a></li>

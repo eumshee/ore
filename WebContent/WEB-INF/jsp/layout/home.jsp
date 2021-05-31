@@ -4,12 +4,12 @@
 <section class="hero-slider">
 	<div class="hero-items owl-carousel">
 		<div class="single-slider-item set-bg"
-			data-setbg="${pageContext.request.contextPath }/bootstrap/img/slider-1.jpg">
+			data-setbg="${pageContext.request.contextPath }/bootstrap/img/product/21summer.jpg">
 			<div class="container">
 				<div class="row">
 					<div class="col-lg-12">
-						<h1>2019</h1>
-						<h2>Lookbook.</h2>
+						<h1>2021</h1>
+						<h2>Summer Lookbook</h2>
 						<a href="#" class="primary-btn">See More</a>
 					</div>
 				</div>

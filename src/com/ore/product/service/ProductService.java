@@ -15,5 +15,7 @@ public interface ProductService {
 	int insertProduct(ProductVO vo);
 	int updateProduct(ProductVO vo);
 	int deleteProduct(ProductVO vo);
+	
+	public List<ProductVO> productListPaging(int page, String category);
 
 }

@@ -16,6 +16,43 @@ public class ProductServiceImpl extends DAO implements ProductService {
 	ResultSet rs;
 	String sql;
 
+	// 페이징 기능
+	public List<ProductVO> productListPaging(int page, String category){
+		String SQL = "select b.*\r\n"
+				+ "from (select rownum rn,a.*\r\n"
+				+ "      from(select * from product where substr(item_code, 1, 1) = nvl(?,substr(item_code, 1, 1)) order by 7 desc)a\r\n"
+				+ "      )b\r\n"
+				+ "where b.rn between ? and ?";
+		List<ProductVO> list = new ArrayList<>();
+		int firstCnt = 0, lastCnt = 0;		
+		firstCnt = (page - 1) * 9 + 1;		// 1 , 11
+		lastCnt = (page * 9);			    // 10, 20
+		
+		try {
+			psmt = conn.prepareStatement(SQL);
+			psmt.setString(1, category);
+			psmt.setInt(2, firstCnt);
+			psmt.setInt(3, lastCnt);
+			rs = psmt.executeQuery();
+			while(rs.next()) {
+				ProductVO vo = new ProductVO();
+				vo.setItemCode(rs.getString("item_code"));
+				vo.setItemName(rs.getString("item_name"));
+				vo.setItemImg(rs.getString("item_img"));
+				vo.setItemPrice(rs.getInt("item_price"));
+				vo.setItemStock(rs.getInt("item_stock"));
+				vo.setItemDesc(rs.getString("item_desc"));
+				vo.setItemDate(rs.getDate("item_date"));
+				list.add(vo);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close();
+		}
+		return list;
+	}
+	
 	// 상품 전체조회
 	@Override
 	public List<ProductVO> selectProductList() {
