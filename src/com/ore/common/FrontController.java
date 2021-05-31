@@ -10,12 +10,22 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.ore.member.web.MemberDelete;
 import com.ore.member.web.MemberJoin;
 import com.ore.member.web.MemberJoinForm;
 import com.ore.member.web.MemberLogin;
 import com.ore.member.web.MemberLoginForm;
 import com.ore.member.web.MemberLoginOut;
 import com.ore.product.web.LookBook;
+import com.ore.member.web.MemberSelect;
+import com.ore.member.web.MemberUpdate;
+import com.ore.notice.web.NoticeDelete;
+import com.ore.notice.web.NoticeInsert;
+import com.ore.notice.web.NoticeInsertForm;
+import com.ore.notice.web.NoticeList;
+import com.ore.notice.web.NoticeSearch;
+import com.ore.notice.web.NoticeSelect;
+import com.ore.notice.web.NoticeUpdate;
 import com.ore.product.web.ProductAccList;
 import com.ore.product.web.ProductBottomList;
 import com.ore.product.web.ProductListPaging;
@@ -36,6 +46,9 @@ public class FrontController extends HttpServlet {
 		map.put("/memberLoginForm.do", new MemberLoginForm());
 		map.put("/memberLogin.do", new MemberLogin());
 		map.put("/memberLoginOut.do", new MemberLoginOut());
+		map.put("/memberSelect.do", new MemberSelect());
+		map.put("/memberUpdate.do", new MemberUpdate());
+		map.put("/memberDelete.do", new MemberDelete());
 		
 		// 상품
 		map.put("/productList.do", new ProductListPaging());
@@ -47,13 +60,13 @@ public class FrontController extends HttpServlet {
 		map.put("/lookbook.do", new LookBook());
 		
 		// 공지
-//		map.put("/noticeList.do", new NoticeList());
-//		map.put("/noticeListPaging.do", new NoticeListPaging());
-//		map.put("/noticeSelect.do", new NoticeSelect());
-//		map.put("/noticeUpdate.do", new NoticeUpdate());
-//		map.put("/noticeInsertForm.do", new NoticeInsertForm());
-//		map.put("/noticeInsert.do", new NoticeInsert());
-//		map.put("/noticeDelete.do", new NoticeDelete());
+		map.put("/noticeList.do", new NoticeList());
+		map.put("/noticeSelect.do", new NoticeSelect());
+		map.put("/noticeSearch.do", new NoticeSearch());
+		map.put("/noticeInsertForm.do", new NoticeInsertForm());
+		map.put("/noticeInsert.do", new NoticeInsert());
+		map.put("/noticeUpdate.do", new NoticeUpdate());
+		map.put("/noticeDelete.do", new NoticeDelete());
 	}
 
 	@Override

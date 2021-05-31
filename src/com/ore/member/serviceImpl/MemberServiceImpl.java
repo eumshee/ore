@@ -81,9 +81,24 @@ public class MemberServiceImpl extends DAO implements MemberService {
 	}
 
 	@Override
-	public MemberVO selectMember() {
-		// TODO Auto-generated method stub
-		return null;
+	public MemberVO selectMember(String id) {
+		sql = "select * from member where user_id = ?";
+		try {
+			psmt = conn.prepareStatement(sql);
+			psmt.setString(1, id);
+			rs = psmt.executeQuery();
+			while(rs.next()) {
+				rvo = new MemberVO();
+				rvo.setUserId(rs.getString("user_id"));
+				rvo.setUserName(rs.getString("user_name"));
+				rvo.setUserPw(rs.getString("user_pw"));
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			close();
+		}
+		return rvo;
 	}
 
 	@Override
@@ -110,8 +125,23 @@ public class MemberServiceImpl extends DAO implements MemberService {
 
 	@Override
 	public int updateMember(MemberVO vo) {
-		// TODO Auto-generated method stub
-		return 0;
+		sql = "update member set user_pw = ? where user_id = ?";
+		try {
+			psmt = conn.prepareStatement(sql);
+			psmt.setString(1, vo.getUserPw());
+			psmt.setString(2, vo.getUserId());
+			n = psmt.executeUpdate();
+			if(n != 0) {
+				System.out.println(n+"건 수정");
+			} else {
+				System.out.println("수정 실패..");
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			close();
+		}
+		return n;
 	}
 
 	@Override

@@ -91,7 +91,7 @@ public class CartServiceImpl extends DAO implements CartService {
 	}
 	
 	@Override
-	public void insertCart(String id, String item, int qty) {
+	public void addCart(String id, String item, int qty) {
 		sql = "insert into cart values(?,?,?)";
 		try {
 			psmt = conn.prepareStatement(sql);

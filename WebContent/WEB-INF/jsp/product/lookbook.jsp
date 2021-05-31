@@ -8,6 +8,7 @@
 </head>
 <body>
 <div class="text-center">
+LOOKBOOK
 <img src="${pageContext.request.contextPath }/bootstrap/img/product/lookbook1.jpg" alt=""><br>
 <img src="${pageContext.request.contextPath }/bootstrap/img/product/lookbook2.jpg" alt=""><br>
 <img src="${pageContext.request.contextPath }/bootstrap/img/product/lookbook3.jpg" alt=""><br>
