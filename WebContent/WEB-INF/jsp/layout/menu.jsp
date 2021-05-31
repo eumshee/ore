@@ -40,11 +40,7 @@
 			</c:choose>
 			<nav class="main-menu mobile-menu">
 				<ul>
-<<<<<<< HEAD
 					<li><a class="active" href="lookbook.do">NEW SEASON</a></li>
-=======
-					<li><a class="active" href="#">NEW SEASON</a></li>
->>>>>>> branch 'master' of https://github.com/eumshee/ore.git
 					<li><a href="#!">Shop</a>
 						<ul class="sub-menu">
 							<li><a href="productList.do">Shop All</a></li>
