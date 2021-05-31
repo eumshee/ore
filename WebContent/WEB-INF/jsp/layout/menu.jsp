@@ -52,6 +52,9 @@
 						</ul></li>
 					<li><a href="noticeList.do">Notice</a></li>
 					<li><a href="#">Q&#38;A</a></li>
+					<c:if test="${id eq 'admin'}">
+						<li><a href="adminList.do">상품관리</a></li>					
+					</c:if>
 				</ul>
 			</nav>
 		</div>

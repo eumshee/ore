@@ -16,6 +16,8 @@ import com.ore.member.web.MemberJoinForm;
 import com.ore.member.web.MemberLogin;
 import com.ore.member.web.MemberLoginForm;
 import com.ore.member.web.MemberLoginOut;
+import com.ore.product.web.AdminList;
+import com.ore.product.web.AdminSelect;
 import com.ore.product.web.LookBook;
 import com.ore.member.web.MemberSelect;
 import com.ore.member.web.MemberUpdate;
@@ -67,6 +69,10 @@ public class FrontController extends HttpServlet {
 		map.put("/noticeInsert.do", new NoticeInsert());
 		map.put("/noticeUpdate.do", new NoticeUpdate());
 		map.put("/noticeDelete.do", new NoticeDelete());
+		
+		// 관리자
+		map.put("/adminList.do", new AdminList());
+		map.put("/adminSelect.do", new AdminSelect());
 	}
 
 	@Override
