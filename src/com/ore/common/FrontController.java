@@ -32,6 +32,7 @@ import com.ore.product.web.ProductListPaging;
 import com.ore.product.web.ProductOuterList;
 import com.ore.product.web.ProductSelect;
 import com.ore.product.web.ProductTopList;
+import com.ore.qna.web.QnaList;
 
 @SuppressWarnings("serial")
 public class FrontController extends HttpServlet {
@@ -67,6 +68,10 @@ public class FrontController extends HttpServlet {
 		map.put("/noticeInsert.do", new NoticeInsert());
 		map.put("/noticeUpdate.do", new NoticeUpdate());
 		map.put("/noticeDelete.do", new NoticeDelete());
+		
+		// qna
+		map.put("/qnaList.do", new QnaList());
+		
 	}
 
 	@Override

@@ -51,7 +51,7 @@
 							<li><a href="productAccList.do">Acc</a></li>
 						</ul></li>
 					<li><a href="noticeList.do">Notice</a></li>
-					<li><a href="#">Q&#38;A</a></li>
+					<li><a href="qnaList.do">Q&#38;A</a></li>
 				</ul>
 			</nav>
 		</div>
