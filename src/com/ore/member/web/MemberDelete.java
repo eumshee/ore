@@ -23,7 +23,7 @@ public class MemberDelete implements DbCommand {
 		service.deleteMember(vo);
 		session.invalidate();
 		
-		return "/index.do";
+		return "member/memberDelete.tiles";
 	}
 
 }
