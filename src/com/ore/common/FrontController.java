@@ -18,6 +18,13 @@ import com.ore.member.web.MemberLoginForm;
 import com.ore.member.web.MemberLoginOut;
 import com.ore.member.web.MemberSelect;
 import com.ore.member.web.MemberUpdate;
+import com.ore.notice.web.NoticeDelete;
+import com.ore.notice.web.NoticeInsert;
+import com.ore.notice.web.NoticeInsertForm;
+import com.ore.notice.web.NoticeList;
+import com.ore.notice.web.NoticeSearch;
+import com.ore.notice.web.NoticeSelect;
+import com.ore.notice.web.NoticeUpdate;
 import com.ore.product.web.ProductAccList;
 import com.ore.product.web.ProductBottomList;
 import com.ore.product.web.ProductList;
@@ -49,13 +56,13 @@ public class FrontController extends HttpServlet {
 		map.put("/productAccList.do", new ProductAccList());
 		
 		// 공지
-//		map.put("/noticeList.do", new NoticeList());
-//		map.put("/noticeListPaging.do", new NoticeListPaging());
-//		map.put("/noticeSelect.do", new NoticeSelect());
-//		map.put("/noticeUpdate.do", new NoticeUpdate());
-//		map.put("/noticeInsertForm.do", new NoticeInsertForm());
-//		map.put("/noticeInsert.do", new NoticeInsert());
-//		map.put("/noticeDelete.do", new NoticeDelete());
+		map.put("/noticeList.do", new NoticeList());
+		map.put("/noticeSelect.do", new NoticeSelect());
+		map.put("/noticeSearch.do", new NoticeSearch());
+		map.put("/noticeInsertForm.do", new NoticeInsertForm());
+		map.put("/noticeInsert.do", new NoticeInsert());
+		map.put("/noticeUpdate.do", new NoticeUpdate());
+		map.put("/noticeDelete.do", new NoticeDelete());
 	}
 
 	@Override

@@ -50,7 +50,7 @@
 							<li><a href="productBottomList.do">Bottom</a></li>
 							<li><a href="productAccList.do">Acc</a></li>
 						</ul></li>
-					<li><a href="#">Notice</a></li>
+					<li><a href="noticeList.do">Notice</a></li>
 					<li><a href="#">Q&#38;A</a></li>
 				</ul>
 			</nav>
