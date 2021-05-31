@@ -5,74 +5,43 @@
 <html>
 <head>
 	<meta charset="UTF-8">
-	<title>notice/noticeList.jsp(paging)</title>
+	<title>Q&#38;A 리스트</title>
 	<style>
-		table {
-			border-collapse: collapse;
-		}
-		th, td {
-			text-align: center;
-			padding: 10px;
-		}
-		.pagination {
-			display: inline-block;
-			margin: auto;
-		}
-		
-		.pagination a {
-			color: black;
-			float: left;
-			padding: 8px 16px;
-			text-decoration: none;
-			transition: background-color .3s;
-		}
-		
-		.pagination a.active {
-			background-color: #212529;
-			color: #fff;
-			border: 1px solid #212529;
-		}
-		
-		.pagination a:hover:not(.active) {
-			background-color: #ddd;
-		}
+	.pagination {
+	display: inline-block;
+	margin: auto;
+	}
+	
+	.pagination a {
+		color: black;
+		float: left;
+		padding: 8px 16px;
+		text-decoration: none;
+		transition: background-color .3s;
+	}
+	
+	.pagination a.active {
+		background-color: #212529;
+		color: #fff;
+		border: 1px solid #212529;
+	}
+	
+	.pagination a:hover:not(.active) {
+		background-color: #ddd;
+	}
 	</style>
-	<script>
-		function formSubmit(id) {
-			frm.id.value = id;
-			frm.submit();
-		}
-		
-		function formSearch() {
-			let search = document.getElementById("search").value;
-			
-			frmSearch.title.value=search;
-			frmSearch.content.value=search;
-			frmSearch.submit();
-		}
-		
-		function formDelete(id) {
-			frmDel.id.value = id;
-			frmDel.submit();
-		}
-			
-		function goPage(page) {
-			location.href="noticeList.do?page="+page;
-		}
-
-	</script>
 </head>
 <body>
-	<div align="center">
-		<h1>공지사항 리스트</h1>
-		<form id="frm" action="noticeSelect.do" method="post">
+		<div align="center">
+		<h1>Q&#38;A</h1>
+		<form id="frm" action="qnaSelect.do" method="post">
 			<input type="hidden" id="id" name="id">
 		</form>
-		<form id="frmSearch" action="noticeSearch.do" method="post">
+		<form id="frmSearch" action="qnaSearch.do" method="post">
 			<input type="hidden" id="title" name="title">
 			<input type="hidden" id="content" name="content">
 		</form>
-		<form id="frmDel" action="noticeDelete.do" method="post">
+		<form id="frmDel" action="qnaDelete.do" method="post">
 			<input type="hidden" id="did" name="did">
 		</form>
 		<hr>
@@ -87,15 +56,16 @@
 					<th>기능</th>
 					</c:if>
 				</tr>
-				<c:forEach items="${noticeList }" var="vo">
+				<c:forEach items="${qnaList }" var="vo">
 					<tr>
 						<td width="100" onclick="formSubmit(${vo.id})">${vo.id }</td>
 						<td width="200" onclick="formSubmit(${vo.id})">${vo.title }</td>
+						<td width="200" onclick="formSubmit(${vo.id})">${vo.writer }</td>
 						<td width="150" onclick="formSubmit(${vo.id})">${vo.regDate }</td>
 						<td width="100" onclick="formSubmit(${vo.id})">${vo.hit }</td>
-						<c:if test="${id eq 'admin' }">
+						<c:if test="${vo.writer eq id }">
 							<td width="50">
-								<button type="button" onclick="formDelete(${vo.id})">삭제</button>							
+								<button type="button" onclick="formDelete(${vo.writer})">삭제</button>							
 							</td>
 						</c:if>
 					</tr>
@@ -104,8 +74,8 @@
 			<div>
 				<input type="text" id="search" size=35>
 				<button type="button" onclick="formSearch()">검색</button>
-				<c:if test="${id eq 'admin' }">
-					<button type="button" onclick="location.href='noticeInsertForm.do'">등록</button>
+				<c:if test="${!empty id}">
+					<button type="button" onclick="location.href='qnaInsertForm.do'">등록</button>
 				</c:if>
 				<br><br>
 				<button type="button" onclick="location.href='index.do'">홈</button>

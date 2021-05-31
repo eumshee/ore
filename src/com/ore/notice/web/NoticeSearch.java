@@ -18,9 +18,9 @@ public class NoticeSearch implements DbCommand {
 		
 		NoticeServiceImpl service = new NoticeServiceImpl();
 		List<NoticeVO> list = service.noticeSearch(title, content);
-		
+
 		request.setAttribute("noticeList", list);
-		
+        
 		return "notice/noticeSearchList.tiles";
 	}
 

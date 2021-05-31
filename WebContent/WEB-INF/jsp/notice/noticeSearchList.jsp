@@ -15,25 +15,27 @@
 			padding: 10px;
 		}
 		.pagination {
-		  display: inline-block;
+			display: inline-block;
+			margin: auto;
 		}
 		
 		.pagination a {
-		  color: black;
-		  float: left;
-		  padding: 8px 16px;
-		  text-decoration: none;
-		  transition: background-color .3s;
-		  border: 1px solid #ddd;
+			color: black;
+			float: left;
+			padding: 8px 16px;
+			text-decoration: none;
+			transition: background-color .3s;
 		}
 		
 		.pagination a.active {
-		  background-color: #4CAF50;
-		  color: white;
-		  border: 1px solid #4CAF50;
+			background-color: #212529;
+			color: #fff;
+			border: 1px solid #212529;
 		}
 		
-		.pagination a:hover:not(.active) {background-color: #ddd;}
+		.pagination a:hover:not(.active) {
+			background-color: #ddd;
+		}
 	</style>
 <script>
 	function formSubmit(id) {
@@ -108,6 +110,7 @@
 				</c:if>
 			</div>
 			<br>
+			<!-- 
 			<jsp:include page="../common/paging.jsp" flush="true">
 			    <jsp:param name="firstPageNo" value="${paging.firstPageNo}" />
 			    <jsp:param name="prevPageNo" value="${paging.prevPageNo}" />
@@ -117,6 +120,7 @@
 			    <jsp:param name="nextPageNo" value="${paging.nextPageNo}" />
 			    <jsp:param name="finalPageNo" value="${paging.finalPageNo}" />
 			</jsp:include>
+			 -->
 	</div>
 </div>
 </body>

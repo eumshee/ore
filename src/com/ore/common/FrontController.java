@@ -34,6 +34,7 @@ import com.ore.product.web.ProductListPaging;
 import com.ore.product.web.ProductOuterList;
 import com.ore.product.web.ProductSelect;
 import com.ore.product.web.ProductTopList;
+import com.ore.qna.web.QnaList;
 
 @SuppressWarnings("serial")
 public class FrontController extends HttpServlet {
@@ -70,12 +71,18 @@ public class FrontController extends HttpServlet {
 		map.put("/noticeUpdate.do", new NoticeUpdate());
 		map.put("/noticeDelete.do", new NoticeDelete());
 		
+<<<<<<< HEAD
 		// 관리자
 		map.put("/adminList.do", new AdminList());
 		map.put("/adminSelect.do", new AdminSelect());
 		
 		// qna
 		map.put("/qnaList.do", new QnaList());
+=======
+		// qna
+		map.put("/qnaList.do", new QnaList());
+		
+>>>>>>> branch 'master' of https://github.com/eumshee/ore.git
 	}
 
 	@Override
