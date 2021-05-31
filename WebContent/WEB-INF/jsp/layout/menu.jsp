@@ -9,9 +9,21 @@
 				<a href="index.do"><img src="${pageContext.request.contextPath }/bootstrap/img/mainlogo.png" alt=""></a>
 			</div>
 			<div class="header-right">
-				<img src="${pageContext.request.contextPath }/bootstrap/img/icons/man.png" alt=""> <a href="#"> 
-				<img src="${pageContext.request.contextPath }/bootstrap/img/icons/bag.png" alt=""> <span>2</span>
-				</a>
+				<c:choose>
+					<c:when test="${!empty id }">
+						<a href="memberSelect.do"><img src="${pageContext.request.contextPath }/bootstrap/img/icons/man.png" alt=""></a>
+						&nbsp;&nbsp;
+					 	<a href=""> 
+						<img src="${pageContext.request.contextPath }/bootstrap/img/icons/bag.png" alt="">
+							<span>${sessionScope.cartCnt }</span>
+						</a>
+					</c:when>
+					<c:otherwise>
+					 	<a href=""> 
+						<img src="${pageContext.request.contextPath }/bootstrap/img/icons/bag.png" alt=""><span>0</span>
+						</a>
+					</c:otherwise>
+				</c:choose>
 			</div>
 			<c:choose>
 				<c:when test="${empty id }">
@@ -21,13 +33,14 @@
 				</c:when>
 				<c:otherwise>
 					<div class="user-access">
-						<a href="">${id }</a> <a href="memberLoginOut.do" class="in">Logout</a>
+						<a href="index.do">${id }</a>
+						<a href="memberLoginOut.do" class="in">Logout</a>
 					</div>			
 				</c:otherwise>
 			</c:choose>
 			<nav class="main-menu mobile-menu">
 				<ul>
-					<li><a class="active" href="./index.html">NEW SEASON</a></li>
+					<li><a class="active" href="#">NEW SEASON</a></li>
 					<li><a href="#!">Shop</a>
 						<ul class="sub-menu">
 							<li><a href="productList.do">Shop All</a></li>
@@ -37,8 +50,8 @@
 							<li><a href="productBottomList.do">Bottom</a></li>
 							<li><a href="productAccList.do">Acc</a></li>
 						</ul></li>
-					<li><a href="./product-page.html">Notice</a></li>
-					<li><a href="./check-out.html">Q&#38;A</a></li>
+					<li><a href="#">Notice</a></li>
+					<li><a href="#">Q&#38;A</a></li>
 				</ul>
 			</nav>
 		</div>

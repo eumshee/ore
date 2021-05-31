@@ -7,7 +7,7 @@ import com.ore.cart.vo.CartVO;
 public interface CartService {
 	List<CartVO> cartSelectList(String uid);
 	CartVO cartSelect(CartVO vo);
-	void insertCart(String id, String item, int qty);
+	void addCart(String id, String item, int qty);
 	int updateCart(CartVO vo);
 	int deleteCart(CartVO vo);
 }
