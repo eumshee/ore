@@ -8,14 +8,12 @@
 	<title>회원정보</title>
 		<script>
 		function pwCheck() {
-			let pw = frm.userPw.value;
-
-			if(pw == "") {
+			if(frm.userPw.value == "") {
 				alert("변경할 패스워드를 입력해주세요.");
 				frm.userPw.focus();
 				return false;
 			}
-			if(pw == ${vo.userPw}) {
+			if(frm.userPw.value == ${vo.userPw}) {
 				alert("다른 패스워드를 입력하세요.");
 				frm.userPw.focus();
 				return false;

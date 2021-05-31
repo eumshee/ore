@@ -14,9 +14,9 @@ public class MemberUpdate implements DbCommand {
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) {
 		HttpSession session = request.getSession();
-
-		String pw = (String) request.getAttribute("userPw");
 		String id = (String) session.getAttribute("id");
+
+		String pw = request.getParameter("userPw");
 		
 		MemberVO vo = new MemberVO();
 		
