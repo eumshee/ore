@@ -77,6 +77,8 @@ public class FrontController extends HttpServlet {
 		
 		// qna
 		map.put("/qnaList.do", new QnaList());
+		
+	}
 
 	@Override
 	protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
