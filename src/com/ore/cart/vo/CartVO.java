@@ -9,6 +9,15 @@ public class CartVO {
 	// 테이블에 없는 컬럼(결과값 담기는 곳)
 	private String itemName;
 	private int itemPrice;
+	private String itemImg;
+
+	public String getItemImg() {
+		return itemImg;
+	}
+
+	public void setItemImg(String itemImg) {
+		this.itemImg = itemImg;
+	}
 
 	public String getItemName() {
 		return itemName;

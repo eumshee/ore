@@ -36,11 +36,11 @@ public class CartServiceImpl extends DAO implements CartService {
 	// 장바구니 전체조회
 	@Override
 	public List<CartVO> cartSelectList(String id) {
-		sql = "select c.user_id, c.item_code, p.item_name, count(c.item_qty) as item_qty, p.item_price\r\n"
+		sql = "select c.user_id, c.item_code, p.item_name, sum(c.item_qty) as item_qty, p.item_price, p.item_img\r\n"
 				+ "from cart c\r\n"
 				+ "left outer join product p\r\n"
 				+ "on (c.item_code=p.item_code)\r\n"
-				+ "group by c.user_id, c.item_code, p.item_name, p.item_price\r\n"
+				+ "group by c.user_id, c.item_code, p.item_name, p.item_price, p.item_img\r\n"
 				+ "having c.user_id=?";
 		List<CartVO> list = new ArrayList<CartVO>();
 		try {
@@ -54,6 +54,7 @@ public class CartServiceImpl extends DAO implements CartService {
 				rvo.setItemName(rs.getString("item_name"));
 				rvo.setItemQty(rs.getInt("item_qty"));
 				rvo.setItemPrice(rs.getInt("item_price"));
+				rvo.setItemImg(rs.getString("item_img"));
 				list.add(rvo);
 			}
 		} catch (Exception e) {
@@ -98,7 +99,11 @@ public class CartServiceImpl extends DAO implements CartService {
 			psmt.setString(2, item);
 			psmt.setInt(3, qty);
 			n = psmt.executeUpdate();
-			System.out.println(id+"회원님"+item+" "+n+"건 주문");
+			if(n!=0) {
+				System.out.println(id+"회원님"+item+" "+n+"건 주문");
+			} else {
+				System.out.println("주문입력 실패");
+			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
@@ -107,16 +112,20 @@ public class CartServiceImpl extends DAO implements CartService {
 	}
 
 	@Override
-	public int updateCart(CartVO vo) {
+	public int updateCart(int qty, String id, String code) {
 		sql = "update cart set item_qty = ?\r\n"
 				+ "where user_id = ? and item_code = ?";
 		try {
 			psmt = conn.prepareStatement(sql);
-			psmt.setInt(1, vo.getItemQty());
-			psmt.setString(2, vo.getUserId());
-			psmt.setString(3, vo.getItemCode());
+			psmt.setInt(1, qty);
+			psmt.setString(2, id);
+			psmt.setString(3, code);
 			n = psmt.executeUpdate();
-			System.out.println(vo.getUserId()+"님"+vo.getItemCode()+"제품"+n+"건 주문변경");
+			if(n!=0) {
+				System.out.println(id+"님"+code+"제품"+n+"건 주문변경");				
+			} else {
+				System.out.println("주문변경 실패");
+			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
@@ -133,7 +142,11 @@ public class CartServiceImpl extends DAO implements CartService {
 			psmt.setString(1, vo.getUserId());
 			psmt.setString(2, vo.getItemCode());
 			n = psmt.executeUpdate();
-			System.out.println(vo.getUserId()+"님"+vo.getItemCode()+"제품"+n+"건 주문삭제");
+			if(n!=0) {
+				System.out.println(vo.getUserId()+"님"+vo.getItemCode()+"제품"+n+"건 주문삭제");
+			} else {
+				System.out.println("주문삭제 실패..");
+			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
