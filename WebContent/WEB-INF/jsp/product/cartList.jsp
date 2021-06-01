@@ -31,8 +31,12 @@
 							<td>${vo.itemCode }</td>
 							<td>${vo.itemName }</td>
 							<td>${vo.itemQty }</td>
-							<td>${vo.itemPrice }</td>
-							<td>${vo.sum }</td>
+							<td>
+								<fmt:formatNumber type="currency" value="${vo.itemPrice }"></fmt:formatNumber>
+							</td>
+							<td>
+								<fmt:formatNumber type="currency" value="${vo.itemQty * vo.itemPrice }"></fmt:formatNumber>
+							</td>
 						</tr>
 				</c:forEach>
 			</table>	

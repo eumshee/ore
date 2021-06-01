@@ -15,14 +15,13 @@ public class CartList implements DbCommand {
 
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) {
-		String id = request.getParameter("uid");
+		HttpSession session = request.getSession();
+		String id = (String) session.getAttribute("id");
 		  
 		CartServiceImpl service = new CartServiceImpl();
 		List<CartVO> list = service.cartSelectList(id);
 		
 		request.setAttribute("clist", list);
-		
-		HttpSession session = request.getSession();
 		
 		CartServiceImpl service2 = new CartServiceImpl();
 		int cartCnt = service2.getCountCart(id);

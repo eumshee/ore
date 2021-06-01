@@ -9,7 +9,6 @@ public class CartVO {
 	// 테이블에 없는 컬럼(결과값 담기는 곳)
 	private String itemName;
 	private int itemPrice;
-	private int sum;
 
 	public String getItemName() {
 		return itemName;
@@ -25,14 +24,6 @@ public class CartVO {
 
 	public void setItemPrice(int itemPrice) {
 		this.itemPrice = itemPrice;
-	}
-
-	public int getSum() {
-		return sum;
-	}
-
-	public void setSum(int sum) {
-		this.sum = sum;
 	}
 
 	public String getUserId() {

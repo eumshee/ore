@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.ore.cart.web.AddCart;
+import com.ore.cart.web.CartList;
 import com.ore.member.web.MemberDelete;
 import com.ore.member.web.MemberJoin;
 import com.ore.member.web.MemberJoinForm;
@@ -72,6 +73,7 @@ public class FrontController extends HttpServlet {
 		
 		// 장바구니
 		map.put("/addCart.do", new AddCart());
+		map.put("/cartList.do", new CartList());
 		
 		// 공지
 		map.put("/noticeList.do", new NoticeList());

@@ -35,7 +35,7 @@ public class CartServiceImpl extends DAO implements CartService {
 	
 	// 장바구니 전체조회
 	@Override
-	public List<CartVO> cartSelectList(String uid) {
+	public List<CartVO> cartSelectList(String id) {
 		sql = "select c.user_id, c.item_code, p.item_name, count(c.item_qty) as item_qty, p.item_price\r\n"
 				+ "from cart c\r\n"
 				+ "left outer join product p\r\n"
@@ -45,7 +45,7 @@ public class CartServiceImpl extends DAO implements CartService {
 		List<CartVO> list = new ArrayList<CartVO>();
 		try {
 			psmt = conn.prepareStatement(sql);
-			psmt.setString(1, uid);
+			psmt.setString(1, id);
 			rs = psmt.executeQuery();
 			while(rs.next()) {
 				rvo = new CartVO();
@@ -54,7 +54,6 @@ public class CartServiceImpl extends DAO implements CartService {
 				rvo.setItemName(rs.getString("item_name"));
 				rvo.setItemQty(rs.getInt("item_qty"));
 				rvo.setItemPrice(rs.getInt("item_price"));
-				rvo.setSum(rs.getInt("sum"));
 				list.add(rvo);
 			}
 		} catch (Exception e) {
