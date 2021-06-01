@@ -223,12 +223,11 @@ public class QnaServiceImpl extends DAO implements QnaService{
 
 	@Override
 	public int deleteQna(QnaVO vo) {
-		sql = "delete from qna where id = ? and item_code = ? and writer = ?";
+		sql = "delete from qna where id = ? and writer = ?";
 		try {
 			psmt = conn.prepareStatement(sql);
 			psmt.setInt(1, vo.getId());
-			psmt.setString(2, vo.getItemCode());
-			psmt.setString(3, vo.getWriter());
+			psmt.setString(2, vo.getWriter());
 			n = psmt.executeUpdate();
 			if(n!=0) {
 				System.out.println(vo.getId()+"번 Q&A 삭제");

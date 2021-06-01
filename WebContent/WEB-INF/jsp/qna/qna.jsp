@@ -33,21 +33,23 @@
 		}
 		
 		function qnaDelete() {
-			frmdel.submit();
+			frmDel.submit();
 		}
+		
 	</script>
 </head>
 <body>
 <div align="center">
 	<h3>Q&#38;A 상세보기</h3>
 	<form id="frmDel" action="qnaDelete.do" method="post">
-		<input type="hidden" id="id" name="id" value="${qna.id}">
+		<input type="hidden" id="did" name="did" value="${qna.id}">
+		<input type="hidden" id="dwriter" name="dwriter" value="${qna.writer}">
 	</form>
 	<hr>
 	<div style="width: 70%;">
 		<form id="frm" action="qnaUpdate.do" method="post">
 			<input type="hidden" id="id" name="id" value="${qna.id}"> 
-			<input type="hidden" id="writer" name="writer" value="${qna.id}"> 
+			<input type="hidden" id="writer" name="writer" value="${qna.writer}"> 
 			<table class="table">
 				<tr>
 						<th>순번</th>
@@ -88,6 +90,7 @@
 						</c:choose>
 				</tr>
 			</table>
+		</form>
 			<div align="center">
 				<c:if test="${id eq qna.writer}">
 					<button type="button" onclick="qnaUpdate()">수정</button>
@@ -96,7 +99,6 @@
 				</c:if>
 				<button type="button" onclick="location.href='qnaList.do'">목록보기</button>
 			</div>
-		</form>
 	</div>
 </div>
 </body>

@@ -37,7 +37,7 @@
 		}
 		
 		function noticeDelete() {
-			frmdel.submit();
+			frmDel.submit();
 		}
 	</script>
 </head>
@@ -45,7 +45,7 @@
 <div align="center">
 	<h3>공지사항 내용</h3>
 	<form id="frmDel" action="noticeDelete.do" method="post">
-		<input type="hidden" id="id" name="id" value="${notice.id}">
+		<input type="hidden" id="did" name="did" value="${notice.id}">
 	</form>
 	<hr>
 	<div style="width: 70%;">

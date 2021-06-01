@@ -64,9 +64,6 @@
 			<input type="hidden" id="title" name="title">
 			<input type="hidden" id="content" name="content">
 		</form>
-		<form id="frmDel" action="qnaDelete.do" method="post">
-			<input type="hidden" id="did" name="did">
-		</form>
 		<hr>
 		<div style="width: 60%">
 			<table class="table">
