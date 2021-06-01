@@ -9,7 +9,7 @@ public class ProductVO {
 	private int itemPrice;
 	private int itemStock;
 	private String itemDesc;
-	private Date itemDate;
+	private String itemDate;
 
 	public String getItemCode() {
 		return itemCode;
@@ -59,11 +59,11 @@ public class ProductVO {
 		this.itemDesc = itemDesc;
 	}
 
-	public Date getItemDate() {
+	public String getItemDate() {
 		return itemDate;
 	}
 
-	public void setItemDate(Date itemDate) {
+	public void setItemDate(String itemDate) {
 		this.itemDate = itemDate;
 	}
 

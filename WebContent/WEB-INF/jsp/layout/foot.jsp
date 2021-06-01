@@ -2,7 +2,6 @@
 	pageEncoding="UTF-8"%>
 <!-- Footer Section Begin -->
 <footer class="footer-section spad">
-		<div class="container">
 			<div class="social-links" align="center">
 				<a href="" class="instagram"><i class="fa fa-instagram"></i></a>
 				<a href="" class="pinterest"><i class="fa fa-pinterest"></i></a>
@@ -11,17 +10,13 @@
 				<a href="" class="youtube"><i class="fa fa-youtube"></i></a>
 				<a href="" class="tumblr"><i class="fa fa-tumblr-square"></i></a>
 			</div>
-		</div>
 		<div class="container text-center pt-5">
 			<p>
 				<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-				Copyright &copy;
-				<script>
-					document.write(new Date().getFullYear());
-				</script>
-				All rights reserved | This template is made with <i
-					class="icon-heart color-danger" aria-hidden="true"></i> by <a
-					href="https://colorlib.com" target="_blank">Colorlib</a>
+				COMPANY - Ore company . CEO: 고은비 . CPO : 고은비<br>
+				ADDRESS : 서울시 종로구 자하문로 129 (청운동)<br>
+				BUSINESS LICENSE : 723-47-00113 . ONLINE LICENSE : 2016-서울동작-0547<br>
+				All rights reserved &copy; Ore company
 				<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
 			</p><br>
 		</div>

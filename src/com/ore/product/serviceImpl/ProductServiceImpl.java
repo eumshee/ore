@@ -42,7 +42,7 @@ public class ProductServiceImpl extends DAO implements ProductService {
 				vo.setItemPrice(rs.getInt("item_price"));
 				vo.setItemStock(rs.getInt("item_stock"));
 				vo.setItemDesc(rs.getString("item_desc"));
-				vo.setItemDate(rs.getDate("item_date"));
+				vo.setItemDate(rs.getString("item_date").substring(0,10));
 				list.add(vo);
 			}
 		} catch (SQLException e) {
@@ -69,7 +69,7 @@ public class ProductServiceImpl extends DAO implements ProductService {
 				vo.setItemPrice(rs.getInt("item_price"));
 				vo.setItemStock(rs.getInt("item_stock"));
 				vo.setItemDesc(rs.getString("item_desc"));
-				vo.setItemDate(rs.getDate("item_date"));
+				vo.setItemDate(rs.getString("item_date").substring(0,10));
 				list.add(vo);
 			}
 		} catch (SQLException e) {
@@ -97,7 +97,7 @@ public class ProductServiceImpl extends DAO implements ProductService {
 				vo.setItemPrice(rs.getInt("item_price"));
 				vo.setItemStock(rs.getInt("item_stock"));
 				vo.setItemDesc(rs.getString("item_desc"));
-				vo.setItemDate(rs.getDate("item_date"));
+				vo.setItemDate(rs.getString("item_date"));
 				list.add(vo);
 			}
 		} catch (SQLException e) {
@@ -125,7 +125,7 @@ public class ProductServiceImpl extends DAO implements ProductService {
 				vo.setItemPrice(rs.getInt("item_price"));
 				vo.setItemStock(rs.getInt("item_stock"));
 				vo.setItemDesc(rs.getString("item_desc"));
-				vo.setItemDate(rs.getDate("item_date"));
+				vo.setItemDate(rs.getString("item_date"));
 				list.add(vo);
 			}
 		} catch (SQLException e) {
@@ -137,7 +137,7 @@ public class ProductServiceImpl extends DAO implements ProductService {
 	}
 	
 	
-	// BOTTM 전체조회
+	// BOTTOM 전체조회
 	@Override
 	public List<ProductVO> selectBottomList() {
 		sql = "select * from product where item_code like 'B%'";
@@ -153,7 +153,7 @@ public class ProductServiceImpl extends DAO implements ProductService {
 				vo.setItemPrice(rs.getInt("item_price"));
 				vo.setItemStock(rs.getInt("item_stock"));
 				vo.setItemDesc(rs.getString("item_desc"));
-				vo.setItemDate(rs.getDate("item_date"));
+				vo.setItemDate(rs.getString("item_date"));
 				list.add(vo);
 			}
 		} catch (SQLException e) {
@@ -181,7 +181,7 @@ public class ProductServiceImpl extends DAO implements ProductService {
 				vo.setItemPrice(rs.getInt("item_price"));
 				vo.setItemStock(rs.getInt("item_stock"));
 				vo.setItemDesc(rs.getString("item_desc"));
-				vo.setItemDate(rs.getDate("item_date"));
+				vo.setItemDate(rs.getString("item_date"));
 				list.add(vo);
 			}
 		} catch (SQLException e) {
@@ -191,6 +191,25 @@ public class ProductServiceImpl extends DAO implements ProductService {
 		}
 		return list;
 	}
+	
+	public boolean cdCheck(String cd) {
+		boolean exist = false;
+		String SQL = "select item_code from product where item_code=?";
+		try {
+			psmt = conn.prepareStatement(SQL);
+			psmt.setString(1, cd);
+			rs = psmt.executeQuery();
+			if (rs.next()) {
+				exist = true;
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close();
+		}
+		return exist;
+	}
+	
 
 	// 한건 조회
 	@Override
@@ -207,7 +226,7 @@ public class ProductServiceImpl extends DAO implements ProductService {
 				vo.setItemPrice(rs.getInt("item_price"));
 				vo.setItemStock(rs.getInt("item_stock"));
 				vo.setItemDesc(rs.getString("item_desc"));
-				vo.setItemDate(rs.getDate("item_date"));
+				vo.setItemDate(rs.getString("item_date").substring(0,10));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -230,7 +249,7 @@ public class ProductServiceImpl extends DAO implements ProductService {
 			psmt.setInt(4, vo.getItemPrice());
 			psmt.setInt(5, vo.getItemStock());
 			psmt.setString(6, vo.getItemDesc());
-			psmt.setDate(7, vo.getItemDate());
+			psmt.setString(7, vo.getItemDate());
 			r = psmt.executeUpdate();
 			System.out.println(r + "건 등록됨. ");
 		} catch (SQLException e) {
@@ -244,8 +263,26 @@ public class ProductServiceImpl extends DAO implements ProductService {
 	// 한건 수정
 	@Override
 	public int updateProduct(ProductVO vo) {
-		// TODO Auto-generated method stub
-		return 0;
+		String SQL = "update product set item_name=?, item_price=?, item_stock=?, item_date=?, item_desc=?, item_img=?"
+				+ "where item_code=?";
+		int r = 0;
+		try {
+			psmt = conn.prepareStatement(SQL);
+			psmt.setString(1, vo.getItemName());
+			psmt.setInt(2, vo.getItemPrice());
+			psmt.setInt(3, vo.getItemStock());
+			psmt.setString(4, vo.getItemDate());
+			psmt.setString(5, vo.getItemDesc());
+			psmt.setString(6, vo.getItemImg());
+			psmt.setString(7, vo.getItemCode());
+			r = psmt.executeUpdate();
+			System.out.println(r + "건 수정됨.");
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close();
+		}
+		return r;
 	}
 
 	// 한건 삭제

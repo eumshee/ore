@@ -7,7 +7,7 @@ import com.ore.common.DbCommand;
 import com.ore.product.serviceImpl.ProductServiceImpl;
 import com.ore.product.vo.ProductVO;
 
-public class AdminSelect implements DbCommand {
+public class AdminDelete implements DbCommand {
 
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) {
@@ -17,11 +17,8 @@ public class AdminSelect implements DbCommand {
 		vo.setItemCode(code);
 		
 		ProductServiceImpl service = new ProductServiceImpl();
-		service.selectProduct(vo);
+		service.deleteProduct(vo);
 		
-		
-		request.setAttribute("product", vo);
-		return "admin/adminSelect.tiles";
+		return "/adminList.do";	
 	}
-
 }

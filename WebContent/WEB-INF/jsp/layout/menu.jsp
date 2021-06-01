@@ -41,7 +41,7 @@
 			<nav class="main-menu mobile-menu">
 				<ul>
 					<li><a class="active" href="lookbook.do">NEW SEASON</a></li>
-					<li><a href="#!">Shop</a>
+					<li><a href="productList.do">Shop</a>
 						<ul class="sub-menu">
 							<li><a href="productList.do">Shop All</a></li>
 							<li><hr class="dropdown-divider" /></li>
