@@ -36,6 +36,7 @@ import com.ore.product.web.ProductSelect;
 import com.ore.product.web.ProductTopList;
 import com.ore.qna.web.QnaDelete;
 import com.ore.qna.web.QnaInsert;
+import com.ore.qna.web.QnaInsertCodeForm;
 import com.ore.qna.web.QnaInsertForm;
 import com.ore.qna.web.QnaList;
 import com.ore.qna.web.QnaSearch;
@@ -85,8 +86,9 @@ public class FrontController extends HttpServlet {
 		map.put("/qnaList.do", new QnaList());
 		map.put("/qnaSelect.do", new QnaSelect());
 		map.put("/qnaSearch.do", new QnaSearch());
-		map.put("/qnaInsertForm", new QnaInsertForm());
-		map.put("/qnaInsert", new QnaInsert());
+		map.put("/qnaInsertForm.do", new QnaInsertForm());
+		map.put("/qnaInsertCodeForm.do", new QnaInsertCodeForm());
+		map.put("/qnaInsert.do", new QnaInsert());
 		map.put("/qnaUpdate.do", new QnaUpdate());
 		map.put("/qnaDelete.do", new QnaDelete());
 		

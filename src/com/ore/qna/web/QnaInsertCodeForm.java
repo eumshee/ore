@@ -9,19 +9,18 @@ import com.ore.common.DbCommand;
 import com.ore.qna.serviceImpl.QnaServiceImpl;
 import com.ore.qna.vo.QnaVO;
 
-public class QnaSearch implements DbCommand {
+public class QnaInsertCodeForm implements DbCommand {
 
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) {
-		String title = request.getParameter("title");
-		String content = request.getParameter("content");
+		String code = request.getParameter("itemCode");
 		
 		QnaServiceImpl service = new QnaServiceImpl();
-		List<QnaVO> list = service.qnaSearch(title, content);
-
-		request.setAttribute("qnaList", list);
+		List<QnaVO> list = service.itemCodeList(code);
 		
-		return "qna/qnaSearchList.tiles";
+		request.setAttribute("code", list);
+		System.out.println(list);
+		return "qna/qnaCodeForm.tiles";
 	}
 
 }

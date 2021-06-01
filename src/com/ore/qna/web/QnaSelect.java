@@ -2,7 +2,6 @@ package com.ore.qna.web;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import com.ore.common.DbCommand;
 import com.ore.qna.service.QnaService;
@@ -13,8 +12,7 @@ public class QnaSelect implements DbCommand {
 
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) {
-		HttpSession session = request.getSession();
-		String writer = (String) session.getAttribute("id");
+		String writer = request.getParameter("writer");
 		String id = request.getParameter("id");		
 
 		QnaVO vo = new QnaVO();
