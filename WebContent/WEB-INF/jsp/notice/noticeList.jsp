@@ -52,7 +52,7 @@
 		}
 		
 		function formDelete(id) {
-			frmDel.id.value = id;
+			frmDel.did.value = id;
 			frmDel.submit();
 		}
 			

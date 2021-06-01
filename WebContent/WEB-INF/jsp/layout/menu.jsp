@@ -13,7 +13,7 @@
 					<c:when test="${!empty id }">
 						<a href="memberSelect.do"><img src="${pageContext.request.contextPath }/bootstrap/img/icons/man.png" alt=""></a>
 						&nbsp;&nbsp;
-					 	<a href=""> 
+					 	<a href="cartList.do"> 
 						<img src="${pageContext.request.contextPath }/bootstrap/img/icons/bag.png" alt="">
 							<span>${sessionScope.cartCnt }</span>
 						</a>

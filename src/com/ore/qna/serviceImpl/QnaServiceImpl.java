@@ -94,9 +94,10 @@ public class QnaServiceImpl extends DAO implements QnaService{
 	}
 	
 	public List<QnaVO> itemCodeList(String code) {
-		sql = "select item_code\r\n"
+		sql = "select item_code, item_name\r\n"
 				+ "from product\r\n"
-				+ "where substr(item_code,1,1) = upper(substr(?,1,1))";
+				+ "where substr(item_code,1,1) = upper(substr(?,1,1)) "
+				+ "order by 1";
 		List<QnaVO> list = new ArrayList<QnaVO>();
 		try {
 			psmt = conn.prepareStatement(sql);
@@ -104,13 +105,8 @@ public class QnaServiceImpl extends DAO implements QnaService{
 			rs = psmt.executeQuery();
 			while(rs.next()) {
 				rvo = new QnaVO();
-				rvo.setId(rs.getInt("id"));
 				rvo.setItemCode(rs.getString("item_code"));
-				rvo.setTitle(rs.getString("title"));
-				rvo.setWriter(rs.getString("writer"));
-				rvo.setContent(rs.getString("content"));
-				rvo.setRegDate(rs.getDate("reg_date"));
-				rvo.setHit(rs.getInt("hit"));
+				rvo.setItemName(rs.getString("item_name"));				
 				list.add(rvo);
 			}
 		} catch (Exception e) {
@@ -148,6 +144,35 @@ public class QnaServiceImpl extends DAO implements QnaService{
 		return rvo;
 	}
 
+	public List<QnaVO> qnaSearch(String title, String content){
+		String sql = "select * from qna "
+				+ "where title like ? "
+				+ "or content like ?";
+		List<QnaVO> list = new ArrayList<QnaVO>();
+		try {
+			psmt = conn.prepareStatement(sql);
+			psmt.setString(1, "%"+title+"%");
+			psmt.setString(2, "%"+content+"%");
+			rs = psmt.executeQuery();
+			while(rs.next()) {
+				rvo = new QnaVO();
+				rvo.setId(rs.getInt("id"));
+				rvo.setItemCode(rs.getString("item_code"));
+				rvo.setTitle(rs.getString("title"));
+				rvo.setWriter(rs.getString("writer"));
+				rvo.setContent(rs.getString("content"));
+				rvo.setRegDate(rs.getDate("reg_date"));
+				rvo.setHit(rs.getInt("hit"));
+				list.add(rvo);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			close();
+		}
+		return list;
+	}
+	
 	@Override
 	public int insertQna(QnaVO vo) {
 		sql = "insert into qna values(qna_seq.nextval, ?, ?, ?, ?, sysdate, 0)";
@@ -198,12 +223,11 @@ public class QnaServiceImpl extends DAO implements QnaService{
 
 	@Override
 	public int deleteQna(QnaVO vo) {
-		sql = "delete from qna where id = ? and item_code = ? and writer = ?";
+		sql = "delete from qna where id = ? and writer = ?";
 		try {
 			psmt = conn.prepareStatement(sql);
 			psmt.setInt(1, vo.getId());
-			psmt.setString(2, vo.getItemCode());
-			psmt.setString(3, vo.getWriter());
+			psmt.setString(2, vo.getWriter());
 			n = psmt.executeUpdate();
 			if(n!=0) {
 				System.out.println(vo.getId()+"번 Q&A 삭제");

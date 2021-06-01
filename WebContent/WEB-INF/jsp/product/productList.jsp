@@ -41,8 +41,16 @@
 	function goPage(page) {
 		location.href = "productList.do?page=" + page;
 	}
+	function addCart(code) {
+		frmInput.itemCode.value = code;
+		frmInput.submit();
+	}
 </script>
 <body>
+	<form id="frmInput" action="addCart.do">
+		<input type="hidden" id="itemCode" name="itemCode">
+		<input type="hidden" id="id" name="id" value="${id }">
+	</form>
 	<!-- Categories Page Section Begin -->
 	<section class="categories-page spad">
 		<div class="container">

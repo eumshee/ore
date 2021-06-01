@@ -8,6 +8,6 @@ public interface CartService {
 	List<CartVO> cartSelectList(String uid);
 	CartVO cartSelect(CartVO vo);
 	void addCart(String id, String item, int qty);
-	int updateCart(CartVO vo);
+	int updateCart(int qty, String id, String code);
 	int deleteCart(CartVO vo);
 }
