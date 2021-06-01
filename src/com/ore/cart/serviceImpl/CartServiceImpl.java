@@ -36,7 +36,7 @@ public class CartServiceImpl extends DAO implements CartService {
 	// 장바구니 전체조회
 	@Override
 	public List<CartVO> cartSelectList(String uid) {
-		sql = "select c.user_id, c.item_code, p.item_name, count(c.item_qty) as item_qty, p.item_price, sum(p.item_price) as sum\r\n"
+		sql = "select c.user_id, c.item_code, p.item_name, count(c.item_qty) as item_qty, p.item_price\r\n"
 				+ "from cart c\r\n"
 				+ "left outer join product p\r\n"
 				+ "on (c.item_code=p.item_code)\r\n"
@@ -109,14 +109,38 @@ public class CartServiceImpl extends DAO implements CartService {
 
 	@Override
 	public int updateCart(CartVO vo) {
-		// TODO Auto-generated method stub
-		return 0;
+		sql = "update cart set item_qty = ?\r\n"
+				+ "where user_id = ? and item_code = ?";
+		try {
+			psmt = conn.prepareStatement(sql);
+			psmt.setInt(1, vo.getItemQty());
+			psmt.setString(2, vo.getUserId());
+			psmt.setString(3, vo.getItemCode());
+			n = psmt.executeUpdate();
+			System.out.println(vo.getUserId()+"님"+vo.getItemCode()+"제품"+n+"건 주문변경");
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			close();
+		}
+		return n;
 	}
 
 	@Override
 	public int deleteCart(CartVO vo) {
-		// TODO Auto-generated method stub
-		return 0;
+		sql = "delete from cart where user_id=? and item_code=?";
+		try {
+			psmt = conn.prepareStatement(sql);
+			psmt.setString(1, vo.getUserId());
+			psmt.setString(2, vo.getItemCode());
+			n = psmt.executeUpdate();
+			System.out.println(vo.getUserId()+"님"+vo.getItemCode()+"제품"+n+"건 주문삭제");
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			close();
+		}
+		return n;
 	}
 
 
