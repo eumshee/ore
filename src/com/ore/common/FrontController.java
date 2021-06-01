@@ -10,15 +10,13 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.ore.cart.web.AddCart;
 import com.ore.member.web.MemberDelete;
 import com.ore.member.web.MemberJoin;
 import com.ore.member.web.MemberJoinForm;
 import com.ore.member.web.MemberLogin;
 import com.ore.member.web.MemberLoginForm;
 import com.ore.member.web.MemberLoginOut;
-import com.ore.product.web.AdminList;
-import com.ore.product.web.AdminSelect;
-import com.ore.product.web.LookBook;
 import com.ore.member.web.MemberSelect;
 import com.ore.member.web.MemberUpdate;
 import com.ore.notice.web.NoticeDelete;
@@ -28,6 +26,9 @@ import com.ore.notice.web.NoticeList;
 import com.ore.notice.web.NoticeSearch;
 import com.ore.notice.web.NoticeSelect;
 import com.ore.notice.web.NoticeUpdate;
+import com.ore.product.web.AdminList;
+import com.ore.product.web.AdminSelect;
+import com.ore.product.web.LookBook;
 import com.ore.product.web.ProductAccList;
 import com.ore.product.web.ProductBottomList;
 import com.ore.product.web.ProductListPaging;
@@ -68,6 +69,9 @@ public class FrontController extends HttpServlet {
 		map.put("/productAccList.do", new ProductAccList());
 		map.put("/productSelect.do", new ProductSelect());
 		map.put("/lookbook.do", new LookBook());
+		
+		// 장바구니
+		map.put("/addCart.do", new AddCart());
 		
 		// 공지
 		map.put("/noticeList.do", new NoticeList());

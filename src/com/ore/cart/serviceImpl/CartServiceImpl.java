@@ -73,7 +73,7 @@ public class CartServiceImpl extends DAO implements CartService {
 
 	// 회원별 장바구니 상품수
 	public int getCountCart(String id) {
-		sql = "select count(*) from cart where user_id = ? ";
+		sql = "select count(*) from cart where user_id = ?";
 		int rCnt = 0;
 		try {
 			psmt = conn.prepareStatement(sql);
