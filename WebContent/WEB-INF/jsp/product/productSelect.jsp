@@ -6,10 +6,26 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<title>productSelect.jsp</title>
+	<meta charset="UTF-8">
+	<title>productSelect.jsp</title>
+	<style>
+		th, td {
+			text-align: center;
+		}
+	</style>
+	<script>
+		function formSubmit(id,writer) {
+			frms.id.value = id;
+			frms.writer.value = writer;
+			frms.submit();
+		}
+	</script>
 </head>
 <body>
+<form id="frms" action="qnaSelect.do" method="post">
+	<input type="hidden" id="id" name="id">
+	<input type="hidden" id="writer" name="writer">
+</form>
 	<!-- Product Page Section Beign -->
 	<section class="product-page">
 		<div class="container">
@@ -97,7 +113,31 @@
 					alt="">
 				<div class="col-lg-12 text-center">
 					<h4>Q&A</h4>
-					여기에 게시판 영역
+					<c:choose>
+						<c:when test="${!empty qnaList }">
+						<div style="padding: 1.5em;">
+							<table class="table">
+									<tr>
+										<th>순번</th>
+										<th>제목</th>
+										<th>작성자</th>
+										<th>작성일자</th>
+									</tr>
+								<c:forEach items="${qnaList }" var="vo">
+									<tr>
+										<td width="100" onclick="formSubmit(${vo.id},'${vo.writer}')">${vo.id }</td>
+										<td width="200" onclick="formSubmit(${vo.id},'${vo.writer}')">${vo.title }</td>
+										<td width="200" onclick="formSubmit(${vo.id},'${vo.writer}')">${vo.writer }</td>
+										<td width="150" onclick="formSubmit(${vo.id},'${vo.writer}')">${vo.regDate }</td>
+									</tr>
+								</c:forEach>
+							</table>
+						</div>
+						</c:when>
+						<c:otherwise>
+							해당 게시글이 없습니다.
+						</c:otherwise>
+					</c:choose>
 				</div>
 			</div>
 		</div>

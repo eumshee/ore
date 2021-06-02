@@ -21,7 +21,7 @@ public class QnaList implements DbCommand {
 		
 		// 전체 건수를 위해 실행.
 		QnaServiceImpl service = new QnaServiceImpl();
-		List<QnaVO> total = service.qnaSelectList(); 
+		List<QnaVO> total = service.qnaList(); 
 
 		// 현재 페이지 리스트를 위해 실행.
 		service = new QnaServiceImpl();

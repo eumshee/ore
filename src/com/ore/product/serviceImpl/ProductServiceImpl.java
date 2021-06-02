@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.ore.common.DAO;
+import com.ore.notice.vo.NoticeVO;
 import com.ore.product.service.ProductService;
 import com.ore.product.vo.ProductVO;
 
@@ -301,6 +302,33 @@ public class ProductServiceImpl extends DAO implements ProductService {
 			close();
 		}
 		return r;
+	}
+	
+	public List<ProductVO> productSearch(String itemName) {
+		sql = "select * from product\r\n"
+				+ "where item_name like initcap(?)";
+		List<ProductVO> list = new ArrayList<ProductVO>();
+		try {
+			psmt = conn.prepareStatement(sql);
+			psmt.setString(1, "%"+itemName+"%");
+			rs = psmt.executeQuery();
+			while(rs.next()) {
+				ProductVO vo = new ProductVO();
+				vo.setItemCode(rs.getString("item_code"));
+				vo.setItemName(rs.getString("item_name"));
+				vo.setItemImg(rs.getString("item_img"));
+				vo.setItemPrice(rs.getInt("item_price"));
+				vo.setItemStock(rs.getInt("item_stock"));
+				vo.setItemDesc(rs.getString("item_desc"));
+				vo.setItemDate(rs.getString("item_date").substring(0,10));
+				list.add(vo);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			close();
+		}
+		return list;
 	}
 
 	private void close() {
