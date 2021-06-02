@@ -38,7 +38,7 @@
 					</div>			
 				</c:otherwise>
 			</c:choose>
-			<nav class="main-menu mobile-menu">
+			<nav class="main-menu mobile-menu" id="nav">
 				<ul>
 					<li><a class="active" href="lookbook.do">NEW SEASON</a></li>
 					<li><a href="productList.do">Shop</a>
