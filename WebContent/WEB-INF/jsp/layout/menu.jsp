@@ -45,10 +45,10 @@
 						<ul class="sub-menu">
 							<li><a href="productList.do">Shop All</a></li>
 							<li><hr class="dropdown-divider" /></li>
-							<li><a href="productOuterList.do">Outer</a></li>
-							<li><a href="productTopList.do">Top</a></li>
-							<li><a href="productBottomList.do">Bottom</a></li>
-							<li><a href="productAccList.do">Acc</a></li>
+							<li><a href="productList.do?cate=O">Outer</a></li>
+							<li><a href="productList.do?cate=T">Top</a></li>
+							<li><a href="productList.do?cate=B">Bottom</a></li>
+							<li><a href="productList.do?cate=A">Acc</a></li>
 						</ul></li>
 					<li><a href="noticeList.do">Notice</a></li>
 

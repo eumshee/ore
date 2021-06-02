@@ -69,19 +69,20 @@ $(function() {
 </script>
 </head>
 <body>
+	<div class="container">
+		<h1>Manage</h1>
 	<div align="center">
-		<h3>상품정보 수정</h3>
 		<form id="frmDel" action="adminDelete.do" method="post">
 			<input type="hidden" id="code" name="code" value="${product.itemCode}">
 		</form>
-		<hr>
-		<div style="width: 60%;">
 			<form id="frm" action="adminUpdate.do" method="post"  enctype='multipart/form-data'>
+				<br>
 				<table class="table">
 					<tr>
 						<th>상품코드</th>
 						<td><input type="text" name="code" id="code" value="${product.itemCode}" size="40" readonly></td>
-						<td rowspan="5" width="400">
+						<td rowspan="5" width="400" align="center">
+						<b>상품이미지</b>
 						<div class="select_img">
 						<img src="${pageContext.request.contextPath }/bootstrap/img/product/${product.itemImg}" alt="" width="250" height="350" id="img"><br>
 						</div>
@@ -93,6 +94,7 @@ $(function() {
 					<tr>
 						<th>상품명</th>
 						<td><input type="text" name="name" id="name" value="${product.itemName}" size="40"></td>
+						
 					</tr>
 					<tr>
 						<th>가격</th>
@@ -108,17 +110,17 @@ $(function() {
 					</tr>
 					<tr>
 						<th>상품설명</th>
-						<td colspan="2"><textarea name="desc" cols="60" rows="8">${product.itemDesc }</textarea></td>
+						<td colspan="2"><textarea name="desc" cols="100" rows="8">${product.itemDesc }</textarea></td>
 					</tr>
 
 				</table>
 				<div align="center">
-					<button type="button" id="btnUpdate">상품수정</button>
-					<button type="button" onclick="adminDelete()">상품삭제</button>
-					<button type="button" onclick="location.href='adminList.do'">목록보기</button>
+					<button class="btn btn-outline-dark mt-auto"  type="button" id="btnUpdate">상품수정</button>
+					<button class="btn btn-outline-dark mt-auto"  type="button" onclick="adminDelete()">상품삭제</button>
+					<button class="btn btn-outline-dark mt-auto"  type="button" onclick="location.href='adminList.do'">목록보기</button>
 				</div>
 			</form>
 		</div>
-	</div>
+		</div>
 </body>
 </html>

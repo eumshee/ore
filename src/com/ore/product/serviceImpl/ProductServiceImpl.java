@@ -55,11 +55,14 @@ public class ProductServiceImpl extends DAO implements ProductService {
 	
 	// 상품 전체조회
 	@Override
-	public List<ProductVO> selectProductList() {
-		sql = "select * from product order by 1";
+	public List<ProductVO> selectProductList(String cate, String sort) {
+		sql = "select * from product p where substr(p.ITEM_CODE, 1, 1)=nvl(?, substr(p.ITEM_CODE, 1, 1)) order by ?";
 		List<ProductVO> list = new ArrayList<>();
 		try {
 			psmt = conn.prepareStatement(sql);
+			psmt.setString(1, cate);
+			psmt.setString(2, sort);
+			
 			rs = psmt.executeQuery();
 			while (rs.next()) {
 				ProductVO vo = new ProductVO();

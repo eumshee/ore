@@ -15,16 +15,16 @@ public class ProductListPaging implements DbCommand {
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) {
 		String page = request.getParameter("page");	// 페이지 번호
-		String category = request.getParameter("category");	
+		String category = request.getParameter("cate");	
 		if (page == null) 
 			page = "1";
 		int pageCnt = Integer.parseInt(page);
 		ProductServiceImpl service = new ProductServiceImpl();
-		List<ProductVO> total = service.selectProductList(); // 전체카운트
+		List<ProductVO> total = service.selectProductList(category, "4"); // 전체카운트
 		
 		// 전체 건수를 위해 실행
 		service = new ProductServiceImpl();
-		List<ProductVO> list = service.productListPaging(pageCnt, "");
+		List<ProductVO> list = service.selectProductList(category, "4");//service.productListPaging(pageCnt, "");
 		
 		//현재 페이지 리스트를 위해 실행
         Paging paging = new Paging();

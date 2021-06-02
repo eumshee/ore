@@ -20,7 +20,7 @@ public class AdminList implements DbCommand {
 			page = "1";
 		int pageCnt = Integer.parseInt(page);
 		ProductServiceImpl service = new ProductServiceImpl();
-		List<ProductVO> total = service.selectProductList(); // 전체카운트
+		List<ProductVO> total = service.selectProductList("",""); // 전체카운트
 		
 		// 전체 건수를 위해 실행
 		service = new ProductServiceImpl();

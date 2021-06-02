@@ -21,11 +21,6 @@ th, td {
 
 tr:hover td{background-color: #ddd;}
 
-.container2 {
-	width: 80%;
-	margin: auto;
-}
-
 .pagination {
 	display: inline-block;
 	margin: auto;
@@ -63,6 +58,11 @@ tr:hover td{background-color: #ddd;}
 			frmUpdate.submit();
 		}
 
+		function formSubmit(code) {
+			frm.code.value = code;
+			frm.submit();
+		}
+		
 		function formDelete(code) {
 			frmDel.code.value = code;
 			frmDel.submit();
@@ -71,12 +71,14 @@ tr:hover td{background-color: #ddd;}
 		function goPage(page) {
 			location.href="adminList.do?page="+page;
 		}
+		
 
 	</script>
 </head>
 <body>
-	<div class="container2">
+	<div class="container">
 		<h1>Manage</h1>
+	<div align="center">
 		<form id="frm" action="productSelect.do" method="post">
 			<input type="hidden" id="code" name="code">
 		</form>
@@ -91,11 +93,10 @@ tr:hover td{background-color: #ddd;}
 			<input type="hidden" id="code" name="code">
 		</form>
 		<br><input type="text" id="search" size=35>
-		<button type="button" onclick="formSearch()">검색</button>
-		<button type="button" onclick="location.href='adminInsertForm.do'">상품등록</button>
-		<br><br>
-	
-		
+		<button class="btn btn-outline-dark mt-auto" type="button" onclick="formSearch()">SEARCH</button>
+		<div align="right"><button class="btn btn-outline-dark mt-auto" type="button" onclick="location.href='adminInsertForm.do'">ADD NEW</button>
+		</div>
+		<br>
 			<table class="table">
 				<tr>
 					<th>상품코드</th>
@@ -103,7 +104,6 @@ tr:hover td{background-color: #ddd;}
 					<th>상품명</th>
 					<th>가격</th>
 					<th>재고</th>
-					<th>상품설명</th>
 					<th>등록일</th>
 					<th>수정</th>
 					<th>삭제</th>
@@ -116,10 +116,9 @@ tr:hover td{background-color: #ddd;}
 						<td onclick="formSubmit('${vo.itemCode}')">${vo.itemName }</td>
 						<td onclick="formSubmit('${vo.itemCode}')">${vo.itemPrice }</td>
 						<td onclick="formSubmit('${vo.itemCode}')">${vo.itemStock }</td>
-						<td onclick="formSubmit('${vo.itemCode}')">${vo.itemDesc }</td>
 						<td onclick="formSubmit('${vo.itemCode}')">${vo.itemDate }</td>
-						<td><button type="button" onclick="formUpdate('${vo.itemCode}')">수정</button></td>
-						<td><button type="button" onclick="formDelete('${vo.itemCode}')">삭제</button></td>
+						<td><button class="btn btn-outline-dark mt-auto" type="button" onclick="formUpdate('${vo.itemCode}')">수정</button></td>
+						<td><button class="btn btn-outline-dark mt-auto" type="button" onclick="formDelete('${vo.itemCode}')">삭제</button></td>
 					</tr>
 				</c:forEach>
 			</table>

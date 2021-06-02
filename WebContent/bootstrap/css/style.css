@@ -115,6 +115,11 @@ ol {
 	font-style: normal;
 }
 
+.container2 {
+	width: 80%;
+	align: center;
+}
+
 /*---------------------
   Helper CSS
 -----------------------*/
@@ -2384,4 +2389,7 @@ ol {
   	background-color: #212529;
   	border-color: #212529;
 	}
+	
+	
+	
 }
