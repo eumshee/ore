@@ -75,27 +75,28 @@ tr:hover td{background-color: #ddd;}
 	</script>
 </head>
 <body>
+<form id="frm" action="productSelect.do" method="post">
+	<input type="hidden" id="code" name="code">
+</form>
+<form id="frmUpdate" action="adminSelect.do" method="post">
+	<input type="hidden" id="code" name="code">
+</form>
+<form id="frmSearch" action="adminSearch.do" method="post">
+	<input type="hidden" id="name" name="name">
+</form>
+<form id="frmDel" action="adminDelete.do" method="post">
+	<input type="hidden" id="code" name="code">
+</form>
 	<c:choose>
 		<c:when test="${empty proList }">
-	<div class="container">
+		<div class="container">
 		<h1>Manage</h1>
-	<div align="center">
-		<form id="frm" action="productSelect.do" method="post">
-			<input type="hidden" id="code" name="code">
-		</form>
-		<form id="frmUpdate" action="adminSelect.do" method="post">
-			<input type="hidden" id="code" name="code">
-		</form>
-		<form id="frmSearch" action="adminSearch.do" method="post">
-			<input type="hidden" id="name" name="name">
-		</form>
-		<form id="frmDel" action="adminDelete.do" method="post">
-			<input type="hidden" id="code" name="code">
-		</form>
-		<br><input type="text" id="search" size=35>
-		<button class="btn btn-outline-dark mt-auto" id="sch" type="button" onclick="formSearch()">SEARCH</button>
-		<div align="right"><button class="btn btn-outline-dark mt-auto" type="button" onclick="location.href='adminInsertForm.do'">ADD NEW</button>
-		</div>
+			<div align="center">
+			<br>
+			<input type="text" id="search" size=35>
+			<button class="btn btn-outline-dark mt-auto" id="sch" type="button" onclick="formSearch()">SEARCH</button>
+			<div align="right"><button class="btn btn-outline-dark mt-auto" type="button" onclick="location.href='adminInsertForm.do'">ADD NEW</button>
+			</div>
 		<br>
 			<table class="table">
 				<tr>
@@ -133,6 +134,38 @@ tr:hover td{background-color: #ddd;}
 				<jsp:param name="finalPageNo" value="${paging.finalPageNo}" />
 			</jsp:include>
 		</div>
-	</div>
+		</div>
+		</c:when>
+		<c:otherwise>
+			<div align="center">
+				<button class="btn btn-outline-dark mt-auto" type="button" onclick="location.href='adminList.do">BACK</button>
+			</div>
+				<table class="table">
+				<tr>
+					<th>상품코드</th>
+					<th>이미지</th>
+					<th>상품명</th>
+					<th>가격</th>
+					<th>재고</th>
+					<th>등록일</th>
+					<th>수정</th>
+					<th>삭제</th>
+				</tr>
+				<c:forEach items="${proList }" var="vo">
+					<tr>
+						<td onclick="formSubmit('${vo.itemCode}')">${vo.itemCode }</td>
+						<td onclick="formSubmit('${vo.itemCode}')"><img src="${pageContext.request.contextPath }/bootstrap/img/product/${vo.itemImg}"
+									alt="" width="100" height="150"></td>
+						<td onclick="formSubmit('${vo.itemCode}')">${vo.itemName }</td>
+						<td onclick="formSubmit('${vo.itemCode}')">${vo.itemPrice }</td>
+						<td onclick="formSubmit('${vo.itemCode}')">${vo.itemStock }</td>
+						<td onclick="formSubmit('${vo.itemCode}')">${vo.itemDate }</td>
+						<td><button class="btn btn-outline-dark mt-auto" type="button" onclick="formUpdate('${vo.itemCode}')">수정</button></td>
+						<td><button class="btn btn-outline-dark mt-auto" type="button" onclick="formDelete('${vo.itemCode}')">삭제</button></td>
+					</tr>
+				</c:forEach>
+			</table>
+		</c:otherwise>
+		</c:choose>
 </body>
 </html>
