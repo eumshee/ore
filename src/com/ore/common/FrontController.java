@@ -32,6 +32,7 @@ import com.ore.notice.web.NoticeUpdate;
 import com.ore.product.web.AdminDelete;
 import com.ore.product.web.AdminInsertForm;
 import com.ore.product.web.AdminList;
+import com.ore.product.web.AdminSearch;
 import com.ore.product.web.AdminSelect;
 import com.ore.product.web.LookBook;
 import com.ore.product.web.ProductAccList;
@@ -95,6 +96,7 @@ public class FrontController extends HttpServlet {
 		map.put("/adminSelect.do", new AdminSelect());
 		map.put("/adminInsertForm.do", new AdminInsertForm());
 		map.put("/adminDelete.do", new AdminDelete());
+		map.put("/adminSearch.do", new AdminSearch());
 		
 		// qna
 		map.put("/qnaList.do", new QnaList());

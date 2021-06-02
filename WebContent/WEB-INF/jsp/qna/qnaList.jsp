@@ -52,6 +52,10 @@ th, td {
 		function goPage(page) {
 			location.href="qnaList.do?page="+page;
 		}
+		
+		function qnaInsert() {
+			
+		}
 	</script>
 </head>
 <body>

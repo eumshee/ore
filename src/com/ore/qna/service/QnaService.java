@@ -5,7 +5,8 @@ import java.util.List;
 import com.ore.qna.vo.QnaVO;
 
 public interface QnaService {
-	List<QnaVO> qnaSelectList();
+	List<QnaVO> qnaList();
+	List<QnaVO> qnaSelectList(String id);
 	QnaVO qnaSelect(QnaVO vo);
 	int insertQna(QnaVO vo);
 	int updateQna(QnaVO vo);

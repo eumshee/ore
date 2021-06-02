@@ -48,8 +48,7 @@ tr:hover td{background-color: #ddd;}
 		function formSearch() {
 			let search = document.getElementById("search").value;
 			
-			frmSearch.title.value=search;
-			frmSearch.content.value=search;
+			frmSearch.name.value=search;
 			frmSearch.submit();
 		}
 		
@@ -76,6 +75,8 @@ tr:hover td{background-color: #ddd;}
 	</script>
 </head>
 <body>
+	<c:choose>
+		<c:when test="${empty proList }">
 	<div class="container">
 		<h1>Manage</h1>
 	<div align="center">
@@ -85,15 +86,14 @@ tr:hover td{background-color: #ddd;}
 		<form id="frmUpdate" action="adminSelect.do" method="post">
 			<input type="hidden" id="code" name="code">
 		</form>
-		<form id="frmSearch" action="noticeSearch.do" method="post">
-			<input type="hidden" id="title" name="title"> <input
-				type="hidden" id="content" name="content">
+		<form id="frmSearch" action="adminSearch.do" method="post">
+			<input type="hidden" id="name" name="name">
 		</form>
 		<form id="frmDel" action="adminDelete.do" method="post">
 			<input type="hidden" id="code" name="code">
 		</form>
 		<br><input type="text" id="search" size=35>
-		<button class="btn btn-outline-dark mt-auto" type="button" onclick="formSearch()">SEARCH</button>
+		<button class="btn btn-outline-dark mt-auto" id="sch" type="button" onclick="formSearch()">SEARCH</button>
 		<div align="right"><button class="btn btn-outline-dark mt-auto" type="button" onclick="location.href='adminInsertForm.do'">ADD NEW</button>
 		</div>
 		<br>

@@ -68,7 +68,7 @@ public class QnaServiceImpl extends DAO implements QnaService{
 	}
 	
 	@Override
-	public List<QnaVO> qnaSelectList() {
+	public List<QnaVO> qnaList() {
 		sql = "select * from qna order by 1 desc";
 		List<QnaVO> list = new ArrayList<QnaVO>();
 		try {
@@ -142,6 +142,32 @@ public class QnaServiceImpl extends DAO implements QnaService{
 			close();
 		}
 		return rvo;
+	}
+
+	public List<QnaVO> qnaCodeList(String code) {
+		sql = "select * from qna where item_code= ? ";
+		List<QnaVO> list = new ArrayList<QnaVO>();
+		try {
+			psmt = conn.prepareStatement(sql);
+			psmt.setString(1, code);
+			rs = psmt.executeQuery();
+			while(rs.next()) {
+				rvo = new QnaVO();
+				rvo.setId(rs.getInt("id"));
+				rvo.setItemCode(rs.getString("item_code"));
+				rvo.setTitle(rs.getString("title"));
+				rvo.setWriter(rs.getString("writer"));
+				rvo.setContent(rs.getString("content"));
+				rvo.setRegDate(rs.getDate("reg_date"));
+				rvo.setHit(rs.getInt("hit"));
+				list.add(rvo);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			close();
+		}
+		return list;
 	}
 
 	public List<QnaVO> qnaSearch(String title, String content){
@@ -256,6 +282,33 @@ public class QnaServiceImpl extends DAO implements QnaService{
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
+	}
+
+	@Override
+	public List<QnaVO> qnaSelectList(String id) {
+		sql = "select * from qna where writer = ? order by 1 desc";
+		List<QnaVO> list = new ArrayList<QnaVO>();
+		try {
+			psmt = conn.prepareStatement(sql);
+			psmt.setString(1, id);
+			rs = psmt.executeQuery();
+			while(rs.next()) {
+				rvo = new QnaVO();
+				rvo.setId(rs.getInt("id"));
+				rvo.setItemCode(rs.getString("item_code"));
+				rvo.setTitle(rs.getString("title"));
+				rvo.setWriter(rs.getString("writer"));
+				rvo.setContent(rs.getString("content"));
+				rvo.setRegDate(rs.getDate("reg_date"));
+				rvo.setHit(rs.getInt("hit"));
+				list.add(rvo);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			close();
+		}
+		return list;
 	}
 
 }

@@ -1,9 +1,13 @@
 package com.ore.product.web;
 
+import java.io.IOException;
 import java.util.List;
 
+import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.ore.common.DbCommand;
 import com.ore.common.Paging;
@@ -31,9 +35,15 @@ public class AdminList implements DbCommand {
         paging.setPageNo(pageCnt);	
         paging.setPageSize(9);		//페이지 크기
         paging.setTotalCount(total.size());
-		
+        
         request.setAttribute("ProductList", list);
         request.setAttribute("paging", paging);
+
+        if(request.getAttribute("proList")!=null) {
+        	List<ProductVO> list2 = (List<ProductVO>) request.getAttribute("proList");
+        	request.setAttribute("proList", list2);      	
+        }
+        
         return "admin/adminList.tiles";
 	}
 
