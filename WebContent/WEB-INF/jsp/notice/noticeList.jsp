@@ -63,8 +63,9 @@
 	</script>
 </head>
 <body>
-	<div align="center">
-		<h1>공지사항 리스트</h1>
+	<section class="categories-page spad">
+	<div class="container">
+		<h1>Notice</h1>
 		<form id="frm" action="noticeSelect.do" method="post">
 			<input type="hidden" id="id" name="id">
 		</form>
@@ -75,7 +76,7 @@
 		<form id="frmDel" action="noticeDelete.do" method="post">
 			<input type="hidden" id="did" name="did">
 		</form>
-		<hr>
+		<br><br>
 		<div style="width: 80%">
 			<table class="table">
 				<tr>
@@ -101,26 +102,30 @@
 					</tr>
 				</c:forEach>
 			</table>
-			<div>
+			<div class="row col-lg-12 text-right">
 				<input type="text" id="search" size=35>
-				<button type="button" onclick="formSearch()">검색</button>
+				<button class="btn btn-outline-dark mt-auto"  type="button" onclick="formSearch()">검색</button>
 				<c:if test="${id eq 'admin' }">
-					<button type="button" onclick="location.href='noticeInsertForm.do'">등록</button>
+					<button class="btn btn-outline-dark mt-auto"  type="button" onclick="location.href='noticeInsertForm.do'">등록</button>
 				</c:if>
-				<br><br>
-				<button type="button" onclick="location.href='index.do'">홈</button>
 			</div>
-			<br>
-			<jsp:include page="../common/paging.jsp" flush="true">
-			    <jsp:param name="firstPageNo" value="${paging.firstPageNo}" />
-			    <jsp:param name="prevPageNo" value="${paging.prevPageNo}" />
-			    <jsp:param name="startPageNo" value="${paging.startPageNo}" />
-			    <jsp:param name="pageNo" value="${paging.pageNo}" />
-			    <jsp:param name="endPageNo" value="${paging.endPageNo}" />
-			    <jsp:param name="nextPageNo" value="${paging.nextPageNo}" />
-			    <jsp:param name="finalPageNo" value="${paging.finalPageNo}" />
-			</jsp:include>
+			<br><br>
+			<div class="col-lg-12 text-center">
+				<jsp:include page="../common/paging.jsp" flush="true">
+				    <jsp:param name="firstPageNo" value="${paging.firstPageNo}" />
+				    <jsp:param name="prevPageNo" value="${paging.prevPageNo}" />
+				    <jsp:param name="startPageNo" value="${paging.startPageNo}" />
+				    <jsp:param name="pageNo" value="${paging.pageNo}" />
+				    <jsp:param name="endPageNo" value="${paging.endPageNo}" />
+				    <jsp:param name="nextPageNo" value="${paging.nextPageNo}" />
+				    <jsp:param name="finalPageNo" value="${paging.finalPageNo}" />
+				</jsp:include>
+			</div>
+			<div class="col-lg-12 text-left">
+				<button class="btn btn-outline-dark mt-auto" type="button" onclick="location.href='index.do'">홈</button>
+			</div>
 		</div>
 	</div>
+	</section>
 </body>
 </html>

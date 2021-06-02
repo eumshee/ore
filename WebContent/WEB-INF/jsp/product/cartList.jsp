@@ -25,33 +25,45 @@
 			frms.code.value = code;
 			frms.submit();
 		}
+		
+		function cartDelete(code) {
+			frmDel.itemCd.value = code;
+			frmDel.submit();
+		}
 	</script>
 </head>
 <body>
 	<form id="frms" action="productSelect.do" method="post">
 			<input type="hidden" id="code" name="code">
 	</form>
+	<form id="frmDel" action="cartDelete.do" method="post">
+			<input type="hidden" id="itemCd" name="itemCd">
+	</form>
 	<div align="center">
 		<form id="frm" action="cartUpdate.do" method="post">
 			<input type="hidden" id="itemCode" name="itemCode">
 			<input type="hidden" id="itemQty" name="itemQty">
 
-		<div style="width: 50%;">
-			<table class="table">
+    <div class="cart-page">
+        <div class="container">
+			<table class="cart-table">
+            <thead>
 				<tr>
-					<th>상품</th>
+					<th class="product-h">상품</th>
 					<th>상품이름</th>
-					<th>주문개수</th>
+					<th class="quan">주문개수</th>
 					<th>상품가격</th>
 					<th>상품총가격</th>
 					<c:if test="${!empty id }">
 						<th></th>
 					</c:if>
 				</tr>
+			</thead>
+			<tbody>
 				<c:forEach items="${clist }" var="vo">
 						<tr>
-							<td onclick="formSelect('${vo.itemCode}')">
-								<img width="100" height="150" src="${pageContext.request.contextPath }/bootstrap/img/product/${vo.itemImg}">
+							<td class="product-col" onclick="formSelect('${vo.itemCode}')">
+								<img width="100" height="150" src="${pageContext.request.contextPath }/bootstrap/img/product/${vo.itemImg}" alt="">
 							</td>
 							<td onclick="formSelect('${vo.itemCode}')">${vo.itemName }</td>
 							<td>
@@ -66,10 +78,13 @@
 							</td>
 							<td>
 								<button type="submit">수정</button>
+								<button type="button" onclick="cartDelete('${vo.itemCode}')">삭제</button>
 							</td>
 						</tr>
 				</c:forEach>
+			</tbody>
 			</table>	
+		</div>
 		</div>
 		</form>
 	</div>
