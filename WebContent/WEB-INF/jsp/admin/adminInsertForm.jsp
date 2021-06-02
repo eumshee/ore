@@ -62,7 +62,7 @@ $(function() {
 	}); // end of click function	
 	
 	// 이미지 변경
-	$("#img").change(function(){
+	$("#file").change(function(){
 		   if(this.files && this.files[0]) {
 		    var reader = new FileReader;
 		    reader.onload = function(data) {
@@ -123,8 +123,8 @@ $(function() {
 						<th>상품명</th>
 						<td><input type="text" name="name" id="name" value="" size="40"></td>
 						<td rowspan="4">
-								<div class="select_img"><img src="" /></div>
-								<input type="file" name="filename" id="filename"/>
+								<div class="select_img"><img src="" width="250" height="350" id="img"/></div>
+								<input type="file" name="file" id="file"/>
 						</td>
 					</tr>
 					<tr>

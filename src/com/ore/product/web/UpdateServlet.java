@@ -37,12 +37,17 @@ public class UpdateServlet extends HttpServlet {
 		String date = multi.getParameter("date");
 		String desc = multi.getParameter("desc");
 		String img = multi.getParameter("img");
+		String fileN = multi.getParameter("fileN");
+		String newfile = multi.getParameter("newfile");
 		
-		String fileN = null;
+		String file = null;
+		System.out.println("기존파일 : " + fileN);
+		System.out.println("새 파일 : " + newfile);
+		
 		while (en.hasMoreElements()) {
 			String name2 = (String) en.nextElement();
 			String fileName = multi.getFilesystemName(name2);
-			fileN = fileName;
+			file = fileName;
 		}
 		
 		ProductVO vo = new ProductVO();
@@ -52,7 +57,13 @@ public class UpdateServlet extends HttpServlet {
 		vo.setItemStock(Integer.parseInt(stock));
 		vo.setItemDate(date);
 		vo.setItemDesc(desc);
-		vo.setItemImg(fileN);
+		if (!newfile.isEmpty()) {
+			vo.setItemImg(newfile);
+		}
+		else { 
+			vo.setItemImg(fileN);
+		}
+		
 		ProductServiceImpl service = new ProductServiceImpl();
 		service.updateProduct(vo);
 	}

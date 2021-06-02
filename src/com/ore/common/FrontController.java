@@ -28,6 +28,8 @@ import com.ore.notice.web.NoticeList;
 import com.ore.notice.web.NoticeSearch;
 import com.ore.notice.web.NoticeSelect;
 import com.ore.notice.web.NoticeUpdate;
+import com.ore.product.web.AdminDelete;
+import com.ore.product.web.AdminInsertForm;
 import com.ore.product.web.AdminList;
 import com.ore.product.web.AdminSelect;
 import com.ore.product.web.LookBook;
@@ -89,6 +91,8 @@ public class FrontController extends HttpServlet {
 		// 관리자
 		map.put("/adminList.do", new AdminList());
 		map.put("/adminSelect.do", new AdminSelect());
+		map.put("/adminInsertForm.do", new AdminInsertForm());
+		map.put("/adminDelete.do", new AdminDelete());
 		
 		// qna
 		map.put("/qnaList.do", new QnaList());

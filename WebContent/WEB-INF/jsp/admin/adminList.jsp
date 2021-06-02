@@ -21,6 +21,11 @@ th, td {
 
 tr:hover td{background-color: #ddd;}
 
+.container2 {
+	width: 80%;
+	margin: auto;
+}
+
 .pagination {
 	display: inline-block;
 	margin: auto;
@@ -45,12 +50,6 @@ tr:hover td{background-color: #ddd;}
 }
 </style>
 <script>
-		function formSubmit(code) {
-			console.log(code);
-			frm.code.value = code;
-			frm.submit();
-		}
-		
 		function formSearch() {
 			let search = document.getElementById("search").value;
 			
@@ -76,8 +75,8 @@ tr:hover td{background-color: #ddd;}
 	</script>
 </head>
 <body>
-	<div align="center">
-		<h2>상품관리</h2>
+	<div class="container2">
+		<h1>Manage</h1>
 		<form id="frm" action="productSelect.do" method="post">
 			<input type="hidden" id="code" name="code">
 		</form>
@@ -95,8 +94,8 @@ tr:hover td{background-color: #ddd;}
 		<button type="button" onclick="formSearch()">검색</button>
 		<button type="button" onclick="location.href='adminInsertForm.do'">상품등록</button>
 		<br><br>
-				
-		<div style="width: 80%">
+	
+		
 			<table class="table">
 				<tr>
 					<th>상품코드</th>

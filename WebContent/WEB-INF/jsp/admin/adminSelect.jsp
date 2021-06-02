@@ -31,6 +31,9 @@ $(function() {
 		e.preventDefault();
 		let frm = document.getElementById('frm');
 		let data = new FormData(frm);
+		data.append('fileN',$('#fileN').val());
+		data.append('newfile',$('#newfile').val());
+		
 		// 파일 업로드 서블릿
 		$.ajax({
 			contentType: false,
@@ -48,7 +51,7 @@ $(function() {
 	}); // end of click
 	
 	// 이미지 변경
-	$("#img").change(function(){
+	$("#file").change(function(){
 		   if(this.files && this.files[0]) {
 		    var reader = new FileReader;
 		    reader.onload = function(data) {
@@ -82,7 +85,10 @@ $(function() {
 						<div class="select_img">
 						<img src="${pageContext.request.contextPath }/bootstrap/img/product/${product.itemImg}" alt="" width="250" height="350" id="img"><br>
 						</div>
-						<input type="file" name="file" id="file" value="${product.itemImg}"/></td>
+						<input type="file" id="file" name="file"  onchange="javascript:document.getElementById('newfile').value = this.value.substr(12)">
+						<input type="hidden" id="fileN" value="${product.itemImg}">
+						<input type="hidden" id="newfile">
+						</td>
 					</tr>
 					<tr>
 						<th>상품명</th>

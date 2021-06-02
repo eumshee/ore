@@ -54,7 +54,8 @@
 							aliqua. Quis ipsum suspendisse ultrices gravida. Risus commodo
 							viverra maecenas accumsan lacus vel facilisis.</p>
 						<ul class="tags">
-							<li><span>Season :</span> <c:choose>
+							<li><span>Season :</span> 
+								<c:choose>
 									<c:when test="${fn:contains(product.itemDate, '11')}">
 										2020 Winter Drop
 									</c:when>
@@ -64,6 +65,10 @@
 									<c:when test="${fn:contains(product.itemDate, '05')}">
 										2021 Summer Drop
 									</c:when>
+									<c:otherwise>
+										Basic Collection
+									</c:otherwise>
+									
 								</c:choose></li>
 						</ul>
 						<c:choose>
