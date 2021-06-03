@@ -7,7 +7,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.ore.common.DAO;
-import com.ore.notice.vo.NoticeVO;
 import com.ore.product.service.ProductService;
 import com.ore.product.vo.ProductVO;
 

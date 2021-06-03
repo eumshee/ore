@@ -95,11 +95,11 @@ th, td {
 				</tr>
 				<c:forEach items="${qnaList }" var="vo">
 					<tr>
-						<td width="100" onclick="formSubmit(${vo.id},'${vo.writer}','${vo.itemCode}')">${vo.id }</td>
-						<td width="200" onclick="formSubmit(${vo.id},'${vo.writer}','${vo.itemCode}')">${vo.title }</td>
-						<td width="200" onclick="formSubmit(${vo.id},'${vo.writer}','${vo.itemCode}')">${vo.writer }</td>
+						<td width="50" onclick="formSubmit(${vo.id},'${vo.writer}','${vo.itemCode}')">${vo.id }</td>
+						<td width="350" onclick="formSubmit(${vo.id},'${vo.writer}','${vo.itemCode}')">${vo.title }</td>
+						<td width="150" onclick="formSubmit(${vo.id},'${vo.writer}','${vo.itemCode}')">${vo.writer }</td>
 						<td width="150" onclick="formSubmit(${vo.id},'${vo.writer}','${vo.itemCode}')">${vo.regDate }</td>
-						<td width="100" onclick="formSubmit(${vo.id},'${vo.writer}','${vo.itemCode}')">${vo.hit }</td>
+						<td width="50" onclick="formSubmit(${vo.id},'${vo.writer}','${vo.itemCode}')">${vo.hit }</td>
 					</tr>
 				</c:forEach>
 			</table>

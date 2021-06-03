@@ -104,10 +104,10 @@ th, td {
 				</tr>
 				<c:forEach items="${noticeList }" var="vo">
 					<tr>
-						<td width="100" onclick="formSubmit(${vo.id})">${vo.id }</td>
-						<td width="200" onclick="formSubmit(${vo.id})">${vo.title }</td>
-						<td width="150" onclick="formSubmit(${vo.id})">${vo.regDate }</td>
-						<td width="100" onclick="formSubmit(${vo.id})">${vo.hit }</td>
+						<td width="50" onclick="formSubmit(${vo.id})">${vo.id }</td>
+						<td width="350" onclick="formSubmit(${vo.id})">${vo.title }</td>
+						<td width="100" onclick="formSubmit(${vo.id})">${vo.regDate }</td>
+						<td width="50" onclick="formSubmit(${vo.id})">${vo.hit }</td>
 						<c:if test="${id eq 'admin' }">
 							<td width="50">
 								<button class="btn btn-outline-dark mt-auto" type="button"

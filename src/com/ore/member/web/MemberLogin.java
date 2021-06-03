@@ -30,7 +30,7 @@ public class MemberLogin implements DbCommand {
 		String path = "";
 		if(rvo == null) {
 			// 회원존재X --> memberLoginFail.jsp
-			path = "member/memberLoginFail.tiles";
+			path = "fail";
 		} else {
 			// 로그인처리 --> memberLoginSuccess.jsp
 			session.setAttribute("id", rvo.getUserId());// 세션유지하는동안
@@ -39,7 +39,6 @@ public class MemberLogin implements DbCommand {
 			
 			path = "/index.do";
 		}
-		
 		return path;
 	}
 

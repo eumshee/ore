@@ -10,17 +10,19 @@
 			</div>
 			<div class="header-right">
 				<c:choose>
-					<c:when test="${!empty id }">
-						<a href="memberSelect.do"><img src="${pageContext.request.contextPath }/bootstrap/img/icons/man.png" alt=""></a>
+					<c:when test="${empty id }">
+						<a href="memberLoginForm.do">
+						<img src="${pageContext.request.contextPath }/bootstrap/img/icons/man.png" alt="">&nbsp;&nbsp;
+						<img src="${pageContext.request.contextPath }/bootstrap/img/icons/bag.png" alt="">
+						</a>
+					</c:when>
+					<c:otherwise>
+						<a href="memberSelect.do">
+						<img src="${pageContext.request.contextPath }/bootstrap/img/icons/man.png" alt=""></a>
 						&nbsp;&nbsp;
 					 	<a href="cartList.do"> 
 						<img src="${pageContext.request.contextPath }/bootstrap/img/icons/bag.png" alt="">
 							<span>${cartCnt }</span>
-						</a>
-					</c:when>
-					<c:otherwise>
-					 	<a href=""> 
-						<img src="${pageContext.request.contextPath }/bootstrap/img/icons/bag.png" alt=""><span>0</span>
 						</a>
 					</c:otherwise>
 				</c:choose>
@@ -49,10 +51,13 @@
 							<li><a href="productList.do?cate=T&sort=new">Top</a></li>
 							<li><a href="productList.do?cate=B&sort=new">Bottom</a></li>
 							<li><a href="productList.do?cate=A&sort=new">Acc</a></li>
-						</ul></li>
+						</ul>
 					<li><a href="noticeList.do">Notice</a></li>
-
-					<li><a href="qnaList.do">Q&#38;A</a></li>
+					<li><a href="#">Board</a>
+						<ul class="sub-menu">
+							<li><a href="qnaList.do">Q&#38;A</a></li>
+							<li><a href="reviewList.do">Review</a></li>
+						</ul>				
 					<c:if test="${id eq 'admin'}">
 						<li><a href="adminList.do">상품관리</a></li>					
 					</c:if>

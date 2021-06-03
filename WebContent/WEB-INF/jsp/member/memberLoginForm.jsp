@@ -5,26 +5,41 @@
 <head>
 <meta charset="UTF-8">
 <title>memberLoginForm.jsp</title>
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-<script
-	src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
-<script
-	src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script>
 	function formCheck() {
 		if (frm.memberId.value == "") {
-			alert("아이디를 입력하세요.");
+			swal("아이디를 입력하세요.");
 			frm.memberId.focus();
 			return false;
 		}
 		if (frm.memberPwd.value == "") {
-			alert("패스워드를 입력하세요.");
+			swal("패스워드를 입력하세요.");
 			frm.memberPwd.focus();
 			return false;
 		}
-		frm.submit();
+		loginCheck();
 	}
+	
+	function loginCheck() {
+		$.ajax({ 
+			url: '${pageContext.request.contextPath }/memberLogin.do', 
+			data: {
+				memberId:$('#memberId').val(),
+				memberPwd:$('#memberPwd').val()
+			}, 
+			success: function(result) { 
+				location.href = 'index.do';
+			},
+			error : function(error) { 
+				swal("아이디와 비밀번호를 확인하세요.");
+			} 
+		}); // end of ajax
+	}
+	
 </script>
 <style>
 /* STRUCTURE */
@@ -49,6 +64,19 @@ a:focus {
 	text-decoration: none;
 	outline: none;
 	color: #000;
+}
+
+.swal-text {
+ 	color: #212529;
+}
+
+.swal-button{
+  padding: 7px 19px;
+  border-radius: 2px;
+  background-color: #212529;
+  font-size: 12px;
+  font-color: #212529;
+  text-shadow: 0px -1px 0px rgba(0, 0, 0, 0.3);
 }
 
 #formContent {
@@ -233,10 +261,6 @@ input[type=text]:placeholder, input[type=password]:placeholder {
 *:focus {
 	outline: none;
 }
-
-#icon {
-	width: 60%;
-}
 </style>
 </head>
 <body>
@@ -248,7 +272,7 @@ input[type=text]:placeholder, input[type=password]:placeholder {
 				<br>
 			</div>
 			<!-- Login Form -->
-			<form id="frm" action="memberLogin.do" method="post">
+			<form id="frm" action="loginCheck()" method="post">
 				<input type="text" id="memberId" name="memberId" class="fadeIn first" placeholder="ID">
 				<input type="password" id="memberPwd" name="memberPwd" class="fadeIn first" placeholder="PASSWORD">
 				<div class="fadeIn Second">
@@ -258,7 +282,7 @@ input[type=text]:placeholder, input[type=password]:placeholder {
 					<button class="btn btn-outline-dark mt-auto" type="button"
 						onclick="formCheck()" style="width: 185px;">LOGIN</button>
 					<br> <br>
-					<p>회원이 아니신가요? <a href="memberJoinForm.do"> > 가입하기</a></p>
+					<p>아직 회원이 아니신가요? <a href="memberJoinForm.do"> > 가입하기</a></p>
 					<br> <br>
 				</div>
 			</form>

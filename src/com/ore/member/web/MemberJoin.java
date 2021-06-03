@@ -29,9 +29,10 @@ public class MemberJoin implements DbCommand {
 		
 		// 다른 페이지에서 값 유무 확인
 		session.setAttribute("id", id);
+		session.setAttribute("name", name);
 		session.setAttribute("member", vo);
 		
-		return "main/main.tiles";
+		return "member/memberWelcome.tiles";
 	}
 
 }
