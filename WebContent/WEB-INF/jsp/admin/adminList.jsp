@@ -137,9 +137,12 @@ tr:hover td{background-color: #ddd;}
 		</div>
 		</c:when>
 		<c:otherwise>
-			<div align="center">
-				<button class="btn btn-outline-dark mt-auto" type="button" onclick="location.href='adminList.do">BACK</button>
+		<div class="container">
+		<h1>Manage</h1>
+			<div align="right">
+				<button class="btn btn-outline-dark mt-auto" type="button" onclick="location.href='adminList.do'">BACK</button>
 			</div>
+				<br>
 				<table class="table">
 				<tr>
 					<th>상품코드</th>
@@ -165,6 +168,7 @@ tr:hover td{background-color: #ddd;}
 					</tr>
 				</c:forEach>
 			</table>
+			</div>
 		</c:otherwise>
 		</c:choose>
 </body>
