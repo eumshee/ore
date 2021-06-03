@@ -8,7 +8,7 @@ public interface CommentService {
 	ArrayList<CommentVO> commentList(int boardNum);
 	boolean insertComment(CommentVO vo);
 	void updateComment(CommentVO vo);
-	void deleteComment(CommentVO vo);
+	boolean deleteComment(int commentNum);
 	int getSeq();
 
 }

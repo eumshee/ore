@@ -117,6 +117,28 @@ public class QnaServiceImpl extends DAO implements QnaService{
 		return list;
 	}
 	
+	public QnaVO itemCodeName(String code) {
+		sql = "select item_code, item_name, item_img\r\n"
+				+ "from product\r\n"
+				+ "where item_code = ?";
+		try {
+			psmt = conn.prepareStatement(sql);
+			psmt.setString(1, code);
+			rs = psmt.executeQuery();
+			while(rs.next()) {
+				rvo = new QnaVO();
+				rvo.setItemCode(rs.getString("item_code"));
+				rvo.setItemName(rs.getString("item_name"));				
+				rvo.setItemImg(rs.getString("item_img"));				
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			close();
+		}
+		return rvo;
+	}
+
 	@Override
 	public QnaVO qnaSelect(QnaVO vo) {
 		sql = "select * from qna where writer = ? and id = ?";

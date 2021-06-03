@@ -35,9 +35,10 @@ th, td {
 }
 </style>
 <script>
-		function formSubmit(id,writer) {
+		function formSubmit(id,writer,code) {
 			frm.id.value = id;
 			frm.writer.value = writer;
+			frm.code.value = code;
 			frm.submit();
 		}
 		
@@ -75,8 +76,9 @@ th, td {
 				</c:if>
 			</div>
 			<form id="frm" action="qnaSelect.do" method="post">
-				<input type="hidden" id="id" name="id"> <input type="hidden"
-					id="writer" name="writer">
+				<input type="hidden" id="id" name="id">
+				<input type="hidden" id="writer" name="writer">
+				<input type="hidden" id="code" name="code">
 			</form>
 			<form id="frmSearch" action="qnaSearch.do" method="post">
 				<input type="hidden" id="title" name="title"> <input
@@ -93,11 +95,11 @@ th, td {
 				</tr>
 				<c:forEach items="${qnaList }" var="vo">
 					<tr>
-						<td width="100" onclick="formSubmit(${vo.id},'${vo.writer}')">${vo.id }</td>
-						<td width="200" onclick="formSubmit(${vo.id},'${vo.writer}')">${vo.title }</td>
-						<td width="200" onclick="formSubmit(${vo.id},'${vo.writer}')">${vo.writer }</td>
-						<td width="150" onclick="formSubmit(${vo.id},'${vo.writer}')">${vo.regDate }</td>
-						<td width="100" onclick="formSubmit(${vo.id},'${vo.writer}')">${vo.hit }</td>
+						<td width="100" onclick="formSubmit(${vo.id},'${vo.writer}','${vo.itemCode}')">${vo.id }</td>
+						<td width="200" onclick="formSubmit(${vo.id},'${vo.writer}','${vo.itemCode}')">${vo.title }</td>
+						<td width="200" onclick="formSubmit(${vo.id},'${vo.writer}','${vo.itemCode}')">${vo.writer }</td>
+						<td width="150" onclick="formSubmit(${vo.id},'${vo.writer}','${vo.itemCode}')">${vo.regDate }</td>
+						<td width="100" onclick="formSubmit(${vo.id},'${vo.writer}','${vo.itemCode}')">${vo.hit }</td>
 					</tr>
 				</c:forEach>
 			</table>

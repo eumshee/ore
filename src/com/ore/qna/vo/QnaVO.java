@@ -10,10 +10,19 @@ public class QnaVO {
 	private String content;
 	private Date regDate;
 	private int hit;
-	
+
 	// 값 받는 변수
 	private String itemName;
-	
+	private String itemImg;
+
+	public String getItemImg() {
+		return itemImg;
+	}
+
+	public void setItemImg(String itemImg) {
+		this.itemImg = itemImg;
+	}
+
 	public String getItemName() {
 		return itemName;
 	}
@@ -21,7 +30,7 @@ public class QnaVO {
 	public void setItemName(String itemName) {
 		this.itemName = itemName;
 	}
-	
+
 	public int getId() {
 		return id;
 	}
