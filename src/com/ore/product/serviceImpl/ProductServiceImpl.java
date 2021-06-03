@@ -18,52 +18,31 @@ public class ProductServiceImpl extends DAO implements ProductService {
 	String sql;
 
 	// 페이징 기능
-	public List<ProductVO> productListPaging(int page, String category){
-		String SQL = "select b.*\r\n"
-				+ "from (select rownum rn,a.*\r\n"
-				+ "      from(select * from product where substr(item_code, 1, 1) = nvl(?,substr(item_code, 1, 1)) order by 7 desc)a\r\n"
-				+ "      )b\r\n"
-				+ "where b.rn between ? and ?";
+	public List<ProductVO> productListPaging(int page, String category, String sort) {
+		String sql = "select b.* " + "from (select rownum rn,a.* "
+				+ "      from(select * from product where substr(item_code, 1, 1) = nvl(?,substr(item_code, 1, 1)) ";
+		if (sort.equals("new")) {
+			sql += "order by item_date desc";
+		} else if (sort.equals("name")) {
+			sql += "order by item_name";
+		} else if (sort.equals("lowest")) {
+			sql += "order by item_price";
+		} else if (sort.equals("highest")) {
+			sql += "order by item_price desc";
+		}
+		sql += ")a ";
+		sql += "      )b ";
+		sql += "where b.rn between ? and ?";
 		List<ProductVO> list = new ArrayList<>();
-		int firstCnt = 0, lastCnt = 0;		
-		firstCnt = (page - 1) * 9 + 1;		// 1 , 11
-		lastCnt = (page * 9);			    // 10, 20
-		
+		int firstCnt = 0, lastCnt = 0;
+		firstCnt = (page - 1) * 9 + 1; // 1 , 11
+		lastCnt = (page * 9); // 10, 20
+
 		try {
-			psmt = conn.prepareStatement(SQL);
+			psmt = conn.prepareStatement(sql);
 			psmt.setString(1, category);
 			psmt.setInt(2, firstCnt);
 			psmt.setInt(3, lastCnt);
-			rs = psmt.executeQuery();
-			while(rs.next()) {
-				ProductVO vo = new ProductVO();
-				vo.setItemCode(rs.getString("item_code"));
-				vo.setItemName(rs.getString("item_name"));
-				vo.setItemImg(rs.getString("item_img"));
-				vo.setItemPrice(rs.getInt("item_price"));
-				vo.setItemStock(rs.getInt("item_stock"));
-				vo.setItemDesc(rs.getString("item_desc"));
-				vo.setItemDate(rs.getString("item_date").substring(0,10));
-				list.add(vo);
-			}
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} finally {
-			close();
-		}
-		return list;
-	}
-	
-	// 상품 전체조회
-	@Override
-	public List<ProductVO> selectProductList(String cate, String sort) {
-		sql = "select * from product p where substr(p.ITEM_CODE, 1, 1)=nvl(?, substr(p.ITEM_CODE, 1, 1)) order by ?";
-		List<ProductVO> list = new ArrayList<>();
-		try {
-			psmt = conn.prepareStatement(sql);
-			psmt.setString(1, cate);
-			psmt.setString(2, sort);
-			
 			rs = psmt.executeQuery();
 			while (rs.next()) {
 				ProductVO vo = new ProductVO();
@@ -73,7 +52,7 @@ public class ProductServiceImpl extends DAO implements ProductService {
 				vo.setItemPrice(rs.getInt("item_price"));
 				vo.setItemStock(rs.getInt("item_stock"));
 				vo.setItemDesc(rs.getString("item_desc"));
-				vo.setItemDate(rs.getString("item_date").substring(0,10));
+				vo.setItemDate(rs.getString("item_date").substring(0, 10));
 				list.add(vo);
 			}
 		} catch (SQLException e) {
@@ -83,8 +62,45 @@ public class ProductServiceImpl extends DAO implements ProductService {
 		}
 		return list;
 	}
-	
-	
+
+	// 상품 전체조회
+	@Override
+	public List<ProductVO> selectProductList(String cate, String sort) {
+		sql = "select * from product p where substr(p.ITEM_CODE, 1, 1)=nvl(?, substr(p.ITEM_CODE, 1, 1))";
+		if (sort.equals("new")) {
+			sql += "order by item_date desc";
+		} else if (sort.equals("name")) {
+			sql += "order by item_name";
+		} else if (sort.equals("lowest")) {
+			sql += "order by item_price";
+		} else if (sort.equals("highest")) {
+			sql += "order by item_price desc";
+		}
+
+		List<ProductVO> list = new ArrayList<>();
+		try {
+			psmt = conn.prepareStatement(sql);
+			psmt.setString(1, cate);
+			rs = psmt.executeQuery();
+			while (rs.next()) {
+				ProductVO vo = new ProductVO();
+				vo.setItemCode(rs.getString("item_code"));
+				vo.setItemName(rs.getString("item_name"));
+				vo.setItemImg(rs.getString("item_img"));
+				vo.setItemPrice(rs.getInt("item_price"));
+				vo.setItemStock(rs.getInt("item_stock"));
+				vo.setItemDesc(rs.getString("item_desc"));
+				vo.setItemDate(rs.getString("item_date").substring(0, 10));
+				list.add(vo);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close();
+		}
+		return list;
+	}
+
 	// OUTER 전체조회
 	@Override
 	public List<ProductVO> selectOuterList() {
@@ -111,8 +127,7 @@ public class ProductServiceImpl extends DAO implements ProductService {
 		}
 		return list;
 	}
-	
-	
+
 	// TOP 전체조회
 	@Override
 	public List<ProductVO> selectTopList() {
@@ -139,8 +154,7 @@ public class ProductServiceImpl extends DAO implements ProductService {
 		}
 		return list;
 	}
-	
-	
+
 	// BOTTOM 전체조회
 	@Override
 	public List<ProductVO> selectBottomList() {
@@ -167,8 +181,7 @@ public class ProductServiceImpl extends DAO implements ProductService {
 		}
 		return list;
 	}
-	
-	
+
 	// Acc 전체조회
 	@Override
 	public List<ProductVO> selectAccList() {
@@ -195,7 +208,7 @@ public class ProductServiceImpl extends DAO implements ProductService {
 		}
 		return list;
 	}
-	
+
 	public boolean cdCheck(String cd) {
 		boolean exist = false;
 		String SQL = "select item_code from product where item_code=?";
@@ -213,7 +226,6 @@ public class ProductServiceImpl extends DAO implements ProductService {
 		}
 		return exist;
 	}
-	
 
 	// 한건 조회
 	@Override
@@ -230,7 +242,7 @@ public class ProductServiceImpl extends DAO implements ProductService {
 				vo.setItemPrice(rs.getInt("item_price"));
 				vo.setItemStock(rs.getInt("item_stock"));
 				vo.setItemDesc(rs.getString("item_desc"));
-				vo.setItemDate(rs.getString("item_date").substring(0,10));
+				vo.setItemDate(rs.getString("item_date").substring(0, 10));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -306,16 +318,15 @@ public class ProductServiceImpl extends DAO implements ProductService {
 		}
 		return r;
 	}
-	
+
 	public List<ProductVO> productSearch(String itemName) {
-		sql = "select * from product\r\n"
-				+ "where item_name like initcap(?)";
+		sql = "select * from product\r\n" + "where item_name like initcap(?)";
 		List<ProductVO> list = new ArrayList<ProductVO>();
 		try {
 			psmt = conn.prepareStatement(sql);
-			psmt.setString(1, "%"+itemName+"%");
+			psmt.setString(1, "%" + itemName + "%");
 			rs = psmt.executeQuery();
-			while(rs.next()) {
+			while (rs.next()) {
 				ProductVO vo = new ProductVO();
 				vo.setItemCode(rs.getString("item_code"));
 				vo.setItemName(rs.getString("item_name"));
@@ -323,7 +334,7 @@ public class ProductServiceImpl extends DAO implements ProductService {
 				vo.setItemPrice(rs.getInt("item_price"));
 				vo.setItemStock(rs.getInt("item_stock"));
 				vo.setItemDesc(rs.getString("item_desc"));
-				vo.setItemDate(rs.getString("item_date").substring(0,10));
+				vo.setItemDate(rs.getString("item_date").substring(0, 10));
 				list.add(vo);
 			}
 		} catch (Exception e) {

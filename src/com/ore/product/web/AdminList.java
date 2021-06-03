@@ -20,6 +20,7 @@ public class AdminList implements DbCommand {
 	public String execute(HttpServletRequest request, HttpServletResponse response) {
 		String page = request.getParameter("page");	// 페이지 번호
 		String category = request.getParameter("category");	
+		
 		if (page == null) 
 			page = "1";
 		int pageCnt = Integer.parseInt(page);
@@ -28,7 +29,7 @@ public class AdminList implements DbCommand {
 		
 		// 전체 건수를 위해 실행
 		service = new ProductServiceImpl();
-		List<ProductVO> list = service.productListPaging(pageCnt, "");
+		List<ProductVO> list = service.productListPaging(pageCnt, category, "4");
 		
 		//현재 페이지 리스트를 위해 실행
         Paging paging = new Paging();

@@ -39,11 +39,30 @@
 		frm.submit();
 	}
 	function goPage(page) {
-		location.href = "productList.do?page=" + page;
+		location.href = "productList.do?page=" + page + "&cate=${category}&sort=${sort}";
 	}
-	function addCart(code) {
-		frmInput.itemCode.value = code;
-		frmInput.submit();
+	
+	function addCart(itemCode){
+		var link = document.location.href; 
+
+ 		$.ajax({
+			url: '${pageContext.request.contextPath }/addCart.do',
+			data: {
+				id: '${id }', 
+				itemCode: itemCode
+			},
+			success: function (result){
+				console.log(result);
+				location.href=link;
+			},
+			error: function (err){
+				console.log(err);
+			}
+		});
+	};
+
+	function sortby(sort) {
+		location.href = "productList.do?cate=${category}&sort=" + sort;
 	}
 </script>
 <body>
@@ -54,7 +73,23 @@
 	<!-- Categories Page Section Begin -->
 	<section class="categories-page spad">
 		<div class="container">
-			<h1>Shop ALL</h1>
+			<c:choose>
+				<c:when test="${category eq 'O' }">
+				<h1>Outer</h1>
+				</c:when>
+				<c:when test="${category eq 'T' }">
+				<h1>Top</h1>
+				</c:when>
+				<c:when test="${category eq 'B' }">
+				<h1>Bottom</h1>
+				</c:when>
+				<c:when test="${category eq 'A' }">
+				<h1>Acc</h1>
+				</c:when>
+				<c:otherwise>
+				<h1>Shop ALL</h1>
+				</c:otherwise>
+			</c:choose>
 			<br>
 			<form id="frm" action="productSelect.do" method="post">
 				<input type="hidden" id="code" name="code">
@@ -65,17 +100,14 @@
 						<div class="categories-filter">
 							<div class="cf-left">
 								<form action="#">
-									<select class="sort">
+									<select class="sort" onchange="sortby(this.value)">
 										<option value="">Sort by</option>
-										<option value="">Orders</option>
-										<option value="">Newest</option>
-										<option value="">Price</option>
+										<option value="new">Newest</option>
+										<option value="lowest">Lowest Price</option>
+										<option value="highest">Highest Price</option>
+										<option value="name">Name</option>
 									</select>
 								</form>
-							</div>
-							<div class="cf-right">
-								<span>20 Products</span> <a href="#">2</a> <a href="#"
-									class="active">4</a> <a href="#">6</a>
 							</div>
 						</div>
 					</div>

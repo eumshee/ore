@@ -17,6 +17,7 @@ public class AddCart implements DbCommand {
 		
 		String id = request.getParameter("id");
 		String itemCode = request.getParameter("itemCode");
+		
 		int qty = 1;
 		
 		CartServiceImpl service = new CartServiceImpl();
@@ -27,8 +28,7 @@ public class AddCart implements DbCommand {
 		
 		session.setAttribute("cartCnt", cartCnt);
 		
-		
-		return "/productList.do";
+		return "";
 	}
 
 }

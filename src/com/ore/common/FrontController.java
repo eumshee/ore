@@ -35,12 +35,8 @@ import com.ore.product.web.AdminList;
 import com.ore.product.web.AdminSearch;
 import com.ore.product.web.AdminSelect;
 import com.ore.product.web.LookBook;
-import com.ore.product.web.ProductAccList;
-import com.ore.product.web.ProductBottomList;
 import com.ore.product.web.ProductListPaging;
-import com.ore.product.web.ProductOuterList;
 import com.ore.product.web.ProductSelect;
-import com.ore.product.web.ProductTopList;
 import com.ore.qna.web.QnaDelete;
 import com.ore.qna.web.QnaInsert;
 import com.ore.qna.web.QnaInsertCodeForm;
@@ -69,10 +65,6 @@ public class FrontController extends HttpServlet {
 		
 		// 상품
 		map.put("/productList.do", new ProductListPaging());
-		map.put("/productOuterList.do", new ProductOuterList());
-		map.put("/productTopList.do", new ProductTopList());
-		map.put("/productBottomList.do", new ProductBottomList());
-		map.put("/productAccList.do", new ProductAccList());
 		map.put("/productSelect.do", new ProductSelect());
 		map.put("/lookbook.do", new LookBook());
 		

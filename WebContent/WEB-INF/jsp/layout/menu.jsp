@@ -15,7 +15,7 @@
 						&nbsp;&nbsp;
 					 	<a href="cartList.do"> 
 						<img src="${pageContext.request.contextPath }/bootstrap/img/icons/bag.png" alt="">
-							<span>${sessionScope.cartCnt }</span>
+							<span>${cartCnt }</span>
 						</a>
 					</c:when>
 					<c:otherwise>
@@ -41,14 +41,14 @@
 			<nav class="main-menu mobile-menu" id="nav">
 				<ul>
 					<li><a class="active" href="lookbook.do">NEW SEASON</a></li>
-					<li><a href="productList.do">Shop</a>
+					<li><a href="productList.do?cate=&sort=new">Shop</a>
 						<ul class="sub-menu">
-							<li><a href="productList.do">Shop All</a></li>
+							<li><a href="productList.do?cate=&sort=new">Shop All</a></li>
 							<li><hr class="dropdown-divider" /></li>
-							<li><a href="productList.do?cate=O">Outer</a></li>
-							<li><a href="productList.do?cate=T">Top</a></li>
-							<li><a href="productList.do?cate=B">Bottom</a></li>
-							<li><a href="productList.do?cate=A">Acc</a></li>
+							<li><a href="productList.do?cate=O&sort=new">Outer</a></li>
+							<li><a href="productList.do?cate=T&sort=new">Top</a></li>
+							<li><a href="productList.do?cate=B&sort=new">Bottom</a></li>
+							<li><a href="productList.do?cate=A&sort=new">Acc</a></li>
 						</ul></li>
 					<li><a href="noticeList.do">Notice</a></li>
 
