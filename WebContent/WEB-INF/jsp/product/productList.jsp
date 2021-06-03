@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -31,7 +32,21 @@
 .pagination a:hover:not(.active) {
 	background-color: #ddd;
 }
+
+.swal-text {
+ 	color: #212529;
+}
+
+.swal-button{
+  padding: 7px 19px;
+  border-radius: 2px;
+  background-color: #212529;
+  font-size: 12px;
+  text-shadow: 0px -1px 0px rgba(0, 0, 0, 0.3);
+}
+
 </style>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <script>
 	function formSubmit(code) {
 		cosole.log(code);
@@ -43,8 +58,6 @@
 	}
 	
 	function addCart(itemCode){
-		var link = document.location.href; 
-
  		$.ajax({
 			url: '${pageContext.request.contextPath }/addCart.do',
 			data: {
@@ -52,8 +65,7 @@
 				itemCode: itemCode
 			},
 			success: function (result){
-				console.log(result);
-				location.href=link;
+				eventsuccess();
 			},
 			error: function (err){
 				console.log(err);
@@ -61,6 +73,17 @@
 		});
 	};
 
+	function eventsuccess() {
+		swal({
+			title : "장바구니에 추가되었습니다.",
+		   	icon  : "success",
+		   	closeOnClickOutside : false,
+		}).then(function(){
+		var link = document.location.href; 
+			location.href=link;
+		});
+	}
+	
 	function sortby(sort) {
 		location.href = "productList.do?cate=${category}&sort=" + sort;
 	}

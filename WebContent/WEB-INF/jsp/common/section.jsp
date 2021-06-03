@@ -1,5 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<style>
+.hero-items .owl-dots {
+	position: absolute;
+	left: 110px;
+	bottom: 10px;
+}
+</style>
 <!-- Hero Slider Begin -->
 <section class="hero-slider">
 	<div class="hero-items owl-carousel">

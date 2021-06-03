@@ -55,6 +55,7 @@
 		<div align="center">
 			<form id="frm" action="qnaUpdate.do" method="post">
 				<input type="hidden" id="id" name="id" value="${qna.id}">
+				<input type="hidden" id="id" name="title" value="${qna.title}">
 				<input type="hidden" id="writer" name="writer" value="${qna.writer}">
 				<table class="table">
 					<tr>
