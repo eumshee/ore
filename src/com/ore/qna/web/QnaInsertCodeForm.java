@@ -14,12 +14,14 @@ public class QnaInsertCodeForm implements DbCommand {
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) {
 		String code = request.getParameter("itemCode");
+		String cate = request.getParameter("itemCode");
 		
 		QnaServiceImpl service = new QnaServiceImpl();
 		List<QnaVO> list = service.itemCodeList(code);
 		
 		request.setAttribute("code", list);
-		System.out.println(list);
+		request.setAttribute("cate", cate);
+		System.out.println(cate);
 		return "qna/qnaCodeForm.tiles";
 	}
 

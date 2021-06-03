@@ -3,6 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
+
 <head>
 	<meta charset="UTF-8">
 	<title>qnaSelect</title>
@@ -13,56 +14,61 @@
 		table {
 			border-collapse: collapse;
 		}
-		th, td {
+
+		th,
+		td {
 			text-align: center;
 			padding: 10px;
 		}
-		#cke_content {margin:auto;}
+
+		#cke_content {
+			margin: auto;
+		}
 	</style>
 	<script>
-		$(function() {
+		$(function () {
 			CKEDITOR.replace('content', {
 				filebrowserUploadUrl: '${pageContext.request.contextPath}/fileUpload',
 				height: '600px',
 				width: '950px'
 			});
 		});
-		
+
 		function qnaUpdate() {
 			frm.submit();
 		}
-		
+
 		function qnaDelete() {
 			frmDel.submit();
 		}
-		
 	</script>
 </head>
+
 <body>
-<div align="center">
-	<h3>Q&#38;A 상세보기</h3>
-	<form id="frmDel" action="qnaDelete.do" method="post">
-		<input type="hidden" id="did" name="did" value="${qna.id}">
-		<input type="hidden" id="dwriter" name="dwriter" value="${qna.writer}">
-	</form>
-	<hr>
-	<div style="width: 70%;">
-		<form id="frm" action="qnaUpdate.do" method="post">
-			<input type="hidden" id="id" name="id" value="${qna.id}"> 
-			<input type="hidden" id="writer" name="writer" value="${qna.writer}"> 
-			<table class="table">
-				<tr>
-						<th>순번</th>
+<form id="frmDel" action="qnaDelete.do" method="post">
+	<input type="hidden" id="did" name="did" value="${qna.id}">
+	<input type="hidden" id="dwriter" name="dwriter" value="${qna.writer}">
+</form>
+	<div class="container">
+		<h1>Q&#38;A</h1>
+		<br>
+		<div align="center">
+			<form id="frm" action="qnaUpdate.do" method="post">
+				<input type="hidden" id="id" name="id" value="${qna.id}">
+				<input type="hidden" id="writer" name="writer" value="${qna.writer}">
+				<table class="table">
+					<tr>
+						<th>No.</th>
 						<td>${qna.id}</td>
-						<th>작성자</th>
+						<th>WRITER</th>
 						<td>${qna.writer }</td>
-						<th>작성일자</th>
+						<th>DATE</th>
 						<td>${qna.regDate}</td>
-						<th>조회수</th>
+						<th>HIT</th>
 						<td>${qna.hit+1}</td>
-				</tr>
-				<tr>
-						<th>제목</th>
+					</tr>
+					<tr>
+						<th>TITLE</th>
 						<c:choose>
 							<c:when test="${id eq qna.writer }">
 								<td colspan="7">
@@ -73,9 +79,9 @@
 								<td colspan="7">${qna.title}
 							</c:otherwise>
 						</c:choose>
-				</tr>
-				<tr>
-						<th>내용</th>
+					</tr>
+					<tr>
+						<th>CONTENT</th>
 						<c:choose>
 							<c:when test="${id eq qna.writer}">
 								<td colspan="7">
@@ -84,22 +90,25 @@
 							</c:when>
 							<c:otherwise>
 								<td colspan="7">
-									<textarea id="content" name="content" rows="6" cols="90" readonly="readonly">${qna.content}</textarea>
+									<textarea id="content" name="content" rows="6" cols="90"
+										readonly="readonly">${qna.content}</textarea>
 								</td>
 							</c:otherwise>
 						</c:choose>
-				</tr>
-			</table>
-		</form>
-			<div align="center">
+					</tr>
+				</table>
+			</form>
+			<div class="col-lg-12 text-center">
 				<c:if test="${id eq qna.writer}">
-					<button type="button" onclick="qnaUpdate()">수정</button>
-					<button type="button" onclick="qnaDelete()">삭제</button>
+					<button class="btn btn-outline-dark mt-auto" type="button" onclick="qnaUpdate()">MODIFY</button>
+					<button class="btn btn-outline-dark mt-auto" type="button" onclick="qnaDelete()">DELETE</button>
 					<br><br>
 				</c:if>
-				<button type="button" onclick="location.href='qnaList.do'">목록보기</button>
+				<button class="btn btn-outline-dark mt-auto" type="button" onclick="location.href='qnaList.do'">BACK</button>
 			</div>
+		</div>
 	</div>
-</div>
+	
 </body>
+
 </html>

@@ -1,60 +1,61 @@
-<<<<<<< HEAD
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-=======
-.<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
->>>>>>> branch 'master' of https://github.com/eumshee/ore.git
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
+
 <head>
-<meta charset="UTF-8">
-<title>qnaInsert</title>
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-<script src="//cdn.ckeditor.com/4.16.1/full/ckeditor.js"></script>
-<style>
-table {
-	border-collapse: collapse;
-}
-
-th {
-	text-align: center;
-	padding: 10px;
-}
-
-#cke_content {
-	margin: auto;
-}
-</style>
-<script>
-	$(function() {
-		CKEDITOR
-				.replace(
-						'content',
-						{
-							filebrowserUploadUrl : '${pageContext.request.contextPath}/fileUpload',
-							height : '600px',
-							width : '100%'
-						});
-	});
-
-	function formCheck() {
-		if (frm.title.value == "") {
-			alert("제목을 입력하세요.");
-			frm.title.focus();
-			return false;
+	<meta charset="UTF-8">
+	<title>qnaInsert</title>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+	<script src="//cdn.ckeditor.com/4.16.1/full/ckeditor.js"></script>
+	<style>
+		table {
+			border-collapse: collapse;
 		}
-		frm.submit();
-	}
 
-	function codeCheck() {
-		frmCode.itemCode.value = $("#item option:selected").val();
-		frmCode.submit();
-	}
-</script>
+		th {
+			text-align: center;
+			padding: 10px;
+		}
+
+		#cke_content {
+			margin: auto;
+		}
+	</style>
+	<script>
+		$(function () {
+			CKEDITOR.replace('content', {
+				filebrowserUploadUrl: '${pageContext.request.contextPath}/fileUpload',
+				height: '600px',
+				width: '100%'
+			});
+		    
+		}); // document end
+
+		function formCheck() {
+			if (frm.title.value == "") {
+				alert("제목을 입력하세요.");
+				frm.title.focus();
+				return false;
+			}
+			
+			if ($('#item option').prop("selected",false)) {
+				alert("제품을 선택하세요.");
+				return false;
+			}
+			
+				frm.submit();
+		}
+
+		function codeCheck() {
+			frmCode.itemCode.value = $("#item option:selected").val();
+			frmCode.submit();
+		}
+
+	</script>
 </head>
+
 <body>
 	<div class="container">
 		<h1>Q&#38;A</h1>
@@ -68,23 +69,23 @@ th {
 					<tr>
 						<th>제품</th>
 						<td>
-						<select id="item" name="item">
+							<select id="item" name="item" onchange="codeCheck()">
 								<option hidden="">선택</option>
 								<option value="outer">outer</option>
 								<option value="top">top</option>
 								<option value="bottom">bottom</option>
 								<option value="acc">acc</option>
-						</select>
-						<button type="button" onclick="codeCheck()">불러오기</button>
+							</select>
+							<br>
 							<c:if test="${code }">
-								<c:forEach items="${code }" var="vo">
-									<select id="itemCode" name="itemCode">
+									<select id="itemCode" name="itemCode" onchange="itemCheck()">
 										<option hidden="">선택</option>
-										<option value="${vo.itemCode}">'${vo.itemCode}'</option>
+										<c:forEach items="${code }" var="vo">
+										<option value="${vo.itemCode}">${vo.itemCode}</option>
+										</c:forEach>
 									</select>
-								</c:forEach>
 							</c:if>
-							</td>
+						</td>
 					</tr>
 					<tr>
 						<th><label for="title">제목</label></th>
@@ -96,13 +97,14 @@ th {
 					</tr>
 				</table>
 				<div>
-					<button type="button" onclick="formCheck()">등록</button>
-					<button type="reset">취소</button>
-					<br> <br>
-					<button type="button" onclick="location.href='qnaList.do'">목록으로</button>
+					<button class="btn btn-outline-dark mt-auto" type="button" onclick="formCheck()">WRITE</button>
+					<button class="btn btn-outline-dark mt-auto" type="reset">RESET</button>
+					<br><br>
+					<button class="btn btn-outline-dark mt-auto" type="button" onclick="location.href='qnaList.do'">BACK</button>
 				</div>
-		</form>
-	</div>
+			</form>
+		</div>
 	</div>
 </body>
+
 </html>

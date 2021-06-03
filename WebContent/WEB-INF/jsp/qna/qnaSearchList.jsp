@@ -25,6 +25,12 @@
 		function formSearch() {
 			let search = document.getElementById("search").value;
 			
+			if($('#search').val() == "") {
+				alert("검색값을 입력하세요.");
+				$('#search').focus();
+				return false;
+			}
+			
 			frmSearch.title.value=search;
 			frmSearch.content.value=search;
 			frmSearch.submit();
@@ -32,29 +38,37 @@
 	</script>
 </head>
 <body>
-	<div align="center">
-		<h1>Q&#38;A</h1>
-		<form id="frm" action="qnaSelect.do" method="post">
-			<input type="hidden" id="id" name="id">
-			<input type="hidden" id="writer" name="writer">
-		</form>
-		<form id="frmSearch" action="qnaSearch.do" method="post">
-			<input type="hidden" id="title" name="title">
-			<input type="hidden" id="content" name="content">
-		</form>
-		<form id="frmDel" action="qnaDelete.do" method="post">
-			<input type="hidden" id="did" name="did">
-		</form>
-		<hr>
-		<div style="width: 60%">
+<form id="frm" action="qnaSelect.do" method="post">
+	<input type="hidden" id="id" name="id">
+	<input type="hidden" id="writer" name="writer">
+</form>
+<form id="frmSearch" action="qnaSearch.do" method="post">
+	<input type="hidden" id="title" name="title">
+	<input type="hidden" id="content" name="content">
+</form>
+<form id="frmDel" action="qnaDelete.do" method="post">
+	<input type="hidden" id="did" name="did">
+</form>
+	<div class="container">
+		<h1>Q&#38;A Result</h1>
+		<div align="center">
+			<div class="col-lg-12 text-right">
+				<c:if test="${!empty id}">
+					<button class="btn btn-outline-dark mt-auto" type="button"
+						onclick="location.href='qnaInsertForm.do'">WRITE</button>
+				</c:if>
+			</div>
+			<br>
+		<div style="width: 100%">
+			<div class="col-lg-12 text-right">
 			<table class="table">
-					<tr>
-						<th>순번</th>
-						<th>제목</th>
-						<th>작성자</th>
-						<th>작성일자</th>
-						<th>조회수</th>
-					</tr>
+				<tr>
+					<th>NO.</th>
+					<th>TITLE</th>
+					<th>WRITER</th>
+					<th>DATE</th>
+					<th>HIT</th>
+				</tr>
 				<c:forEach items="${qnaList }" var="vo">
 					<tr>
 						<td width="100" onclick="formSubmit(${vo.id},'${vo.writer}')">${vo.id }</td>
@@ -65,16 +79,17 @@
 					</tr>
 				</c:forEach>
 			</table>
-			<div class="black">
+			<br><br>
+			<div class="col-lg-12 text-center">
 				<input type="text" id="search" size=35>
-				<button type="button" onclick="formSearch()">검색</button>
-				<c:if test="${!empty id}">
-					<button type="button" onclick="location.href='qnaInsertForm.do'">등록</button>
-				</c:if>
+				<button class="btn btn-outline-dark mt-auto" type="button"
+					onclick="formSearch()">SEARCH</button>
 				<br><br>
-				<button type="button" onclick="location.href='index.do'">홈</button>
+				<button class="btn btn-outline-dark mt-auto" type="button" onclick="location.href='qnaList.do'">BACK</button>
 			</div>
 			<br>
+			</div>
+		</div>
 		</div>
 	</div>
 </body>

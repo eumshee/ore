@@ -44,6 +44,11 @@ th, td {
 		function formSearch() {
 			let search = document.getElementById("search").value;
 			
+			if($('#search').val() == "") {
+				alert("검색값을 입력하세요.");
+				$('#search').focus();
+				return false;
+			}
 			frmSearch.title.value=search;
 			frmSearch.content.value=search;
 			frmSearch.submit();

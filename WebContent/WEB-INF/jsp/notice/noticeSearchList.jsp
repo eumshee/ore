@@ -13,6 +13,7 @@
 		th, td {
 			text-align: center;
 			padding: 10px;
+			vertical-align: middle !important;
 		}
 		.pagination {
 			display: inline-block;
@@ -46,6 +47,12 @@
 	function formSearch() {
 		let search = document.getElementById("search").value;
 		
+		if($('#search').val() == "") {
+			alert("검색값을 입력하세요.");
+			$('#search').focus();
+			return false;
+		}
+		
 		frmSearch.title.value=search;
 		frmSearch.content.value=search;
 		frmSearch.submit();
@@ -63,51 +70,58 @@
 </script>
 </head>
 <body>
-<div align="center">
-		<h1>공지사항 검색결과</h1>
-		<form id="frm" action="noticeSelect.do" method="post">
-			<input type="hidden" id="id" name="id">
-		</form>
-		<form id="frmSearch" action="noticeSearch.do" method="post">
-			<input type="hidden" id="title" name="title">
-			<input type="hidden" id="content" name="content">
-		</form>
-		<form id="frmDel" action="noticeDelete.do" method="post">
-			<input type="hidden" id="id" name="id">
-		</form>
+<form id="frm" action="noticeSelect.do" method="post">
+	<input type="hidden" id="id" name="id">
+</form>
+<form id="frmSearch" action="noticeSearch.do" method="post">
+	<input type="hidden" id="title" name="title">
+	<input type="hidden" id="content" name="content">
+</form>
+<form id="frmDel" action="noticeDelete.do" method="post">
+	<input type="hidden" id="id" name="id">
+</form>
+	<div class="container">
+		<h1>Notice Search</h1><br>
+		<div align="center">
+		<div class="col-lg-12 text-right">
+			<c:if test="${id eq 'admin' }">
+				<button class="btn btn-outline-dark mt-auto" type="button"
+				onclick="location.href='noticeForm.do'">WRITE</button>
+			</c:if>
+		</div>
 		<hr>
-		<div style="width: 80%;">
-			<table class="table">
-				<tr>		
-					<th>순번</th>
-					<th>제목</th>
-					<th>작성일자</th>
-					<th>조회수</th>
+		<table class="table">
+			<tr>
+				<th width="20">NO.</th>
+				<th>TITLE</th>
+				<th>DATE</th>
+				<th>HIT</th>
+				<c:if test="${id eq 'admin' }">
+					<th>DEL</th>
+				</c:if>
+			</tr>
+			<c:forEach items="${noticeList }" var="vo">
+				<tr >
+					<td width="100" onclick="formSubmit(${vo.id})">${vo.id }</td>
+					<td width="200" onclick="formSubmit(${vo.id})">${vo.title }</td>
+					<td width="150" onclick="formSubmit(${vo.id})">${vo.regDate }</td>
+					<td width="100" onclick="formSubmit(${vo.id})">${vo.hit }</td>
 					<c:if test="${id eq 'admin' }">
-						<th>기능</th>
+						<td width="50">
+							<button  class="btn btn-outline-dark mt-auto" type="button" onclick="formDelete(${vo.id})">삭제</button>							
+						</td>
 					</c:if>
 				</tr>
-				<c:forEach items="${noticeList }" var="vo">
-					<tr >
-						<td width="100" onclick="formSubmit(${vo.id})">${vo.id }</td>
-						<td width="200" onclick="formSubmit(${vo.id})">${vo.title }</td>
-						<td width="150" onclick="formSubmit(${vo.id})">${vo.regDate }</td>
-						<td width="100" onclick="formSubmit(${vo.id})">${vo.hit }</td>
-						<c:if test="${id eq 'admin' }">
-							<td width="50">
-								<button type="button" onclick="formDelete(${vo.id})">삭제</button>							
-							</td>
-						</c:if>
-					</tr>
-				</c:forEach>
-			</table>
-			<div>
-				<input type="text" id="search">
-				<button type="button" onclick="formSearch()">검색</button>
-				<button type="button" onclick="location.href='noticeList.do'">목록보기</button>
-				<c:if test="${id eq 'admin' }">
-					<button type="button" onclick="location.href='noticeForm.do'">등록</button>
-				</c:if>
+			</c:forEach>
+		</table>
+			<br><br>
+			<div class="col-lg-12 text-center">
+				<input type="text" id="search" size=35>
+				<button class="btn btn-outline-dark mt-auto" type="button"
+					onclick="formSearch()">SEARCH</button>
+				<button class="btn btn-outline-dark mt-auto" type="button"
+					onclick="location.href='noticeList.do'">BACK</button>
+				<br><br>
 			</div>
 			<br>
 			<!-- 

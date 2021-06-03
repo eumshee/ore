@@ -47,6 +47,12 @@ th, td {
 		}
 		
 		function formSearch() {
+			if($('#search').val() == "") {
+				alert("검색값을 입력하세요.");
+				$('#search').focus();
+				return false;
+			}
+
 			let search = document.getElementById("search").value;
 			
 			frmSearch.title.value=search;

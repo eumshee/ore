@@ -29,7 +29,7 @@ public class QnaList implements DbCommand {
 		
 		Paging paging = new Paging();
         paging.setPageNo(pageCnt);	// 해당 페이지 이동
-        paging.setPageSize(5);
+        paging.setPageSize(10);
         paging.setTotalCount(total.size());
 		
         request.setAttribute("qnaList", list);	 
