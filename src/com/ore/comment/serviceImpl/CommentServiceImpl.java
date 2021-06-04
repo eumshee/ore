@@ -128,11 +128,6 @@ public class CommentServiceImpl extends DAO implements CommentService {
 		return result;
 	}
 
-	@Override
-	public void updateComment(CommentVO vo) {
-		// TODO Auto-generated method stub
-
-	}
 
 	// 댓글 1개의 정보를 가져온다.
 	public CommentVO getComment(int comment_num) {
@@ -171,7 +166,7 @@ public class CommentServiceImpl extends DAO implements CommentService {
 			sql.append("DELETE FROM QNACOMMENT");
 			sql.append(" WHERE COMMENT_NUM IN");
 			sql.append(" (SELECT COMMENT_NUM");
-			sql.append(" FROM BOARD_COMMENT");
+			sql.append(" FROM QNACOMMENT");
 			sql.append(" START WITH COMMENT_NUM = ?");
 			sql.append(" CONNECT BY PRIOR COMMENT_NUM = COMMENT_PARENT) ");
 

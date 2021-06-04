@@ -1,4 +1,4 @@
-package com.ore.comment.action;
+package com.ore.comment.web;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -22,7 +22,6 @@ public class CommentWriteAction extends HttpServlet{
 		CommentService service = new CommentServiceImpl();
 		CommentVO vo = new CommentVO();
 		
-		// 파리미터 값을 가져온다.
 		int commentBoard = Integer.parseInt(req.getParameter("commentBoard"));
 		String commentId = req.getParameter("commentId");
 		String commentContent = req.getParameter("commentContent");
@@ -39,7 +38,7 @@ public class CommentWriteAction extends HttpServlet{
 			PrintWriter out;
 			try {
 				out = resp.getWriter();
-				out.println("1");
+				out.print(vo.getCommentNum());
 				out.close();
 			} catch (IOException e) {
 				e.printStackTrace();

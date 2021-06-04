@@ -56,6 +56,7 @@
             var board = form.commentBoard.value;
             var id = form.commentId.value;
             var content = form.commentContent.value;
+            var today = new Date().toISOString().substring(0, 10);
      		console.log(board, id, content);
             if(!content) {
                 alert("내용을 입력하세요.");
@@ -64,25 +65,82 @@
        
             var param = { "commentBoard": board,
             		"commentId": id,
-            		"commentContent": content};
-            
-       		var link = document.location.href; 
+            		"commentContent": content,
+            		"commentDate" : today };
        		
-        		$.ajax({
-	       			url: 'commentWriteAction',
-	       			data: param,
-	       			contentType: "application/x-www-form-urlencoded; charset=UTF-8",  
-	       			success: function (result){
-	       				console.log(result);
-	       				location.href=link;
-	       			},
-	       			error: function (err){
-	       				console.log(err);
-	       			}
-       			});
-        }
+       		$.ajax({
+       			url: 'commentWriteAction',
+       			data: param,
+       			contentType: "application/x-www-form-urlencoded; charset=UTF-8",  
+       			success: function (result){
+					console.log(param);
+					let tbl = $('#cmtbl');
+					let tr = $('<tr />').attr('data-commentNum',result);
+					let td = $('<td />').html(param.commentId);
+					td.append($('<br>'));
+					td.append($('<font />').attr('size','2').attr('color','lightgray').html(param.commentDate));
+					let td2 = $('<td />').html(param.commentContent);
+					let td3 = $('<td />');
+					let modyBtn = $('<button />').attr('class','btn btn-outline-dark mt-auto').html('MODIFY');
+					let delBtn = $('<button />').attr('class','btn btn-outline-dark mt-auto').html('DELETE');
+					delBtn.click(delRow);
+					td3.append(modyBtn, delBtn);
+					tr.append(td,td2,td3);								
+					tbl.append(tr);
+       			},
+     			error: function (err){
+     				console.log(err);
+     			}
+    			}); // ajax end
+        } // writeCmt() end
   
+		function deleteRow(commentNum) {
+            var cmtNum = commentNum;
 
+     		var param = { "commentNum": cmtNum };
+     		console.log(param);
+     		
+			$('#'+cmtNum).parent().parent().parent().remove();
+
+			$.ajax({
+       			url: 'deleteComment',
+       			data: param,
+       			contentType: "application/x-www-form-urlencoded; charset=UTF-8",  
+       			success: function (result){
+					console.log(param);
+       			},
+     			error: function (err){
+     				console.log(err);
+     			}
+    			}); // ajax end
+        }
+        
+		function delRow() {
+        	//console.log($(this).parent().parent().attr('data-commentNum'));
+        	let cnum = $(this).parent().parent().attr('data-commentNum');
+            var cmtNum = cnum;
+     		var param = { "commentNum": cmtNum };
+     		console.log(cmtNum);
+     		$(this).parent().parent().remove();
+
+     		$.ajax({
+       			url: 'deleteComment',
+       			data: param,
+       			contentType: "application/x-www-form-urlencoded; charset=UTF-8",  
+       			success: function (result){
+					console.log(param);
+       			},
+     			error: function (err){
+     				console.log(err);
+     			}
+    			}); // ajax end
+        }
+		
+		function reply_load() {
+		    // ajax를 이용해서 서버에서 답글을 가져온다
+		    //$("#reply").append(가져온 데이터를 보기좋게 가공해서 추가);
+		}
+        
 	</script>
 </head>
 
@@ -150,7 +208,6 @@
 				</table>
 			<div class="col-lg-12 text-center">
 				<c:if test="${id eq qna.writer}">
-					<button class="btn btn-outline-dark mt-auto" type="button" onclick="qnaUpdate()">MODIFY</button>
 					<button class="btn btn-outline-dark mt-auto" type="button" onclick="qnaDelete()">DELETE</button>
 					<br><br>
 				</c:if>
@@ -166,7 +223,7 @@
 			<div style="padding: 1.5em;">
 			<!-- 댓글 부분 -->
 			<div id="comment" align="center">
-			<table border="1" style="border-color: lightgray;">
+			<table id="cmtbl" border="1" style="border-color: lightgray;">
 				<!-- 댓글 목록 -->
 				<c:forEach items="${commentList }" var="comment" >
 				<tr>
@@ -179,21 +236,23 @@
 					</td>
 					<!-- 본문내용 -->
 					<td width="550">
-						<div class="text_wrapper">
+						<div id="cmt" class="text_wrapper">
 							${comment.commentContent}
+						</div>
+						<div id="reply">
+							<!-- 여기에 답글이 로드됨 -->
 						</div>
 					</td>
 					<!-- 버튼 -->
+					<c:if test="${comment.commentId == id }">
 					<td width="100">
 						<div id="btn" style="text-align:center;">
-							<a href="#" class="btn btn-outline-dark mt-auto" >ANSWER</a><br>
 							<!-- 댓글 작성자만 수정, 삭제 가능하도록 -->
-							<c:if test="${comment.commentId == id }">
-								<a href="#" class="btn btn-outline-dark mt-auto" >MODIFY</a><br>
-								<a href="#" class="btn btn-outline-dark mt-auto" >DELETE</a>
-							</c:if>
+								<a href="#" id="${comment.commentNum}" onclick="deleteRow(${comment.commentNum})"
+								 class="btn btn-outline-dark mt-auto" >DELETE</a>
 						</div>
 					</td>
+					</c:if>
 				</tr>
 				</c:forEach>
 			</table>
