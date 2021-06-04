@@ -99,7 +99,7 @@ public class FrontController extends HttpServlet {
 		map.put("/qnaInsert.do", new QnaInsert());
 		map.put("/qnaUpdate.do", new QnaUpdate());
 		map.put("/qnaDelete.do", new QnaDelete());
-		
+
 	}
 
 	@Override

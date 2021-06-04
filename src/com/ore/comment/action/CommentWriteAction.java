@@ -15,7 +15,7 @@ import com.ore.comment.vo.CommentVO;
 
 @SuppressWarnings("serial")
 @WebServlet("/commentWriteAction.do")
-public class CommentWriteAction extends HttpServlet {
+public class CommentWriteAction extends HttpServlet{
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -32,6 +32,7 @@ public class CommentWriteAction extends HttpServlet {
 		vo.setCommentId(commentId);
 		vo.setCommentContent(commentContent);
 
+		service = new CommentServiceImpl();
 		boolean result = service.insertComment(vo);
 
 		if (result) {
@@ -48,7 +49,6 @@ public class CommentWriteAction extends HttpServlet {
 
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		doGet(req, resp);
 
 	}
 

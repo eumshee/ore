@@ -13,7 +13,7 @@ public class QnaUpdate implements DbCommand {
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) {
 		String title = request.getParameter("title");
-		String content = request.getParameter("content");
+		String content = request.getParameter("ccontent");
 		String id = request.getParameter("id");
 		String writer = request.getParameter("writer");
 		

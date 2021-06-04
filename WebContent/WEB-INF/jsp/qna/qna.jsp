@@ -36,6 +36,12 @@
 		});
 
 		function qnaUpdate() {
+			let title = $('#ctitle').val();
+			let content = CKEDITOR.instances.content.getData();
+			console.log(title, content);
+			frm.title.value = title;
+			frm.ccontent.value = content;
+			
 			frm.submit();
 		}
 
@@ -51,10 +57,13 @@
             var id = form.commentId.value
             var content = form.commentContent.value;
      		console.log(board, id, content);
-            if(!content) {
+            
+            if(!content)
+            {
                 alert("내용을 입력하세요.");
                 return false;
             }
+
             
             var param = { "commentBoard": board,
             		"commentId": id,
@@ -74,24 +83,28 @@
 	       				console.log(err);
 	       			}
        			});
+            
         }
+  
 
 	</script>
 </head>
 
 <body>
-	<form id="frmDel" action="qnaDelete.do" method="post">
-		<input type="hidden" id="did" name="did" value="${qna.id}">
-		<input type="hidden" id="dwriter" name="dwriter" value="${qna.writer}">
-	</form>
+<form id="frmDel" action="qnaDelete.do" method="post">
+	<input type="hidden" id="did" name="did" value="${qna.id}">
+	<input type="hidden" id="dwriter" name="dwriter" value="${qna.writer}">
+</form>
+<form id="frm" action="qnaUpdate.do" method="post">
+	<input type="hidden" id="id" name="id" value="${qna.id}">
+	<input type="hidden" id="writer" name="writer" value="${qna.writer }">
+	<input type="hidden" id="title" name="title">
+	<input type="hidden" id="ccontent" name="ccontent">
+</form>
 	<div class="container">
 		<h1>Q&#38;A</h1>
 		<br>
 		<div align="center">
-			<form id="frm" action="qnaUpdate.do" method="post">
-				<input type="hidden" id="id" name="id" value="${qna.id}">
-				<input type="hidden" id="title" name="title" value="${qna.title}">
-				<input type="hidden" id="writer" name="writer" value="${qna.writer}">
 				<table class="table">
 					<tr>
 						<th>ITEM</th>
@@ -115,7 +128,7 @@
 						<c:choose>
 							<c:when test="${id eq qna.writer }">
 								<td colspan="7">
-									<input id="title" name="title" type="text" value="${qna.title}" size="100">
+									<input id="ctitle" name="ctitle" type="text" value="${qna.title}" size="100">
 								</td>
 							</c:when>
 							<c:otherwise>
@@ -133,14 +146,12 @@
 							</c:when>
 							<c:otherwise>
 								<td colspan="7">
-									<textarea id="content" name="content" rows="6" cols="90"
-										readonly="readonly">${qna.content}</textarea>
+									<textarea id="content" name="content" rows="6" cols="90" readonly="readonly">${qna.content}</textarea>
 								</td>
 							</c:otherwise>
 						</c:choose>
 					</tr>
 				</table>
-			</form>
 			<div class="col-lg-12 text-center">
 				<c:if test="${id eq qna.writer}">
 					<button class="btn btn-outline-dark mt-auto" type="button" onclick="qnaUpdate()">MODIFY</button>

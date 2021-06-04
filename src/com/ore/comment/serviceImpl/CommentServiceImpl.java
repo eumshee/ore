@@ -9,10 +9,10 @@ import com.ore.comment.service.CommentService;
 import com.ore.comment.vo.CommentVO;
 import com.ore.common.DAO;
 
-public class CommentServiceImpl extends DAO implements CommentService{
+public class CommentServiceImpl extends DAO implements CommentService {
 	PreparedStatement psmt;
-    ResultSet rs;
-	
+	ResultSet rs;
+
 	private void close() {
 		try {
 			if (rs != null) {
@@ -28,7 +28,7 @@ public class CommentServiceImpl extends DAO implements CommentService{
 			e.printStackTrace();
 		}
 	}
-	
+
 	// 시퀀스 호출
 	@Override
 	public int getSeq() {
@@ -46,12 +46,10 @@ public class CommentServiceImpl extends DAO implements CommentService{
 
 		} catch (Exception e) {
 			throw new RuntimeException(e.getMessage());
-		} finally {
-			close();
 		}
 		return result;
-    }
-	
+	}
+
 	// 댓글 목록
 	@Override
 	public ArrayList<CommentVO> commentList(int boardNum) {
@@ -105,9 +103,6 @@ public class CommentServiceImpl extends DAO implements CommentService{
 	public boolean insertComment(CommentVO vo) {
 		boolean result = false;
 		try {
-			// 자동 커밋을 false로 한다.
-			conn.setAutoCommit(false);
-
 			StringBuffer sql = new StringBuffer();
 			sql.append("INSERT INTO QNACOMMENT");
 			sql.append(" (COMMENT_NUM, COMMENT_BOARD, COMMENT_ID, COMMENT_DATE");
@@ -124,33 +119,24 @@ public class CommentServiceImpl extends DAO implements CommentService{
 			int flag = psmt.executeUpdate();
 			if (flag > 0) {
 				result = true;
-				conn.commit(); // 완료시 커밋
 			}
-
 		} catch (Exception e) {
-			try {
-				conn.rollback(); // 오류시 롤백
-			} catch (SQLException sqle) {
-				sqle.printStackTrace();
-			}
 			e.printStackTrace();
-			throw new RuntimeException(e.getMessage());
 		} finally {
 			close();
 		}
-		return result;    
+		return result;
 	}
 
 	@Override
 	public void updateComment(CommentVO vo) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	// 댓글 1개의 정보를 가져온다.
 	public CommentVO getComment(int comment_num) {
 		CommentVO comment = null;
-
 		try {
 			StringBuffer sql = new StringBuffer();
 			sql.append("SELECT * FROM QNACOMMENT WHERE COMMENT_NUM = ?");
@@ -169,23 +155,18 @@ public class CommentServiceImpl extends DAO implements CommentService{
 				comment.setCommentContent(rs.getString("COMMENT_CONTENT"));
 			}
 		} catch (Exception e) {
-			throw new RuntimeException(e.getMessage());
+			e.printStackTrace();
 		} finally {
 			close();
 		}
 		return comment;
 	}
 
-
-	
 	// 댓글 삭제
 	@Override
 	public boolean deleteComment(int commentNum) {
 		boolean result = false;
-
 		try {
-			conn.setAutoCommit(false); // 자동 커밋 false.
-
 			StringBuffer sql = new StringBuffer();
 			sql.append("DELETE FROM QNACOMMENT");
 			sql.append(" WHERE COMMENT_NUM IN");
@@ -200,21 +181,14 @@ public class CommentServiceImpl extends DAO implements CommentService{
 			int flag = psmt.executeUpdate();
 			if (flag > 0) {
 				result = true;
-				conn.commit(); // 완료시 커밋
 			}
 
 		} catch (Exception e) {
-			try {
-				conn.rollback(); // 오류시 롤백
-			} catch (SQLException sqle) {
-				sqle.printStackTrace();
-			}
-			throw new RuntimeException(e.getMessage());
+			e.printStackTrace();
 		} finally {
 			close();
 		}
 		return result;
 	}
 
-	
 }
