@@ -96,7 +96,7 @@ th, td {
 				<c:forEach items="${qnaList }" var="vo">
 					<tr>
 						<td width="50" onclick="formSubmit(${vo.id},'${vo.writer}','${vo.itemCode}')">${vo.id }</td>
-						<td width="350" onclick="formSubmit(${vo.id},'${vo.writer}','${vo.itemCode}')">${vo.title }</td>
+						<td width="350" onclick="formSubmit(${vo.id},'${vo.writer}','${vo.itemCode}')">${vo.title } <span style="font-size: 10pt; color: lightgray;">(${vo.commentCnt })</span></td>
 						<td width="150" onclick="formSubmit(${vo.id},'${vo.writer}','${vo.itemCode}')">${vo.writer }</td>
 						<td width="150" onclick="formSubmit(${vo.id},'${vo.writer}','${vo.itemCode}')">${vo.regDate }</td>
 						<td width="50" onclick="formSubmit(${vo.id},'${vo.writer}','${vo.itemCode}')">${vo.hit }</td>

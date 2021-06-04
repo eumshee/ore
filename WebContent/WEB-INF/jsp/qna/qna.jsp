@@ -30,7 +30,7 @@
 		$(function () {
 			CKEDITOR.replace('content', {
 				filebrowserUploadUrl: '${pageContext.request.contextPath}/fileUpload',
-				height: '600px',
+				height: '500px',
 				width: '950px'
 			});
 		});
@@ -157,7 +157,9 @@
 </form>
 	<div class="container">
 		<h1>Q&#38;A</h1>
-		<br>
+		<div align="right">
+			<button class="btn btn-outline-dark mt-auto right" type="button" onclick="location.href='qnaList.do'">BACK</button><br><br>
+		</div>
 		<div align="center">
 				<table class="table">
 					<tr>
@@ -165,7 +167,7 @@
 						<td class="product-col" style="text-align:left;"><img width="100" height="150"
 										src="${pageContext.request.contextPath }/bootstrap/img/product/${item.itemImg}"
 										alt="">
-						<td colspan="6">${item.itemName}</td>
+						<td colspan="6" style="text-align:left;" >${item.itemName}</td>
 					</tr>
 					<tr>
 						<th>No.</th>
@@ -211,8 +213,6 @@
 					<button class="btn btn-outline-dark mt-auto" type="button" onclick="qnaDelete()">DELETE</button>
 					<br><br>
 				</c:if>
-				<button class="btn btn-outline-dark mt-auto" type="button"
-					onclick="location.href='qnaList.do'">BACK</button>
 			</div>
 		</div>
 		
@@ -223,7 +223,8 @@
 			<div style="padding: 1.5em;">
 			<!-- 댓글 부분 -->
 			<div id="comment" align="center">
-			<table id="cmtbl" border="1" style="border-color: lightgray;">
+			<br>
+			<table id="cmtbl" border="1" style="width: 100%; border-color: lightgray;">
 				<!-- 댓글 목록 -->
 				<c:forEach items="${commentList }" var="comment" >
 				<tr>
@@ -256,7 +257,7 @@
 				</tr>
 				</c:forEach>
 			</table>
-						
+			<br>
 				<c:if test="${!empty id }">
 				<!-- 로그인 했을 경우만 댓글 작성가능 -->
 					<form id="writeCommentForm">
