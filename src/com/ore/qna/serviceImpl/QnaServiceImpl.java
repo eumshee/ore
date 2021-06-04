@@ -256,7 +256,7 @@ public class QnaServiceImpl extends DAO implements QnaService{
 			psmt.setString(4, vo.getWriter());
 			n = psmt.executeUpdate();
 			if(n!=0) {
-				System.out.println(vo.getId()+"번 Q&A 수정");
+				System.out.println(vo.getId()+"번 Q&A "+n+"건 수정");
 			} else {
 				System.out.println("Q&A 수정 실패..");
 			}
