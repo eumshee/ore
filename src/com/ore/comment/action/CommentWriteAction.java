@@ -14,7 +14,7 @@ import com.ore.comment.serviceImpl.CommentServiceImpl;
 import com.ore.comment.vo.CommentVO;
 
 @SuppressWarnings("serial")
-@WebServlet("/commentWriteAction.do")
+@WebServlet("/commentWriteAction")
 public class CommentWriteAction extends HttpServlet {
 
 	@Override
@@ -32,6 +32,7 @@ public class CommentWriteAction extends HttpServlet {
 		vo.setCommentId(commentId);
 		vo.setCommentContent(commentContent);
 
+		service = new CommentServiceImpl();
 		boolean result = service.insertComment(vo);
 
 		if (result) {

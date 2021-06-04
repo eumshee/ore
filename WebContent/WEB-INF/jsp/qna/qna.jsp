@@ -47,8 +47,8 @@
         function writeCmt() {
             var form = document.getElementById("writeCommentForm");
             
-            var board = form.commentBoard.value
-            var id = form.commentId.value
+            var board = form.commentBoard.value;
+            var id = form.commentId.value;
             var content = form.commentContent.value;
      		console.log(board, id, content);
             if(!content) {
@@ -63,7 +63,7 @@
        		var link = document.location.href; 
        		
         		$.ajax({
-	       			url: '/commentWriteAction.do',
+	       			url: 'commentWriteAction',
 	       			data: param,
 	       			contentType: "application/x-www-form-urlencoded; charset=UTF-8",  
 	       			success: function (result){
