@@ -10,6 +10,15 @@ public class CartVO {
 	private String itemName;
 	private int itemPrice;
 	private String itemImg;
+	private int itemCount;
+
+	public int getItemCount() {
+		return itemCount;
+	}
+
+	public void setItemCount(int itemCount) {
+		this.itemCount = itemCount;
+	}
 
 	public String getItemImg() {
 		return itemImg;

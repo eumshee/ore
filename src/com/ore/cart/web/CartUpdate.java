@@ -2,7 +2,6 @@ package com.ore.cart.web;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import com.ore.cart.service.CartService;
 import com.ore.cart.serviceImpl.CartServiceImpl;
@@ -13,8 +12,7 @@ public class CartUpdate implements DbCommand {
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) {
 		String qty = request.getParameter("itemQty");
-		HttpSession session = request.getSession();
-		String id = (String) session.getAttribute("id");
+		String id = request.getParameter("uid");
 		String code = request.getParameter("itemCode");
 		System.out.println(qty+" "+id+" "+code);
 		

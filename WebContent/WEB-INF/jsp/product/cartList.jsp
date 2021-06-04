@@ -19,7 +19,16 @@ th, td {
 	}
 </style>
 <script>
+
+	document.addEventListener('keydown', function(event) {
+	    if (event.keyCode === 13) {
+	        event.preventDefault();
+	    }
+	}, true);
+
 	function cartUpdate(qty, code) {
+		var uid = frm.uid.value;
+		console.log(uid);
 		console.log(code);
 		console.log(qty);
 		frm.itemQty.value = qty;
@@ -57,10 +66,6 @@ th, td {
 	<form id="frmDel" action="cartDelete.do" method="post">
 		<input type="hidden" id="itemCd" name="itemCd">
 	</form>
-	<form id="frm" action="cartUpdate.do" method="post">
-		<input type="hidden" id="itemCode" name="itemCode"> 
-		<input type="hidden" id="itemQty" name="itemQty">
-	</form>
 		<div class="cart-page">
 			<div class="container">
 				<h1>Cart</h1>
@@ -85,26 +90,32 @@ th, td {
 								</c:when>
 								<c:otherwise>
 									<!-- 카트 아이템 1건씩 반복출력 영역 -->
+								<form id="frm" action="cartUpdate.do" method="post">
+									<input type="hidden" id="itemCode" name="itemCode"> 
+									<input type="hidden" id="itemQty" name="itemQty">
+									<input type="hidden" id="uid" name="uid" value="${id }">
 									<c:forEach items="${clist }" var="vo">
 										<tr>
-											<td class="product-col"
-												onclick="formSelect('${vo.itemCode}')"><img width="100"
-												height="150"
+											<td class="product-col" onclick="formSelect('${vo.itemCode}')">
+												<img width="100" height="150"
 												src="${pageContext.request.contextPath }/bootstrap/img/product/${vo.itemImg}"
 												alt="">
 												<div class="p-title">
 													<h5>${vo.itemName }</h5>
-												</div></td>
-											<td class="price-col"><fmt:formatNumber
-													value="${vo.itemPrice}" /></td>
-											<td><input type="number" min="1" max="99" id="qty"
+												</div>
+											</td>
+											<td class="price-col">
+												<fmt:formatNumber value="${vo.itemPrice}" />
+											</td>
+											<td>
+												<input type="number" min="1" max="99" id="qty"
 												name="qty" style="width: 3em; text-align: center;"
-												value="${vo.itemQty }"
-												onclick="cartUpdate($(this).val(), '${vo.itemCode}')">
+												value="${vo.itemQty }" onclick="cartUpdate($(this).val(), '${vo.itemCode}')">
 												<button class="btn btn-outline-dark mt-auto" type="submit">수정</button>
 											</td>
-											<td class="total"><fmt:formatNumber
-													value="${vo.itemQty * vo.itemPrice}" /></td>
+											<td class="total">
+												<fmt:formatNumber value="${vo.itemQty * vo.itemPrice}" />
+											</td>
 											<td class="product-close">
 												<button class="btn btn-outline-dark mt-auto" type="button"
 													onclick="cartDelete('${vo.itemCode}')">삭제</button>
@@ -113,6 +124,7 @@ th, td {
 											</c:set>
 										</tr>
 									</c:forEach>
+								</form>
 								</c:otherwise>
 							</c:choose>
 						</tbody>

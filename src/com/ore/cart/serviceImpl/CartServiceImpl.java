@@ -65,10 +65,27 @@ public class CartServiceImpl extends DAO implements CartService {
 		return list;
 	}
 
+	// 제품코드 개수
 	@Override
-	public CartVO cartSelect(CartVO vo) {
-		// TODO Auto-generated method stub
-		return null;
+	public String codeCount(String code) {
+		sql = "select count(item_code) as item_Count from cart "
+				+ "where item_code=?";
+		String cnt = null;
+		try {
+			psmt = conn.prepareStatement(sql);
+			psmt.setString(1, code);
+			rs = psmt.executeQuery();
+			if(rs.next()) {
+				cnt = rs.getString("item_Count");
+			}
+			System.out.println(cnt);
+			if(n != 0) {
+				System.out.println(code+"제품 갯수 조회성공");
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} 
+		return cnt;
 	}
 
 	// 회원별 장바구니 상품수
@@ -122,13 +139,13 @@ public class CartServiceImpl extends DAO implements CartService {
 		sql = "update cart set item_qty = ?\r\n"
 				+ "where user_id = ? and item_code = ?";
 		try {
-			psmt = conn.prepareStatement(sql2);
-			psmt.setString(1, code);
-			psmt.setString(2, code);
-			n = psmt.executeUpdate();
-			if(n!=0) {
-				System.out.println(id+"님 "+code+"제품 중복"+n+"건 주문삭제");				
-			}
+				psmt = conn.prepareStatement(sql2);
+				psmt.setString(1, code);
+				psmt.setString(2, code);
+				n = psmt.executeUpdate();
+				if(n!=0) {
+					System.out.println(id+"님 "+code+"제품 중복"+n+"건 주문삭제");				
+				}
 			
 			psmt = conn.prepareStatement(sql);
 			psmt.setInt(1, qty);
