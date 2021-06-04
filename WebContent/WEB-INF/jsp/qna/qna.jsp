@@ -53,8 +53,8 @@
         function writeCmt() {
             var form = document.getElementById("writeCommentForm");
             
-            var board = form.commentBoard.value
-            var id = form.commentId.value
+            var board = form.commentBoard.value;
+            var id = form.commentId.value;
             var content = form.commentContent.value;
      		console.log(board, id, content);
             if(!content) {
