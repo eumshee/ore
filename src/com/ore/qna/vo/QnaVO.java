@@ -10,6 +10,7 @@ public class QnaVO {
 	private String content;
 	private Date regDate;
 	private int hit;
+	private int commentCnt;
 
 	// 값 받는 변수
 	private String itemName;
@@ -86,5 +87,14 @@ public class QnaVO {
 	public void setHit(int hit) {
 		this.hit = hit;
 	}
+
+	public int getCommentCnt() {
+		return commentCnt;
+	}
+
+	public void setCommentCnt(int commentCnt) {
+		this.commentCnt = commentCnt;
+	}
+	
 
 }

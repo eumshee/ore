@@ -57,6 +57,7 @@ public class QnaServiceImpl extends DAO implements QnaService{
 				rvo.setContent(rs.getString("content"));
 				rvo.setRegDate(rs.getDate("reg_date"));
 				rvo.setHit(rs.getInt("hit"));
+				rvo.setCommentCnt(rs.getInt("commentcnt"));
 				list.add(rvo);
 			}
 		} catch (Exception e) {
@@ -83,6 +84,7 @@ public class QnaServiceImpl extends DAO implements QnaService{
 				rvo.setContent(rs.getString("content"));
 				rvo.setRegDate(rs.getDate("reg_date"));
 				rvo.setHit(rs.getInt("hit"));
+				rvo.setCommentCnt(rs.getInt("commentcnt"));
 				list.add(rvo);
 			}
 		} catch (Exception e) {
@@ -332,5 +334,25 @@ public class QnaServiceImpl extends DAO implements QnaService{
 		}
 		return list;
 	}
+	
+	// 댓글 수 카운트
+	public int getCountComment(String id) {
+		sql = "select count(*) from qnacomment where comment_board=?";
+		int commentCnt = 0;
+		try {
+			psmt = conn.prepareStatement(sql);
+			psmt.setString(1, id);
+			rs = psmt.executeQuery();
+			if(rs.next()) {
+				commentCnt = rs.getInt(1); 
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			close();
+		}
+		return commentCnt;
+	}
+	
 
 }

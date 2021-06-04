@@ -108,7 +108,7 @@ public class CommentServiceImpl extends DAO implements CommentService {
 			sql.append(" (COMMENT_NUM, COMMENT_BOARD, COMMENT_ID, COMMENT_DATE");
 			sql.append(" , COMMENT_PARENT, COMMENT_CONTENT)");
 			sql.append(" VALUES(?,?,?,sysdate,?,?)");
-
+			
 			psmt = conn.prepareStatement(sql.toString());
 			psmt.setInt(1, vo.getCommentNum());
 			psmt.setInt(2, vo.getCommentBoard());
@@ -120,6 +120,15 @@ public class CommentServiceImpl extends DAO implements CommentService {
 			if (flag > 0) {
 				result = true;
 			}
+
+			String sql2 = "update qna set commentcnt = commentcnt +1 where id = ?";
+			psmt = conn.prepareStatement(sql2);
+			psmt.setInt(1, vo.getCommentBoard());
+			int n = psmt.executeUpdate();
+			if (n != 0) {
+				System.out.println("댓글 수가 증가 되었습니다");
+			}
+
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
