@@ -27,12 +27,44 @@ a:focus {
 }
 
 </style>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <script>
 		function formSubmit(id,writer) {
 			frms.id.value = id;
 			frms.writer.value = writer;
 			frms.submit();
+
 		}
+		
+		function addCart(itemCode){
+	 		$.ajax({
+				url: '${pageContext.request.contextPath }/addCart.do',
+				data: {
+					id: '${id }', 
+					itemCode: itemCode,
+					qty: $('#qty').val()
+				},
+				success: function (result){
+					eventsuccess();
+				},
+				error: function (err){
+					console.log(err);
+				}
+			});
+		};
+
+		function eventsuccess() {
+			swal({
+				text : $('#qty').val() + "개가 장바구니에 추가되었습니다.",
+			   	icon  : "success",
+			   	closeOnClickOutside : false,
+			}).then(function(){
+			var link = document.location.href; 
+				location.href=link;
+			});
+		}
+		
+		
 	</script>
 </head>
 <body>
@@ -109,10 +141,10 @@ a:focus {
 							<c:otherwise>
 								<div class="product-quantity">
 									<div class="pro-qty">
-										<input type="text" value="1">
+										<input type="text" id="qty" value="1">
 									</div>
 								</div>
-								<a href="#" class="primary-btn pc-btn">Add to cart</a>
+								<button type="button" onclick="addCart('${product.itemCode }')" class="primary-btn pc-btn">Add to cart</button>
 							</c:otherwise>
 						</c:choose>
 

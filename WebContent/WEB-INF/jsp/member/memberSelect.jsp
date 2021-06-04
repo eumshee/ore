@@ -42,92 +42,132 @@ th, td {
 		<h1>Mypage</h1>
 		<br> <br>
 		<div class="info">
-			<div class="col-lg-6">
-				<h3>My info</h3>
-				<br>
-				<div
-					style="width: 70%; border: 1px solid black; padding: 1em; margin-bottom: 2em;">
-					<form id="frm" action="memberUpdate.do" method="post">
-						<table>
-							<tr>
-								<th width="100">NAME</th>
-								<td><input type="text" id="name" name="name"
-									value="${vo.userName }" readonly="readonly"></td>
-							</tr>
-							<tr>
-								<th>ID</th>
-								<td><input type="text" id="userId" name="userId"
-									readonly="readonly" value="${vo.userId }"></td>
-							</tr>
-							<tr>
-								<th>PW</th>
-								<td><input type="password" id="userPw" name="userPw"
-									value="${vo.userPw }"></td>
-							</tr>
-							<tr>
-								<td colspan="2" style="text-align: center;"><c:if
-										test="${update eq 1 }">
+			<div class="row">
+				<div class="col-lg-4 col-md-5">
+					<h3>My info</h3>
+					<br>
+					<div
+						style="width: 90%; border: 1px solid black; padding: 1em; margin-bottom: 2em;">
+						<form id="frm" action="memberUpdate.do" method="post">
+							<table>
+								<tr>
+									<th width="100">NAME</th>
+									<td><input type="text" id="name" name="name"
+										value="${vo.userName }" readonly="readonly" size="10"></td>
+								</tr>
+								<tr>
+									<th>ID</th>
+									<td><input type="text" id="userId" name="userId"
+										readonly="readonly" value="${vo.userId }" size="10"></td>
+								</tr>
+								<tr>
+									<th>PW</th>
+									<td><input type="password" id="userPw" name="userPw"
+										value="${vo.userPw }" size="10"></td>
+								</tr>
+								<tr>
+									<td colspan="2" style="text-align: center;"><c:if
+											test="${update eq 1 }">
 										패스워드가 변경되었습니다.
 									</c:if></td>
-							</tr>
-						</table>
-						<div align="center">
-							<br>
-							<button class="btn btn-outline-dark mt-auto" type="button"
-								onclick="pwCheck()">수정</button>
-							<button class="btn btn-outline-dark mt-auto" type="button"
-								onclick="location.href='memberDelete.do'">탈퇴</button>
-						</div>
-					</form>
+								</tr>
+							</table>
+							<div align="center">
+								<br>
+								<button class="btn btn-outline-dark mt-auto" type="button"
+									onclick="pwCheck()">수정</button>
+								<button class="btn btn-outline-dark mt-auto" type="button"
+									onclick="location.href='memberDelete.do'">탈퇴</button>
+							</div>
+						</form>
+					</div>
 				</div>
-			</div>
-			<br> <br>
-			<div class="col-lg-12">
-				<div class="board">
-					<h3>My Board</h3>
+
+				<div class="col-lg-8 col-md-6">
+					<h3>My Order</h3>
 					<br>
-					<div class="qna" align="center"
-						style="border: 1px solid black; padding: 1em; margin-bottom: 2em;">
-						<h4>Q&#38;A</h4>
+					<div
+						style="width: 100%; border: 1px solid black; padding: 1em; margin-bottom: 2em;">
 						<div style="padding: 1.5em;">
 							<table class="table">
 								<tr>
 									<th>NO.</th>
-									<th>TITLE</th>
-									<th>WRITER</th>
 									<th>DATE</th>
+									<th>PRICE</th>
 								</tr>
 								<c:choose>
-									<c:when test="${id eq 'admin' }">
-										<c:forEach items="${qnaAll }" var="vo">
-											<tr>
-												<td width="100"
-													onclick="formSubmit(${vo.id},'${vo.writer}')">${vo.id }</td>
-												<td width="200"
-													onclick="formSubmit(${vo.id},'${vo.writer}')">${vo.title }</td>
-												<td width="200"
-													onclick="formSubmit(${vo.id},'${vo.writer}')">${vo.writer }</td>
-												<td width="150"
-													onclick="formSubmit(${vo.id},'${vo.writer}')">${vo.regDate }</td>
-											</tr>
-										</c:forEach>
+									<c:when test="${empty orderList }">
+										<td colspan="3"><p>주문 내역이 없습니다.</p></td>
 									</c:when>
 									<c:otherwise>
-										<c:forEach items="${qnaList }" var="vo">
+										<c:forEach items="${orderList }" var="vo">
 											<tr>
-												<td width="100"
-													onclick="formSubmit(${vo.id},'${vo.writer}')">${vo.id }</td>
-												<td width="200"
-													onclick="formSubmit(${vo.id},'${vo.writer}')">${vo.title }</td>
-												<td width="200"
-													onclick="formSubmit(${vo.id},'${vo.writer}')">${vo.writer }</td>
-												<td width="150"
-													onclick="formSubmit(${vo.id},'${vo.writer}')">${vo.regDate }</td>
+												<td width="150">${vo.orderNum }</td>
+												<td width="150">${vo.orderDate }</td>
+												<td width="150">${vo.orderPrice }</td>
 											</tr>
 										</c:forEach>
 									</c:otherwise>
 								</c:choose>
 							</table>
+						</div>
+					</div>
+				</div>
+			</div>
+
+
+			<br> <br>
+			<div class="row">
+				<div class="col-lg-12">
+					<div class="board">
+						<h3>My Board</h3>
+						<br>
+						<div class="qna" align="center"
+							style="border: 1px solid black; padding: 1em; margin-bottom: 2em;">
+							<h4>Q&#38;A</h4>
+							<div style="padding: 1.5em;">
+								<table class="table">
+									<tr>
+										<th>NO.</th>
+										<th>TITLE</th>
+										<th>WRITER</th>
+										<th>DATE</th>
+									</tr>
+									<c:choose>
+										<c:when test="${id eq 'admin' }">
+											<c:forEach items="${qnaAll }" var="vo">
+												<tr>
+													<td width="100"
+														onclick="formSubmit(${vo.id},'${vo.writer}')">${vo.id }</td>
+													<td width="200"
+														onclick="formSubmit(${vo.id},'${vo.writer}')">${vo.title }</td>
+													<td width="200"
+														onclick="formSubmit(${vo.id},'${vo.writer}')">${vo.writer }</td>
+													<td width="150"
+														onclick="formSubmit(${vo.id},'${vo.writer}')">${vo.regDate }</td>
+												</tr>
+											</c:forEach>
+										</c:when>
+										<c:when test="${empty qnaList }">
+											<td colspan="4"><p>작성한 게시글이 없습니다.</p></td>
+										</c:when>
+										<c:otherwise>
+											<c:forEach items="${qnaList }" var="vo">
+												<tr>
+													<td width="100"
+														onclick="formSubmit(${vo.id},'${vo.writer}')">${vo.id }</td>
+													<td width="200"
+														onclick="formSubmit(${vo.id},'${vo.writer}')">${vo.title }</td>
+													<td width="200"
+														onclick="formSubmit(${vo.id},'${vo.writer}')">${vo.writer }</td>
+													<td width="150"
+														onclick="formSubmit(${vo.id},'${vo.writer}')">${vo.regDate }</td>
+												</tr>
+											</c:forEach>
+										</c:otherwise>
+									</c:choose>
+								</table>
+							</div>
 						</div>
 					</div>
 				</div>

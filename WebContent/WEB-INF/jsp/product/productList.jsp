@@ -62,7 +62,8 @@
 			url: '${pageContext.request.contextPath }/addCart.do',
 			data: {
 				id: '${id }', 
-				itemCode: itemCode
+				itemCode: itemCode,
+				qty: 1
 			},
 			success: function (result){
 				eventsuccess();

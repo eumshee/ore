@@ -17,11 +17,10 @@ public class AddCart implements DbCommand {
 		
 		String id = request.getParameter("id");
 		String itemCode = request.getParameter("itemCode");
-		
-		int qty = 1;
+		String qty = request.getParameter("qty");
 		
 		CartServiceImpl service = new CartServiceImpl();
-		service.addCart(id, itemCode, qty);
+		service.addCart(id, itemCode, Integer.parseInt(qty));
 		
 		service = new CartServiceImpl();
 		int cartCnt = service.getCountCart(id);

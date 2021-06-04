@@ -12,6 +12,11 @@ th, td {
 	text-align: center;
 	vertical-align: middle !important;
 }
+
+.td-left td 
+	{
+	text-align: left;
+	}
 </style>
 <script>
 	function cartUpdate(qty, code) {
@@ -31,10 +36,21 @@ th, td {
 		frmDel.submit();
 	}
 	
+	function placeOrder() {
+		var name = orderForm.name.value;
+		var addr = orderForm.addr.value;
+		var tel = orderForm.tel.value;
+		var mail = orderForm.mail.value;
+		var msg = orderForm.msg.value;
+		var sum = $('#spansum').text();
+		
+		orderForm.totalsum.value = sum;
+		orderForm.submit();
+	}
 </script>
 </head>
 <body>
-	<!-- Cart Page Section Begin -->
+	<!-- 카트 리스트 보여주는 영역 -->
 	<form id="frms" action="productSelect.do" method="post">
 		<input type="hidden" id="code" name="code">
 	</form>
@@ -42,8 +58,9 @@ th, td {
 		<input type="hidden" id="itemCd" name="itemCd">
 	</form>
 	<form id="frm" action="cartUpdate.do" method="post">
-		<input type="hidden" id="itemCode" name="itemCode"> <input
-			type="hidden" id="itemQty" name="itemQty">
+		<input type="hidden" id="itemCode" name="itemCode"> 
+		<input type="hidden" id="itemQty" name="itemQty">
+	</form>
 		<div class="cart-page">
 			<div class="container">
 				<h1>Cart</h1>
@@ -67,10 +84,12 @@ th, td {
 									<td colspan="5"><p>장바구니가 비어있습니다.</p></td>
 								</c:when>
 								<c:otherwise>
+									<!-- 카트 아이템 1건씩 반복출력 영역 -->
 									<c:forEach items="${clist }" var="vo">
 										<tr>
-											<td class="product-col"  onclick="formSelect('${vo.itemCode}')">
-											<img width="100" height="150"
+											<td class="product-col"
+												onclick="formSelect('${vo.itemCode}')"><img width="100"
+												height="150"
 												src="${pageContext.request.contextPath }/bootstrap/img/product/${vo.itemImg}"
 												alt="">
 												<div class="p-title">
@@ -99,12 +118,51 @@ th, td {
 						</tbody>
 					</table>
 				</div>
+				<hr>
+			</div>
+
+		</div>
+	
+		<div class="order">
+			<div class="container">
+				<div class="col-lg-12">
+					<div class="order-info">
+						<br> <br> <br>
+						<h4>Order</h4>
+						<br>
+						<form id="orderForm" action="ordersInsert.do" method="post">
+						 <input type="hidden" id="totalsum" name="totalsum" value="">
+ 							<table class="table td-left">
+								<tr>
+									<th width="200"><label for="name">받으시는 분</label></th>
+									<td><input type="text" name="name" id="name" required="required"></td>
+								</tr>
+								<tr>
+									<th><label for="addr">주소</label></th>
+									<td><input type="text" name="addr" id="addr" size="50" required="required"></td>
+								</tr>
+								<tr>
+									<th><label for="tel">연락처</label></th>
+									<td><input type="text" name="tel" id="tel" required="required"></td>
+								</tr>
+								<tr>
+									<th><label for="mail">이메일</label></th>
+									<td><input type="text" name="mail" id="mail" size="50" required="required"></td>
+								</tr>
+								<tr>
+									<th><label for="msg">주문 메시지</label></th>
+									<td><textarea name="msg" id="msg" cols="55"></textarea></td>
+								</tr>
+							</table>
+						</form>
+					</div>
+				</div>
 			</div>
 			<div class="shopping-method">
 				<div class="container">
 					<div class="col-lg-12">
 						<div class="shipping-info">
-							<h5>Shipping</h5>
+							<h4>Shipping</h4><br>
 							<div class="chose-shipping">
 								<c:choose>
 									<c:when test="${sum >= 200000}">
@@ -149,10 +207,10 @@ th, td {
 												</c:choose></td>
 											<td><c:choose>
 													<c:when test="${sum >= 200000}">
-														<fmt:formatNumber value="${sum}" />
+														<span id="spansum"><fmt:formatNumber value="${sum}" /></span>
 													</c:when>
 													<c:otherwise>
-														<fmt:formatNumber value="${sum + 3000}" />
+														<span id="spansum"><fmt:formatNumber value="${sum + 3000}" /></span>
 													</c:otherwise>
 												</c:choose>
 											<td>
@@ -162,8 +220,7 @@ th, td {
 							</div>
 							<div class="row">
 								<div class="col-lg-12 text-right">
-									<a href="#" class="primary-btn chechout-btn">Proceed to
-										checkout</a>
+									<button onClick="placeOrder()" class="primary-btn chechout-btn">Place Order</button>
 								</div>
 							</div>
 						</div>
@@ -171,7 +228,6 @@ th, td {
 				</div>
 			</div>
 		</div>
-	</form>
 	<!-- Cart Page Section End -->
 </body>
 </html>

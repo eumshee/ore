@@ -1,7 +1,5 @@
 package com.ore.product.vo;
 
-import java.sql.Date;
-
 public class ProductVO {
 	private String itemCode;
 	private String itemName;

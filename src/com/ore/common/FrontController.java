@@ -29,6 +29,7 @@ import com.ore.notice.web.NoticeList;
 import com.ore.notice.web.NoticeSearch;
 import com.ore.notice.web.NoticeSelect;
 import com.ore.notice.web.NoticeUpdate;
+import com.ore.orders.web.OrdersInsert;
 import com.ore.product.web.AdminDelete;
 import com.ore.product.web.AdminInsertForm;
 import com.ore.product.web.AdminList;
@@ -68,11 +69,21 @@ public class FrontController extends HttpServlet {
 		map.put("/productSelect.do", new ProductSelect());
 		map.put("/lookbook.do", new LookBook());
 		
+		// 관리자
+		map.put("/adminList.do", new AdminList());
+		map.put("/adminSelect.do", new AdminSelect());
+		map.put("/adminInsertForm.do", new AdminInsertForm());
+		map.put("/adminDelete.do", new AdminDelete());
+		map.put("/adminSearch.do", new AdminSearch());
+		
 		// 장바구니
 		map.put("/addCart.do", new AddCart());
 		map.put("/cartList.do", new CartList());
 		map.put("/cartUpdate.do", new CartUpdate());
 		map.put("/cartDelete.do", new CartDelete());
+		
+		// 주문
+		map.put("/ordersInsert.do", new OrdersInsert());
 		
 		// 공지
 		map.put("/noticeList.do", new NoticeList());
@@ -82,13 +93,6 @@ public class FrontController extends HttpServlet {
 		map.put("/noticeInsert.do", new NoticeInsert());
 		map.put("/noticeUpdate.do", new NoticeUpdate());
 		map.put("/noticeDelete.do", new NoticeDelete());
-		
-		// 관리자
-		map.put("/adminList.do", new AdminList());
-		map.put("/adminSelect.do", new AdminSelect());
-		map.put("/adminInsertForm.do", new AdminInsertForm());
-		map.put("/adminDelete.do", new AdminDelete());
-		map.put("/adminSearch.do", new AdminSearch());
 		
 		// qna
 		map.put("/qnaList.do", new QnaList());
