@@ -57,14 +57,11 @@
             var id = form.commentId.value
             var content = form.commentContent.value;
      		console.log(board, id, content);
-            
-            if(!content)
-            {
+            if(!content) {
                 alert("내용을 입력하세요.");
                 return false;
             }
-
-            
+       
             var param = { "commentBoard": board,
             		"commentId": id,
             		"commentContent": content};
@@ -72,7 +69,7 @@
        		var link = document.location.href; 
        		
         		$.ajax({
-	       			url: '/commentWriteAction.do',
+	       			url: 'commentWriteAction',
 	       			data: param,
 	       			contentType: "application/x-www-form-urlencoded; charset=UTF-8",  
 	       			success: function (result){
@@ -83,7 +80,6 @@
 	       				console.log(err);
 	       			}
        			});
-            
         }
   
 

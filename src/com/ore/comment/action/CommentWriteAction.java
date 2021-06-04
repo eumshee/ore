@@ -14,7 +14,7 @@ import com.ore.comment.serviceImpl.CommentServiceImpl;
 import com.ore.comment.vo.CommentVO;
 
 @SuppressWarnings("serial")
-@WebServlet("/commentWriteAction.do")
+@WebServlet("/commentWriteAction")
 public class CommentWriteAction extends HttpServlet{
 
 	@Override
@@ -49,7 +49,7 @@ public class CommentWriteAction extends HttpServlet{
 
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
+		doGet(req, resp);
 	}
 
 }
