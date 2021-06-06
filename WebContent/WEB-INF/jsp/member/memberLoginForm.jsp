@@ -268,7 +268,7 @@ input[type=text]:placeholder, input[type=password]:placeholder {
 		<div id="formContent">
 			<div class="container">
 				<br>
-				<h1>Login</h1>
+				<h2>Login</h2>
 				<br>
 			</div>
 			<!-- Login Form -->

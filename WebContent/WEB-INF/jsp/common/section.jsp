@@ -1,12 +1,55 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+	<link rel="stylesheet" href="owlcarousel/owl.carousel.min.css">
+<link rel="stylesheet" href="owlcarousel/owl.theme.default.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="owlcarousel/owl.carousel.min.js"></script>
 <style>
 .hero-items .owl-dots {
 	position: absolute;
-	left: 110px;
-	bottom: 10px;
+	left: 48%;
+	bottom: -35px;
+}
+
+.hero-items .owl-nav button[type=button].owl-next {
+    left: auto;
+    right: 60px;
+    display: inline-block;
+}
+
+.hero-items .owl-nav button[type=button] {
+    display: inline-block;
+    height: 68px;
+    width: 68px;
+    font-size: 35px;
+    border-radius: 50%;
+    text-align: center;
+    position: absolute;
+    left: 60px;
+    top: 345px;
+    background-color: #fff;
+    color: #000;
 }
 </style>
+<script>
+$(".hero-items").owlCarousel({
+    loop: true,
+    margin: 0,
+    nav: true,
+    items: 1,
+    dots: true,
+    animateOut: 'fadeOut',
+    animateIn: 'fadeIn',
+    navText: ['<i class="fa fa-angle-left"></i>', '<i class="fa fa-angle-right"></i>'],
+    smartSpeed: 1200,
+    autoplayHoverPause: true,
+    mouseDrag: false,
+	autoplay:true,
+	autoplayTimeout:5000,
+	autoplayHoverPause:true
+});
+</script>
+
 <!-- Hero Slider Begin -->
 <section class="hero-slider">
 	<div class="hero-items owl-carousel">
@@ -49,6 +92,7 @@
 	</div>
 </section>
 <!-- Hero Slider End -->
+
 <!-- Features Section Begin -->
 <section class="features-section spad">
 	<div class="features-ads" align="center">

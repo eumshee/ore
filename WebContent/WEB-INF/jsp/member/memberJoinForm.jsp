@@ -276,7 +276,7 @@ input[type=text]:placeholder, input[type=password]:placeholder {
 	<div id="formContent">
 		<div class="container">
 			<br>
-			<h1>Register</h1>
+			<h2>Register</h2>
 			<br>
 			<br>
 		</div>
