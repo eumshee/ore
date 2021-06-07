@@ -46,6 +46,13 @@ import com.ore.qna.web.QnaList;
 import com.ore.qna.web.QnaSearch;
 import com.ore.qna.web.QnaSelect;
 import com.ore.qna.web.QnaUpdate;
+import com.ore.review.web.ReviewDelete;
+import com.ore.review.web.ReviewInsert;
+import com.ore.review.web.ReviewInsertCodeForm;
+import com.ore.review.web.ReviewInsertForm;
+import com.ore.review.web.ReviewList;
+import com.ore.review.web.ReviewSelect;
+import com.ore.review.web.ReviewUpdate;
 
 @SuppressWarnings("serial")
 public class FrontController extends HttpServlet {
@@ -103,6 +110,16 @@ public class FrontController extends HttpServlet {
 		map.put("/qnaInsert.do", new QnaInsert());
 		map.put("/qnaUpdate.do", new QnaUpdate());
 		map.put("/qnaDelete.do", new QnaDelete());
+		
+		// review
+		map.put("/reviewList.do", new ReviewList());
+		map.put("/reviewSelect.do", new ReviewSelect());
+		map.put("/reviewInsertForm.do", new ReviewInsertForm());
+		map.put("/reviewInsertCodeForm.do", new ReviewInsertCodeForm());
+		map.put("/reviewInsert.do", new ReviewInsert());
+		map.put("/reviewUpdate.do", new ReviewUpdate());
+		map.put("/reviewDelete.do", new ReviewDelete());
+		
 
 	}
 
