@@ -18,6 +18,8 @@ import com.ore.product.vo.ProductVO;
 import com.ore.qna.service.QnaService;
 import com.ore.qna.serviceImpl.QnaServiceImpl;
 import com.ore.qna.vo.QnaVO;
+import com.ore.review.serviceImpl.ReviewServiceImpl;
+import com.ore.review.vo.ReviewVO;
 
 public class MemberSelect implements DbCommand {
 
@@ -33,7 +35,6 @@ public class MemberSelect implements DbCommand {
 		
 		request.setAttribute("vo", vo);
 		
-		
 		// 상품명
 		String code = request.getParameter("code");
 		ProductVO vo2 = new ProductVO();
@@ -41,7 +42,6 @@ public class MemberSelect implements DbCommand {
 		ProductServiceImpl service3 = new ProductServiceImpl();
 		service3.selectProduct(vo2);
 		request.setAttribute("product", vo2);
-		
 		
 		// Qna 리스트
 		QnaService service2 = new QnaServiceImpl();
@@ -52,11 +52,15 @@ public class MemberSelect implements DbCommand {
 		List<QnaVO> list2 = service4.qnaList();		
 		request.setAttribute("qnaAll", list2);
 		
-		
 		// 주문 리스트
 		OrdersService service5 = new OrdersServiceImpl();
 		List<OrdersVO> list3 = service5.selectOrdersList(id);
 		request.setAttribute("orderList", list3);		
+		
+		// 리뷰 리스트
+		ReviewServiceImpl service6 = new ReviewServiceImpl();
+		List<ReviewVO> rvList = service6.reviewSelectList(id); 
+		request.setAttribute("reviewList", rvList);		
 		
 		return "member/memberSelect.tiles";
 	}
