@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.ore.comment.service.CommentService;
 import com.ore.comment.serviceImpl.CommentServiceImpl;
+import com.ore.comment.vo.CommentVO;
 
 @SuppressWarnings("serial")
 @WebServlet("/deleteComment")
@@ -20,9 +21,10 @@ public class DeleteComment extends HttpServlet{
 		CommentService service = new CommentServiceImpl();
 		
 		int commentNum = Integer.parseInt(req.getParameter("commentNum"));
-		
+		int commentBoard = Integer.parseInt(req.getParameter("boardNum"));
+
 		service = new CommentServiceImpl();
-		boolean result = service.deleteComment(commentNum);
+		boolean result = service.deleteComment(commentNum, commentBoard);
 
 		if (result) {
 			PrintWriter out;

@@ -1,9 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-	<link rel="stylesheet" href="owlcarousel/owl.carousel.min.css">
-<link rel="stylesheet" href="owlcarousel/owl.theme.default.min.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-<script src="owlcarousel/owl.carousel.min.js"></script>
 <style>
 .hero-items .owl-dots {
 	position: absolute;
@@ -32,21 +29,23 @@
 }
 </style>
 <script>
-$(".hero-items").owlCarousel({
-    loop: true,
-    margin: 0,
-    nav: true,
-    items: 1,
-    dots: true,
-    animateOut: 'fadeOut',
-    animateIn: 'fadeIn',
-    navText: ['<i class="fa fa-angle-left"></i>', '<i class="fa fa-angle-right"></i>'],
-    smartSpeed: 1200,
-    autoplayHoverPause: true,
-    mouseDrag: false,
-	autoplay:true,
-	autoplayTimeout:5000,
-	autoplayHoverPause:true
+$(document).ready(function(){
+	$(".hero-items").owlCarousel({
+	    loop: true,
+	    margin: 0,
+	    nav: true,
+	    items: 1,
+	    dots: true,
+	    animateOut: 'fadeOut',
+	    animateIn: 'fadeIn',
+	    navText: ['<i class="fa fa-angle-left"></i>', '<i class="fa fa-angle-right"></i>'],
+	    smartSpeed: 1200,
+	    autoplayHoverPause: true,
+	    mouseDrag: false,
+		autoplay:true,
+		autoplayTimeout:5000,
+		autoplayHoverPause:true
+});
 });
 </script>
 

@@ -168,7 +168,7 @@ public class CommentServiceImpl extends DAO implements CommentService {
 
 	// 댓글 삭제
 	@Override
-	public boolean deleteComment(int commentNum) {
+	public boolean deleteComment(int commentNum, int commentBoard) {
 		boolean result = false;
 		try {
 			StringBuffer sql = new StringBuffer();
@@ -185,6 +185,14 @@ public class CommentServiceImpl extends DAO implements CommentService {
 			int flag = psmt.executeUpdate();
 			if (flag > 0) {
 				result = true;
+			}
+			
+			String sql2 = "update qna set commentcnt = commentcnt -1 where id = ?";
+			psmt = conn.prepareStatement(sql2);
+			psmt.setInt(1, commentBoard);
+			int n = psmt.executeUpdate();
+			if (n != 0) {
+				System.out.println("댓글 수가 감소 되었습니다");
 			}
 
 		} catch (Exception e) {
