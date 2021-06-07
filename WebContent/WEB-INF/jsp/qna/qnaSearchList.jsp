@@ -51,13 +51,15 @@
 </form>
 	<div class="container">
 		<h1>Q&#38;A Result</h1>
+		<br>
+		<div align="right">
+		<c:if test="${!empty id}">
+			<button class="btn btn-outline-dark mt-auto" type="button"
+			onclick="location.href='qnaInsertForm.do'">WRITE</button>
+		</c:if>
+		<button class="btn btn-outline-dark mt-auto" type="button" onclick="location.href='qnaList.do'">BACK</button>
+		<br><br>
 		<div align="center">
-			<div class="col-lg-12 text-right">
-				<c:if test="${!empty id}">
-					<button class="btn btn-outline-dark mt-auto" type="button"
-						onclick="location.href='qnaInsertForm.do'">WRITE</button>
-				</c:if>
-			</div>
 			<br>
 		<div style="width: 100%">
 			<div class="col-lg-12 text-right">
@@ -85,12 +87,12 @@
 				<button class="btn btn-outline-dark mt-auto" type="button"
 					onclick="formSearch()">SEARCH</button>
 				<br><br>
-				<button class="btn btn-outline-dark mt-auto" type="button" onclick="location.href='qnaList.do'">BACK</button>
 			</div>
 			<br>
 			</div>
 		</div>
 		</div>
+	</div>
 	</div>
 </body>
 </html>

@@ -193,7 +193,7 @@ th, td {
 											</c:forEach>
 										</c:when>
 										<c:when test="${empty qnaList }">
-											<td colspan="4"><p>작성한 게시글이 없습니다.</p></td>
+											<td colspan="5"><p>작성한 게시글이 없습니다.</p></td>
 										</c:when>
 										<c:otherwise>
 											<c:forEach items="${qnaList }" var="vo">

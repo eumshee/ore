@@ -81,7 +81,13 @@
 	<input type="hidden" id="id" name="id">
 </form>
 	<div class="container">
-		<h1>Notice Search</h1><br>
+		<h1>Notice Search</h1>
+		<br>
+		<div align="right">
+		<button class="btn btn-outline-dark mt-auto" type="button"
+						onclick="location.href='noticeList.do'">BACK</button>
+						<br><br>
+		</div>
 		<div align="center">
 		<div class="col-lg-12 text-right">
 			<c:if test="${id eq 'admin' }">
@@ -89,7 +95,6 @@
 				onclick="location.href='noticeForm.do'">WRITE</button>
 			</c:if>
 		</div>
-		<hr>
 		<table class="table">
 			<tr>
 				<th width="20">NO.</th>
@@ -119,8 +124,6 @@
 				<input type="text" id="search" size=35>
 				<button class="btn btn-outline-dark mt-auto" type="button"
 					onclick="formSearch()">SEARCH</button>
-				<button class="btn btn-outline-dark mt-auto" type="button"
-					onclick="location.href='noticeList.do'">BACK</button>
 				<br><br>
 			</div>
 			<br>
