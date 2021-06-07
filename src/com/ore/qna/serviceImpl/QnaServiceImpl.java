@@ -326,6 +326,7 @@ public class QnaServiceImpl extends DAO implements QnaService{
 				rvo.setContent(rs.getString("content"));
 				rvo.setRegDate(rs.getDate("reg_date"));
 				rvo.setHit(rs.getInt("hit"));
+
 				list.add(rvo);
 			}
 		} catch (Exception e) {
@@ -335,6 +336,24 @@ public class QnaServiceImpl extends DAO implements QnaService{
 		}
 		return list;
 	}
+	
+//	private QnaVO selectProduct(String code) {
+//		sql = "select * from product where item_code=?";
+//		QnaVO vo = new QnaVO();
+//		try {
+//			psmt = conn.prepareStatement(sql);
+//			psmt.setString(1, code);
+//			rs = psmt.executeQuery();
+//			if (rs.next()) {
+//				vo.setItemCode(rs.getString("item_code"));
+//				vo.setItemName(rs.getString("item_name"));
+//				vo.setItemImg(rs.getString("item_img"));
+//			}
+//		} catch (SQLException e) {
+//			e.printStackTrace();
+//		}
+//		return vo;
+//	}
 	
 	// 댓글 수 카운트
 	public int getCountComment(String id) {

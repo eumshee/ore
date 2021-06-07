@@ -62,7 +62,6 @@ th, td {
 				onclick="location.href='index.do'">HOME</button>
 			</div>
 			<form id="frm" action="reviewSelect.do" method="post">
-				<input type="hidden" id="id" name="id">
 				<input type="hidden" id="writer" name="writer">
 				<input type="hidden" id="code" name="code">
 			</form>

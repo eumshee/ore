@@ -66,7 +66,11 @@ a:focus {
 			});
 		}
 		
-		
+		function frmSubmit(writer,code) {
+			rvfrm.writer.value = writer;
+			rvfrm.code.value = code;
+			rvfrm.submit();
+		}
 	</script>
 </head>
 <body>
@@ -75,6 +79,10 @@ a:focus {
 		<input type="hidden" id="writer" name="writer">
 		<input type="hidden" id="name" name="name">
 		<input type="hidden" id="img" name="img">
+		<input type="hidden" id="code" name="code">
+	</form>
+	<form id="rvfrm" action="reviewSelect.do" method="post">
+		<input type="hidden" id="writer" name="writer">
 		<input type="hidden" id="code" name="code">
 	</form>
 	<!-- Product Page Section Beign -->
@@ -210,14 +218,20 @@ a:focus {
 								<th>DATE</th>
 							</tr>
 							<c:choose>
-								<c:when test="${!empty qnaList }">
-									<c:forEach items="${qnaList }" var="vo">
+								<c:when test="${!empty reviewList }">
+									<c:forEach items="${reviewList }" var="vo">
 										<tr>
-											<td width="100" onclick="formSubmit(${vo.id},'${vo.writer}')">${vo.id }</td>
-											<td width="250" onclick="formSubmit(${vo.id},'${vo.writer}')">${vo.title } <span style="font-size: 10pt; color: lightgray;">(${vo.commentCnt })</span></td>
-											<td width="100" onclick="formSubmit(${vo.id},'${vo.writer}')">별점</td>
-											<td width="100" onclick="formSubmit(${vo.id},'${vo.writer}')">${vo.writer }</td>
-											<td width="150" onclick="formSubmit(${vo.id},'${vo.writer}')">${vo.regDate }</td>
+											<td width="50" onclick="frmSubmit('${vo.userId}','${vo.itemCode}')">${vo.reviewNum }</td>
+											<td width="300" onclick="frmSubmit('${vo.userId}','${vo.itemCode}')">${vo.reviewTitle }</td>
+											<td width="150" onclick="frmSubmit('${vo.userId}','${vo.itemCode}')">
+												<div class="rating">
+												<c:forEach begin="1" end="${vo.reviewScore }">
+												<i class="fa fa-star" style="color: #fff000;"></i>
+												</c:forEach>
+												</div>
+											</td>
+											<td width="100" onclick="frmSubmit('${vo.userId}','${vo.itemCode}')">${vo.userId }</td>
+											<td width="100" onclick="frmSubmit('${vo.userId}','${vo.itemCode}')">${vo.reviewDate }</td>
 										</tr>
 									</c:forEach>
 								</c:when>

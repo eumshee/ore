@@ -34,6 +34,12 @@ th, td {
 			frms.code.value = '${product.itemCode}';
 			frms.submit();
 		}
+		
+		function frmSubmit(writer,code) {
+			rvfrm.writer.value = writer;
+			rvfrm.code.value = code;
+			rvfrm.submit();
+		}
 	</script>
 </head>
 <body>
@@ -42,6 +48,10 @@ th, td {
 		<input type="hidden" id="writer" name="writer">
 		<input type="hidden" id="name" name="name">
 		<input type="hidden" id="img" name="img">
+		<input type="hidden" id="code" name="code">
+	</form>
+	<form id="rvfrm" action="reviewSelect.do" method="post">
+		<input type="hidden" id="writer" name="writer">
 		<input type="hidden" id="code" name="code">
 	</form>
 	<div class="container">
@@ -180,33 +190,21 @@ th, td {
 										<th>WRITER</th>
 										<th>DATE</th>
 									</tr>
-									<c:choose>
-										<c:when test="${id eq 'admin' }">
-											<c:forEach items="${qnaAll }" var="vo">
-												<tr onclick="formSubmit(${vo.id},'${vo.writer}')">
-													<td width="100">${vo.id }</td>
-													<td width="250">${vo.title } <span style="font-size: 10pt; color: lightgray;">(${vo.commentCnt })</span></td>
-													<td width="100">별점</td>
-													<td width="100">${vo.writer }</td>
-													<td width="150">${vo.regDate }</td>
-												</tr>
-											</c:forEach>
-										</c:when>
-										<c:when test="${empty qnaList }">
-											<td colspan="4"><p>작성한 게시글이 없습니다.</p></td>
-										</c:when>
-										<c:otherwise>
-											<c:forEach items="${qnaList }" var="vo">
-												<tr onclick="formSubmit(${vo.id},'${vo.writer}')">
-													<td width="100">${vo.id }</td>
-													<td width="250">${vo.title } <span style="font-size: 10pt; color: lightgray;">(${vo.commentCnt })</span></td>
-													<td width="100">별점</td>
-													<td width="100">${vo.writer }</td>
-													<td width="150">${vo.regDate }</td>
-												</tr>
-											</c:forEach>
-										</c:otherwise>
-									</c:choose>
+									<c:forEach items="${reviewList }" var="vo">
+										<tr>
+											<td width="50" onclick="frmSubmit('${vo.userId}','${vo.itemCode}')">${vo.reviewNum }</td>
+											<td width="300" onclick="frmSubmit('${vo.userId}','${vo.itemCode}')">${vo.reviewTitle }</td>
+											<td width="150" onclick="frmSubmit('${vo.userId}','${vo.itemCode}')">
+												<div class="rating">
+												<c:forEach begin="1" end="${vo.reviewScore }">
+												<i class="fa fa-star" style="color: #fff000;"></i>
+												</c:forEach>
+												</div>
+											</td>
+											<td width="100" onclick="frmSubmit('${vo.userId}','${vo.itemCode}')">${vo.userId }</td>
+											<td width="100" onclick="frmSubmit('${vo.userId}','${vo.itemCode}')">${vo.reviewDate }</td>
+										</tr>
+									</c:forEach>
 								</table>
 							</div>
 						</div>

@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.ore.common.DAO;
+import com.ore.qna.vo.QnaVO;
 import com.ore.review.service.ReviewService;
 import com.ore.review.vo.ReviewVO;
 
@@ -105,6 +106,62 @@ public class ReviewServiceImpl extends DAO implements ReviewService{
 		try {
 			psmt = conn.prepareStatement(sql);
 			psmt.setString(1, id);
+			rs = psmt.executeQuery();
+			while(rs.next()) {
+				rvo = new ReviewVO();
+				rvo.setReviewNum(rs.getInt("review_num"));
+				rvo.setItemImg(rs.getString("item_img"));
+				rvo.setItemCode(rs.getString("item_code"));
+				rvo.setItemName(rs.getString("item_name"));
+				rvo.setReviewTitle(rs.getString("review_title"));
+				rvo.setReviewContent(rs.getString("review_content"));
+				rvo.setUserId(rs.getString("user_id"));
+				rvo.setReviewScore(rs.getInt("review_score"));
+				rvo.setReviewDate(rs.getDate("review_date"));
+				list.add(rvo);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			close();
+		}
+		return list;
+	}
+
+	public List<ReviewVO> reviewSelect(String id) {
+		sql = "select * from review where item_code = ? order by 1 desc";
+		List<ReviewVO> list = new ArrayList<ReviewVO>();
+		try {
+			psmt = conn.prepareStatement(sql);
+			psmt.setString(1, id);
+			rs = psmt.executeQuery();
+			while(rs.next()) {
+				rvo = new ReviewVO();
+				rvo.setReviewNum(rs.getInt("review_num"));
+				rvo.setItemImg(rs.getString("item_img"));
+				rvo.setItemCode(rs.getString("item_code"));
+				rvo.setItemName(rs.getString("item_name"));
+				rvo.setReviewTitle(rs.getString("review_title"));
+				rvo.setReviewContent(rs.getString("review_content"));
+				rvo.setUserId(rs.getString("user_id"));
+				rvo.setReviewScore(rs.getInt("review_score"));
+				rvo.setReviewDate(rs.getDate("review_date"));
+				list.add(rvo);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			close();
+		}
+		return list;
+	}
+	
+	public List<ReviewVO> reviewCodeList(String code) {
+		sql = "select * from review where item_code= ? ";
+		List<ReviewVO> list = new ArrayList<ReviewVO>();
+		try {
+			psmt = conn.prepareStatement(sql);
+			psmt.setString(1, code);
 			rs = psmt.executeQuery();
 			while(rs.next()) {
 				rvo = new ReviewVO();
