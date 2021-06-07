@@ -337,7 +337,8 @@ public class QnaServiceImpl extends DAO implements QnaService{
 		return list;
 	}
 	
-//	private QnaVO selectProduct(String code) {
+	// qna
+//	public QnaVO selectProduct(String code) {
 //		sql = "select * from product where item_code=?";
 //		QnaVO vo = new QnaVO();
 //		try {
@@ -355,6 +356,25 @@ public class QnaServiceImpl extends DAO implements QnaService{
 //		return vo;
 //	}
 	
+	// code 알아내기
+	public QnaVO selectRow(int num) {
+		sql = "select item_code, item_name, item_img from product "
+				+ "where item_code = (select item_code from qna where id = ?)";
+		try {
+			psmt = conn.prepareStatement(sql);
+			psmt.setInt(1, num);
+			rs = psmt.executeQuery();
+			if (rs.next()) {
+				rvo.setItemCode(rs.getString("item_code"));
+				rvo.setItemName(rs.getString("item_name"));
+				rvo.setItemImg(rs.getString("item_img"));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return rvo;
+	}
+
 	// 댓글 수 카운트
 	public int getCountComment(String id) {
 		sql = "select count(*) from qnacomment where comment_board=?";

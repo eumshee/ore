@@ -175,8 +175,9 @@
 					<tr onclick="formSelect('${item.itemCode}')">
 						<th>ITEM</th>
 						<td class="product-col" style="text-align:left;">
-						<img width="100" height="150" src="${pageContext.request.contextPath }/bootstrap/img/product/${item.itemImg}" alt="">
-						<td colspan="6" style="text-align:left;" >${item.itemName}</td>
+							<img width="100" height="150" src="${pageContext.request.contextPath }/bootstrap/img/product/${item.itemImg}" alt="">
+							<td colspan="6" style="text-align:left;" >${item.itemName}
+						</td>							
 					</tr>
 					<tr>
 						<th>No.</th>

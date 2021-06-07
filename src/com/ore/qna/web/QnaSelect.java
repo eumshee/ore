@@ -20,13 +20,9 @@ public class QnaSelect implements DbCommand {
 		String writer = request.getParameter("writer");
 		String id = request.getParameter("id");		
 		String code = request.getParameter("code");
-		String name = request.getParameter("name");
-		String img = request.getParameter("img");
 		
 		QnaVO vo = new QnaVO();
 		vo.setWriter(writer);
-		vo.setItemName(name);
-		vo.setItemImg(img);
 		vo.setId(Integer.parseInt(id));
 		
 		// 게시글
@@ -43,7 +39,7 @@ public class QnaSelect implements DbCommand {
 		QnaServiceImpl service3 = new QnaServiceImpl();
 		QnaVO rvo2 = service3.itemCodeName(code);
 		request.setAttribute("item", rvo2);
-		
+
 		return "qna/qna.tiles";
 	}
 

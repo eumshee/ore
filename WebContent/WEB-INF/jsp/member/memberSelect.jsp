@@ -26,12 +26,10 @@ th, td {
 			frm.submit(); 
 		}
 		
-		function formSubmit(id, writer, name, img, code) {
+		function formSubmit(id, writer, code) {
 			frms.id.value = id;
 			frms.writer.value = writer;
-			frms.name.value = '${product.itemName}';
-			frms.img.value = '${product.itemImg}';
-			frms.code.value = '${product.itemCode}';
+			frms.code.value = code;
 			frms.submit();
 		}
 		
@@ -46,8 +44,6 @@ th, td {
 	<form id="frms" action="qnaSelect.do" method="post">
 		<input type="hidden" id="id" name="id">
 		<input type="hidden" id="writer" name="writer">
-		<input type="hidden" id="name" name="name">
-		<input type="hidden" id="img" name="img">
 		<input type="hidden" id="code" name="code">
 	</form>
 	<form id="rvfrm" action="reviewSelect.do" method="post">
@@ -153,7 +149,7 @@ th, td {
 									<c:choose>
 										<c:when test="${id eq 'admin' }">
 											<c:forEach items="${qnaAll }" var="vo">
-												<tr onclick="formSubmit(${vo.id},'${vo.writer}','${product.itemImg}', '${product.itemName}', '${product.itemCode}')">
+												<tr onclick="formSubmit(${vo.id},'${vo.writer}','${vo.itemCode}')">
 		 											<td width="100">${vo.id }</td>
 													<td width="300">${vo.title } <span style="font-size: 10pt; color: lightgray;">(${vo.commentCnt })</span></td>
 													<td width="100">${vo.writer }</td>
@@ -166,7 +162,7 @@ th, td {
 										</c:when>
 										<c:otherwise>
 											<c:forEach items="${qnaList }" var="vo">
-												<tr onclick="formSubmit(${vo.id},'${vo.writer}')">
+												<tr onclick="formSubmit(${vo.id},'${vo.writer}','${vo.itemCode}')">
 													<td width="100">${vo.id }</td>
 													<td width="300">${vo.title } <span style="font-size: 10pt; color: lightgray;">(${vo.commentCnt })</span>       </td>
 													<td width="100">${vo.writer }</td>
