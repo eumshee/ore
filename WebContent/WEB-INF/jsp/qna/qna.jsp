@@ -254,6 +254,9 @@
 							<!-- 여기에 답글이 로드됨 -->
 						</div>
 					</td>
+					<c:if test="${comment.commentId != id }">
+						<td width="100"></td>
+					</c:if>
 					<!-- 버튼 -->
 					<c:if test="${comment.commentId == id }">
 					<td width="100">

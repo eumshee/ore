@@ -131,17 +131,19 @@ public class CartServiceImpl extends DAO implements CartService {
 	@Override
 	public int updateCart(int qty, String id, String code) {
 		String sql2 = "delete from cart \r\n"
-				+ "where item_code=? and order_code <> (select min(order_code)\r\n"
+				+ "where user_id = ? and item_code=? and order_code <> (select min(order_code)\r\n"
 				+ "                                          from cart \r\n"
-				+ "                                          where item_code=?\r\n"
+				+ "                                          where user_id = ? and item_code=?\r\n"
 				+ "                                          group by item_code)";
 		
 		sql = "update cart set item_qty = ?\r\n"
 				+ "where user_id = ? and item_code = ?";
 		try {
 				psmt = conn.prepareStatement(sql2);
-				psmt.setString(1, code);
+				psmt.setString(1, id);
 				psmt.setString(2, code);
+				psmt.setString(3, id);
+				psmt.setString(4, code);
 				n = psmt.executeUpdate();
 				if(n!=0) {
 					System.out.println(id+"님 "+code+"제품 중복"+n+"건 주문삭제");				
