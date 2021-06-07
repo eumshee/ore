@@ -16,9 +16,15 @@ table {
 	border-collapse: collapse;
 }
 
-th, td {
+th {
 	text-align: center;
 	padding: 10px;
+	vertical-align: middle !important;
+}
+
+td {
+	padding: 10px;
+	vertical-align: middle !important;
 }
 
 #cke_content {
@@ -26,18 +32,20 @@ th, td {
 }
 </style>
 <script>
-	$(function() {CKEDITOR.replace('content',
-		{
+	$(function() {
+		if (${id eq 'admin' }) {
+		CKEDITOR.replace('content',{
 			filebrowserUploadUrl : '${pageContext.request.contextPath}/fileUpload',
 			height : '600px',
 			width : '950px'
 		});
-		CKEDITOR.editorConfig = function(config) {
-			config.toolbarStartupExpanded = false; // 툴바 접기
-		};
+		}
 	});
 
 	function noticeUpdate() {
+		let title = $('#title1').val();
+		frm.title.value = title;
+		console.log(title);
 		frm.submit();
 	}
 
@@ -56,6 +64,7 @@ th, td {
 			</form>
 			<form id="frm" action="noticeUpdate.do" method="post">
 				<input type="hidden" id="id" name="id" value="${notice.id}">
+				<input type="hidden" id="title" name="title" value="${notice.title}">
 				<table class="table">
 					<tr>
 						<th>No.</th>
@@ -69,11 +78,11 @@ th, td {
 						<th>TITLE</th>
 						<c:choose>
 							<c:when test="${id eq 'admin' }">
-								<td colspan="5"><input id="title" name="title" type="text"
+								<td colspan="5"><input id="title1" name="title1" type="text"
 									value="${notice.title}" size="100"></td>
 							</c:when>
 							<c:otherwise>
-								<td colspan="5">${notice.title }
+								<td colspan="5">${notice.title }</td>
 							</c:otherwise>
 						</c:choose>
 					</tr>
@@ -85,9 +94,7 @@ th, td {
 										rows="6" cols="90">${notice.content}</textarea></td>
 							</c:when>
 							<c:otherwise>
-								<td colspan="5"><textarea id="content" name="content"
-										rows="6" cols="90" readonly="readonly">${notice.content}</textarea>
-								</td>
+								<td colspan="5" width="300" height="150" align="left">${notice.content}</td>
 							</c:otherwise>
 						</c:choose>
 					</tr>

@@ -94,10 +94,11 @@
     			}); // ajax end
         } // writeCmt() end
   
-		function deleteRow(commentNum) {
+		function deleteRow(commentNum, commentBoard) {
             var cmtNum = commentNum;
+            var boardNum = commentBoard;
 
-     		var param = { "commentNum": cmtNum };
+     		var param = { "commentNum": cmtNum, "boardNum": boardNum};
      		console.log(param);
      		
 			$('#'+cmtNum).parent().parent().parent().remove();
@@ -119,7 +120,9 @@
         	//console.log($(this).parent().parent().attr('data-commentNum'));
         	let cnum = $(this).parent().parent().attr('data-commentNum');
             var cmtNum = cnum;
-     		var param = { "commentNum": cmtNum };
+            var boardNum = commentBoard;
+            
+     		var param = { "commentNum": cmtNum, "boardNum": boardNum };
      		console.log(cmtNum);
      		$(this).parent().parent().remove();
 
@@ -140,6 +143,11 @@
 		    // ajax를 이용해서 서버에서 답글을 가져온다
 		    //$("#reply").append(가져온 데이터를 보기좋게 가공해서 추가);
 		}
+		
+		function formSelect(code) {
+			frmSelect.code.value = code;
+			frmSelect.submit();
+			}
         
 	</script>
 </head>
@@ -155,6 +163,9 @@
 	<input type="hidden" id="title" name="title">
 	<input type="hidden" id="ccontent" name="ccontent">
 </form>
+<form id="frmSelect" action="productSelect.do" method="post">
+	<input type="hidden" id="code" name="code" value="${item.itemCode}">
+</form>
 	<div class="container">
 		<h1>Q&#38;A</h1>
 		<div align="right">
@@ -162,11 +173,10 @@
 		</div>
 		<div align="center">
 				<table class="table">
-					<tr>
+					<tr onclick="formSelect('${item.itemCode}')">
 						<th>ITEM</th>
-						<td class="product-col" style="text-align:left;"><img width="100" height="150"
-										src="${pageContext.request.contextPath }/bootstrap/img/product/${item.itemImg}"
-										alt="">
+						<td class="product-col" style="text-align:left;">
+						<img width="100" height="150" src="${pageContext.request.contextPath }/bootstrap/img/product/${item.itemImg}" alt="">
 						<td colspan="6" style="text-align:left;" >${item.itemName}</td>
 					</tr>
 					<tr>
@@ -210,6 +220,7 @@
 				</table>
 			<div class="col-lg-12 text-center">
 				<c:if test="${id eq qna.writer}">
+					<button class="btn btn-outline-dark mt-auto" type="button" onclick="qnaUpdate()">MODIFY</button>
 					<button class="btn btn-outline-dark mt-auto" type="button" onclick="qnaDelete()">DELETE</button>
 					<br><br>
 				</c:if>
@@ -249,7 +260,7 @@
 					<td width="100">
 						<div id="btn" style="text-align:center;">
 							<!-- 댓글 작성자만 수정, 삭제 가능하도록 -->
-								<a href="#" id="${comment.commentNum}" onclick="deleteRow(${comment.commentNum})"
+								<a href="#" id="${comment.commentNum}" onclick="deleteRow(${comment.commentNum}, ${comment.commentBoard})"
 								 class="btn btn-outline-dark mt-auto" >DELETE</a>
 						</div>
 					</td>

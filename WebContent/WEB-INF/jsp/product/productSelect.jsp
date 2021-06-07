@@ -29,11 +29,13 @@ a:focus {
 </style>
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <script>
-		function formSubmit(id,writer) {
+		function formSubmit(id, writer, name, img, code) {
 			frms.id.value = id;
 			frms.writer.value = writer;
+			frms.name.value = '${product.itemName}';
+			frms.img.value = '${product.itemImg}';
+			frms.code.value = '${product.itemCode}';
 			frms.submit();
-
 		}
 		
 		function addCart(itemCode){
@@ -69,14 +71,18 @@ a:focus {
 </head>
 <body>
 	<form id="frms" action="qnaSelect.do" method="post">
-		<input type="hidden" id="id" name="id"> <input type="hidden"
-			id="writer" name="writer">
+		<input type="hidden" id="id" name="id">
+		<input type="hidden" id="writer" name="writer">
+		<input type="hidden" id="name" name="name">
+		<input type="hidden" id="img" name="img">
+		<input type="hidden" id="code" name="code">
 	</form>
 	<!-- Product Page Section Beign -->
 	<section class="product-page">
 		<div class="container">
 			<div class="product-control">
 				<br> <a href="productList.do"><h5>Shop</h5></a>＞
+				<!-- small nav 영역 -->
 				<c:choose>
 					<c:when test="${fn:startsWith(product.itemCode, 'O')}">
 						<a href="productList.do?cate=O&sort=new"><h5>Outer</h5></a>
@@ -92,6 +98,7 @@ a:focus {
 					</c:when>
 				</c:choose>
 			</div>
+			<!-- 제품 정보 출력 -->
 			<div class="row">
 				<div class="col-lg-6">
 					<div class="product-slider owl-carousel">
@@ -149,17 +156,17 @@ a:focus {
 						</c:choose>
 
 						<ul class="p-info">
-							<li>Product Information</li>
-							<li><a href="#q">Q&A</a></li>
-							<li><a href="#r">Reviews</a></li>
+							<li><a href="#info">Product Information</li>
+							<li><a href="#qna">Q&A</a></li>
+							<li><a href="#review">Reviews</a></li>
 						</ul>
 					</div>
 				</div>
-				<img
-					src="${pageContext.request.contextPath }/bootstrap/img/product/policy.jpg"
-					alt="">
+				<a name="info"><img src="${pageContext.request.contextPath }/bootstrap/img/product/policy.jpg" alt=""></a>
+				
+				<!-- QNA 영역 -->
 				<div class="col-lg-12 text-center">
-					<a name="q"><h4>Q&A</h4></a>
+					<a name="qna"><h4>Q&A</h4></a>
 					<div style="padding: 1.5em;">
 						<table class="table">
 							<tr>
@@ -171,11 +178,11 @@ a:focus {
 							<c:choose>
 								<c:when test="${!empty qnaList }">
 									<c:forEach items="${qnaList }" var="vo">
-										<tr>
-											<td width="100" onclick="formSubmit(${vo.id},'${vo.writer}')">${vo.id }</td>
-											<td width="200" onclick="formSubmit(${vo.id},'${vo.writer}')">${vo.title }</td>
-											<td width="200" onclick="formSubmit(${vo.id},'${vo.writer}')">${vo.writer }</td>
-											<td width="150" onclick="formSubmit(${vo.id},'${vo.writer}')">${vo.regDate }</td>
+										<tr onclick="formSubmit(${vo.id},'${vo.writer}', '${product.itemImg}', '${product.itemName}')">
+											<td width="100">${vo.id }</td>
+											<td width="300">${vo.title } <span style="font-size: 10pt; color: lightgray;">(${vo.commentCnt })</span></td>
+											<td width="100">${vo.writer }</td>
+											<td width="150">${vo.regDate }</td>
 										</tr>
 									</c:forEach>
 								</c:when>
@@ -186,7 +193,43 @@ a:focus {
 								</c:otherwise>
 							</c:choose>
 						</table>
+						<br><br><br>
 					</div>
+				</div>
+
+				<!-- 리뷰 영역 -->
+				<div class="col-lg-12 text-center">
+					<a name="review"><h4>Review</h4></a>
+					<div style="padding: 1.5em;">
+						<table class="table">
+							<tr>
+								<th>NO.</th>
+								<th>TITLE</th>
+								<th>SCORE</th>
+								<th>WRITER</th>
+								<th>DATE</th>
+							</tr>
+							<c:choose>
+								<c:when test="${!empty qnaList }">
+									<c:forEach items="${qnaList }" var="vo">
+										<tr>
+											<td width="100" onclick="formSubmit(${vo.id},'${vo.writer}')">${vo.id }</td>
+											<td width="250" onclick="formSubmit(${vo.id},'${vo.writer}')">${vo.title } <span style="font-size: 10pt; color: lightgray;">(${vo.commentCnt })</span></td>
+											<td width="100" onclick="formSubmit(${vo.id},'${vo.writer}')">별점</td>
+											<td width="100" onclick="formSubmit(${vo.id},'${vo.writer}')">${vo.writer }</td>
+											<td width="150" onclick="formSubmit(${vo.id},'${vo.writer}')">${vo.regDate }</td>
+										</tr>
+									</c:forEach>
+								</c:when>
+								<c:otherwise>
+									<tr>
+										<td colspan="5">작성된 게시글이 없습니다.</td>
+									</tr>
+								</c:otherwise>
+							</c:choose>
+						</table>
+					</div>
+					<br><br>
 				</div>
 			</div>
 		</div>

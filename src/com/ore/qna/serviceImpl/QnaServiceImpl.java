@@ -184,6 +184,7 @@ public class QnaServiceImpl extends DAO implements QnaService{
 				rvo.setContent(rs.getString("content"));
 				rvo.setRegDate(rs.getDate("reg_date"));
 				rvo.setHit(rs.getInt("hit"));
+				rvo.setCommentCnt(rs.getInt("commentcnt"));
 				list.add(rvo);
 			}
 		} catch (Exception e) {
@@ -225,7 +226,7 @@ public class QnaServiceImpl extends DAO implements QnaService{
 	
 	@Override
 	public int insertQna(QnaVO vo) {
-		sql = "insert into qna values(qna_seq.nextval, ?, ?, ?, ?, sysdate, 0)";
+		sql = "insert into qna values(qna_seq.nextval, ?, ?, ?, ?, sysdate, 0, 0)";
 		try {
 			psmt = conn.prepareStatement(sql);
 			psmt.setString(1, vo.getItemCode());

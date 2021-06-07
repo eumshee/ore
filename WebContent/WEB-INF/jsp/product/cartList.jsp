@@ -18,6 +18,7 @@ th, td {
 	text-align: left;
 	}
 </style>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <script>
 
 	document.addEventListener('keydown', function(event) {
@@ -46,16 +47,17 @@ th, td {
 	}
 	
 	function placeOrder() {
-		var name = orderForm.name.value;
-		var addr = orderForm.addr.value;
-		var tel = orderForm.tel.value;
-		var mail = orderForm.mail.value;
-		var msg = orderForm.msg.value;
+		swal({
+			text : "주문이 정상적으로 처리되었습니다.",
+		   	icon  : "success",
+		   	closeOnClickOutside : false,
+		}).then(function(){
 		var sum = $('#spansum').text();
-		
 		orderForm.totalsum.value = sum;
 		orderForm.submit();
+	});
 	}
+	
 </script>
 </head>
 <body>

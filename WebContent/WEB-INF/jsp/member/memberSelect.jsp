@@ -26,17 +26,23 @@ th, td {
 			frm.submit(); 
 		}
 		
-		function formSubmit(id,writer) {
+		function formSubmit(id, writer, name, img, code) {
 			frms.id.value = id;
 			frms.writer.value = writer;
+			frms.name.value = '${product.itemName}';
+			frms.img.value = '${product.itemImg}';
+			frms.code.value = '${product.itemCode}';
 			frms.submit();
 		}
 	</script>
 </head>
 <body>
 	<form id="frms" action="qnaSelect.do" method="post">
-		<input type="hidden" id="id" name="id"> <input type="hidden"
-			id="writer" name="writer">
+		<input type="hidden" id="id" name="id">
+		<input type="hidden" id="writer" name="writer">
+		<input type="hidden" id="name" name="name">
+		<input type="hidden" id="img" name="img">
+		<input type="hidden" id="code" name="code">
 	</form>
 	<div class="container">
 		<h1>Mypage</h1>
@@ -117,6 +123,7 @@ th, td {
 
 
 			<br> <br>
+			<!-- QNA 영역 출력 -->
 			<div class="row">
 				<div class="col-lg-12">
 					<div class="board">
@@ -136,15 +143,11 @@ th, td {
 									<c:choose>
 										<c:when test="${id eq 'admin' }">
 											<c:forEach items="${qnaAll }" var="vo">
-												<tr>
-													<td width="100"
-														onclick="formSubmit(${vo.id},'${vo.writer}')">${vo.id }</td>
-													<td width="200"
-														onclick="formSubmit(${vo.id},'${vo.writer}')">${vo.title }</td>
-													<td width="200"
-														onclick="formSubmit(${vo.id},'${vo.writer}')">${vo.writer }</td>
-													<td width="150"
-														onclick="formSubmit(${vo.id},'${vo.writer}')">${vo.regDate }</td>
+												<tr onclick="formSubmit(${vo.id},'${vo.writer}','${product.itemImg}', '${product.itemName}', '${product.itemCode}')">
+		 											<td width="100">${vo.id }</td>
+													<td width="300">${vo.title } <span style="font-size: 10pt; color: lightgray;">(${vo.commentCnt })</span></td>
+													<td width="100">${vo.writer }</td>
+													<td width="150">${vo.regDate }</td>
 												</tr>
 											</c:forEach>
 										</c:when>
@@ -153,15 +156,53 @@ th, td {
 										</c:when>
 										<c:otherwise>
 											<c:forEach items="${qnaList }" var="vo">
-												<tr>
-													<td width="100"
-														onclick="formSubmit(${vo.id},'${vo.writer}')">${vo.id }</td>
-													<td width="200"
-														onclick="formSubmit(${vo.id},'${vo.writer}')">${vo.title }</td>
-													<td width="200"
-														onclick="formSubmit(${vo.id},'${vo.writer}')">${vo.writer }</td>
-													<td width="150"
-														onclick="formSubmit(${vo.id},'${vo.writer}')">${vo.regDate }</td>
+												<tr onclick="formSubmit(${vo.id},'${vo.writer}')">
+													<td width="100">${vo.id }</td>
+													<td width="300">${vo.title } <span style="font-size: 10pt; color: lightgray;">(${vo.commentCnt })</span>       </td>
+													<td width="100">${vo.writer }</td>
+													<td width="150">${vo.regDate }</td>
+												</tr>
+											</c:forEach>
+										</c:otherwise>
+									</c:choose>
+								</table>
+							</div>
+						</div>
+						<div class="review" align="center"
+							style="border: 1px solid black; padding: 1em; margin-bottom: 2em;">
+							<h4>Review</h4>
+							<div style="padding: 1.5em;">
+								<table class="table">
+									<tr>
+										<th>NO.</th>
+										<th>TITLE</th>
+										<th>SCORE</th>
+										<th>WRITER</th>
+										<th>DATE</th>
+									</tr>
+									<c:choose>
+										<c:when test="${id eq 'admin' }">
+											<c:forEach items="${qnaAll }" var="vo">
+												<tr onclick="formSubmit(${vo.id},'${vo.writer}')">
+													<td width="100">${vo.id }</td>
+													<td width="250">${vo.title } <span style="font-size: 10pt; color: lightgray;">(${vo.commentCnt })</span></td>
+													<td width="100">별점</td>
+													<td width="100">${vo.writer }</td>
+													<td width="150">${vo.regDate }</td>
+												</tr>
+											</c:forEach>
+										</c:when>
+										<c:when test="${empty qnaList }">
+											<td colspan="4"><p>작성한 게시글이 없습니다.</p></td>
+										</c:when>
+										<c:otherwise>
+											<c:forEach items="${qnaList }" var="vo">
+												<tr onclick="formSubmit(${vo.id},'${vo.writer}')">
+													<td width="100">${vo.id }</td>
+													<td width="250">${vo.title } <span style="font-size: 10pt; color: lightgray;">(${vo.commentCnt })</span></td>
+													<td width="100">별점</td>
+													<td width="100">${vo.writer }</td>
+													<td width="150">${vo.regDate }</td>
 												</tr>
 											</c:forEach>
 										</c:otherwise>
