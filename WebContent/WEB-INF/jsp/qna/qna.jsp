@@ -81,10 +81,9 @@
 					td.append($('<font />').attr('size','2').attr('color','lightgray').html(param.commentDate));
 					let td2 = $('<td />').html(param.commentContent);
 					let td3 = $('<td />');
-					let modyBtn = $('<button />').attr('class','btn btn-outline-dark mt-auto').html('MODIFY');
 					let delBtn = $('<button />').attr('class','btn btn-outline-dark mt-auto').html('DELETE');
 					delBtn.click(delRow);
-					td3.append(modyBtn, delBtn);
+					td3.append(delBtn);
 					tr.append(td,td2,td3);								
 					tbl.append(tr);
        			},

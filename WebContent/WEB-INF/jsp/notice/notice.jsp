@@ -58,6 +58,11 @@ td {
 	<div class="container">
 		<h1>Notice</h1>
 		<br>
+		<div align="right">
+		<button class="btn btn-outline-dark mt-auto" type="button"
+						onclick="location.href='noticeList.do'">BACK</button>
+						<br><br>
+		</div>
 		<div align="center">
 			<form id="frmDel" action="noticeDelete.do" method="post">
 				<input type="hidden" id="did" name="did" value="${notice.id}">
@@ -67,8 +72,8 @@ td {
 				<input type="hidden" id="title" name="title" value="${notice.title}">
 				<table class="table">
 					<tr>
-						<th>No.</th>
-						<td width="200">${notice.id}</td>
+						<th width="100">No.</th>
+						<td width="150">${notice.id}</td>
 						<th>DATE</th>
 						<td>${notice.regDate}</td>
 						<th>HIT</th>
@@ -106,8 +111,6 @@ td {
 						<button class="btn btn-outline-dark mt-auto" type="button"
 							onclick="noticeDelete()">DELETE</button>
 					</c:if>
-					<button class="btn btn-outline-dark mt-auto" type="button"
-						onclick="location.href='noticeList.do'">BACK</button>
 				</div>
 			</form>
 		</div>

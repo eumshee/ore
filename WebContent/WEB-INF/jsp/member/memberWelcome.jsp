@@ -150,8 +150,8 @@
 <div class="wrapper fadeInDown">
 	<div id="formContent">
 		<div class="container">
-			<br>
-			<h1>Welcome</h1>
+			<br><br>
+			<h2>Welcome</h2>
 			<br>
 			<br>
 		</div>

@@ -46,6 +46,12 @@
 	function reviewDelete() {
 		frmDel.submit();
 	}
+	
+	function formSelect(code) {
+		frmSelect.code.value = code;
+		frmSelect.submit();
+		}
+	
 	</script>
 </head>
 <body>
@@ -58,6 +64,9 @@
 	<input type="hidden" id="title" name="title">
 	<input type="hidden" id="ccontent" name="ccontent">
 </form>
+<form id="frmSelect" action="productSelect.do" method="post">
+	<input type="hidden" id="code" name="code" value="${item.itemCode}">
+</form>
 	<div class="container">
 		<h1>Review</h1>
 		<div align="right">
@@ -65,7 +74,7 @@
 		</div>
 		<div align="center">
 				<table class="table">
-					<tr>
+					<tr onclick="formSelect('${item.itemCode}')">
 						<th>ITEM</th>
 						<td class="product-col" style="text-align:left;"><img width="100" height="150"
 										src="${pageContext.request.contextPath }/bootstrap/img/product/${review.itemImg}"
