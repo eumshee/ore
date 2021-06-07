@@ -89,7 +89,7 @@ a:focus {
 	<section class="product-page">
 		<div class="container">
 			<div class="product-control">
-				<br> <a href="productList.do"><h5>Shop</h5></a>＞
+				<br> <a href="productList.do?cate=&sort=new"><h5>Shop</h5></a>＞
 				<!-- small nav 영역 -->
 				<c:choose>
 					<c:when test="${fn:startsWith(product.itemCode, 'O')}">

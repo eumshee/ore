@@ -43,7 +43,7 @@ $(document).ready(function(){
 	    autoplayHoverPause: true,
 	    mouseDrag: false,
 		autoplay:true,
-		autoplayTimeout:5000,
+		autoplayTimeout: 5,
 		autoplayHoverPause:true
 });
 });

@@ -190,6 +190,11 @@ th, td {
 										<th>WRITER</th>
 										<th>DATE</th>
 									</tr>
+									<c:choose>
+										<c:when test="${empty reviewList }">
+											<td colspan="5"><p>작성한 게시글이 없습니다.</p></td>
+										</c:when>
+										<c:otherwise>
 									<c:forEach items="${reviewList }" var="vo">
 										<tr>
 											<td width="50" onclick="frmSubmit('${vo.userId}','${vo.itemCode}')">${vo.reviewNum }</td>
@@ -205,6 +210,8 @@ th, td {
 											<td width="100" onclick="frmSubmit('${vo.userId}','${vo.itemCode}')">${vo.reviewDate }</td>
 										</tr>
 									</c:forEach>
+									</c:otherwise>
+									</c:choose>
 								</table>
 							</div>
 						</div>

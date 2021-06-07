@@ -74,7 +74,7 @@
         autoplayHoverPause: true,
         mouseDrag: false,
 		autoplay:true,
-		autoplayTimeout:5000,
+		autoplayTimeout: 5000,
 		autoplayHoverPause:true
     });
 
