@@ -107,8 +107,8 @@
 					</tr>
 				</table>
 				<div>
-					<button class="btn btn-outline-dark mt-auto" type="button" onclick="formCheck()">WRITE</button>
 					<button class="btn btn-outline-dark mt-auto" type="reset">RESET</button>
+					<button class="btn btn-outline-dark mt-auto" type="button" onclick="formCheck()">WRITE</button>
 					<br><br>
 					<button class="btn btn-outline-dark mt-auto" type="button" onclick="location.href='reviewList.do'">BACK</button>
 				</div>
